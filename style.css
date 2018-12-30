@@ -48,11 +48,71 @@ body {
 
 .weekday-sprite {
 	background: url(images/weekday_sprites.png);
-	position: absolute;
+	position: relative;
+	display: inline-block;
 	background-position: 0px 0px;
 	width: 191px;
 	height: 74px;
-	left: 0px; /* these are to do with
-	top: 0px; 	positioning on the page */
-	color: black;
+}
+
+.year-sprite {
+	background: url(images/currentYear.png);
+	position: relative;
+	display: inline-block;
+	width: 195px;
+	height: 105px;
+}
+
+
+.month-number-tens {
+	background: url(images/date-numbers-debug.png);
+	position: relative;
+	display: inline-block;
+	background-position: 0px 0px;
+	width: 56px;
+	height: 100px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.month-number-ones {
+	background: url(images/date-numbers-debug.png);
+	position: relative;
+	display: inline-block;
+	background-position: 0px 0px;
+	width: 56px;
+	height: 100px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.month-kanji{
+	background: url(images/monthKanji.png);
+	position: relative;
+	display: inline-block;
+	width: 54px;
+	height: 56px;
+}
+
+
+.day-number-tens {
+	background: url(images/date-numbers-debug.png);
+	position: relative;
+	display: inline-block;
+	background-position: 0px 0px;
+	width: 56px;
+	height: 100px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.day-number-ones {
+	background: url(images/date-numbers-debug.png);
+	position: relative;
+	display: inline-block;
+	background-position: 0px 0px;
+	width: 56px;
+	height: 100px;
+	padding: 0px;
+	margin: 0px;
 }
