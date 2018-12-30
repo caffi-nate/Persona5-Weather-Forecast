@@ -47,9 +47,12 @@ body {
 }
 
 .weekday-sprite {
-	position: absolute;
 	background: url(images/weekday_sprites.png);
+	position: absolute;
 	background-position: 0px 0px;
 	width: 191px;
-	height: 74px;	
+	height: 74px;
+	left: 0px; /* these are to do with
+	top: 0px; 	positioning on the page */
+	color: black;
 }
