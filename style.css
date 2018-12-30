@@ -143,7 +143,6 @@ body {
 	height: 105px;
 }
 
-
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 .weekday-container{
@@ -196,7 +195,6 @@ body {
 	padding: 0px;
 	margin: 0px;
 	z-index: 1000;
-
 }
 
 .date-ones-mid {

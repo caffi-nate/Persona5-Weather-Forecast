@@ -1,20 +1,22 @@
 let isDayTime = true;
-let currentDay = 0;
+let currentDay = -1;
 
 function setDate(){
 	const currentTime = new Date();
-
-	console.log(currentTime.getSeconds());
-
 	const day = (currentTime.getDay() + 6) % 7;
-	const date = currentTime.getDate();
-	const month = currentTime.getMonth() + 1;
 
-	console.log(day);
+	// only update datestrings once per day, not every second
+	if (day != currentDay){
+		const date = currentTime.getDate();
+		const month = currentTime.getMonth() + 1;
+		
+		updateWeekdaySprite(day);
+		updateDateDisplay(date);
+		updateMonthDisplay(month);
 
-	updateWeekdaySprite(day);
-	updateDateDisplay(date);
-	updateMonthDisplay(month);
+		// update
+		currentDay = day;
+	}
 
 	// for each of the functions below, test by toggling at the end of a minute
 
@@ -25,27 +27,22 @@ function setDate(){
 
 function updateWeekdaySprite(currentDay){
 	const weekdaySprite = document.querySelector('.weekday-sprite');
-
 	// get dimensions directly from css incase I update the spritesheet later
 	const spriteWidth = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
 	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
 
 	const xPos = (currentDay % 3) * -spriteWidth;
 	const yPos = Math.floor(currentDay / 3) * -spriteHeight;
-
 	const positionString = `${xPos}px ${yPos}px`;
 
-	weekdaySprite.style.backgroundPosition =  positionString;
+	weekdaySprite.style.backgroundPosition = positionString;
 }
 
 function updateDateDisplay(date){
-
 	console.log(date);
 	const dateTens = document.querySelector('.date-tens-top');
 	const dateTensMid = document.querySelector('.date-tens-mid');
 	const dateTensBase = document.querySelector('.date-tens-base');
-
-
 
 	const dateOnes = document.querySelector('.date-ones-top');
 	const dateOnesMid = document.querySelector('.date-ones-mid');
@@ -99,23 +96,17 @@ function toggleBackground(){
 	overlayImages.forEach(overlayImage => {
 		if (isDayTime){
 			overlayImage.classList.remove('night');
-			currentDay = (currentDay + 1) % 7;
+			//currentDay = (currentDay + 1) % 7;
 		}
 		else {
 			overlayImage.classList.add('night');
 		}
 	});
-
-
-	// 191 width, 74 height
-
-
 };
 
 
 
 function moveSprite(e){
-	
 	const weekdaySprite = document.querySelector('.weekday-sprite');
 
 	// get the background position from the css and split it into 2 integers
@@ -143,9 +134,6 @@ function moveSprite(e){
 	let y_movement = 0;
 	const moveSpeed = 2;
 	
-
-
-
 	if (e.key == "ArrowRight"){
 		x_movement = moveSpeed;
 		//console.log(e);
@@ -167,19 +155,13 @@ function moveSprite(e){
 
 	//(parseInt("40px".replace(/px/,""))+60)+"px";
 
-
 	weekdaySprite.style.backgroundPosition = `${left}px ${top}px`;
 	//weekdaySprite.style.left = `${leftPixels}px`;
-
-	
 }
-
 
 // only run once per second
 setInterval(setDate, 1000);
-setDate();
-
-
+setDate(); // call on page load
 
 window.addEventListener('mousedown', toggleBackground);
 document.addEventListener('keydown', moveSprite);
