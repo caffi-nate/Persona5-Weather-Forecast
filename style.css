@@ -4,10 +4,10 @@ html {
 }
 
 body {
-	background: black;
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	z-index: -1000;
 }
 
 .background-wrapper {
@@ -24,6 +24,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	position: absolute;
+	z-index: -1000;
 }
 
 .background-overlay {
@@ -34,6 +35,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	position: absolute;	
+	z-index: -1000;
 }
 
 .timeOfDay {
@@ -46,10 +48,97 @@ body {
 	background: black;
 }
 
+/* now start the HUD grid */
+.calendar-grid-container {
+	position: relative;
+	display: grid;
+	border: 10px solid red;
+	grid-template-columns: 180px 64px 72px 50px;
+	grid-template-rows: repeat(3,0px);
+	grid-gap: 0px;
+	padding: 0px 0px 100px 0px;
+	margin: 20px 0px 100px 0px;
+}
+
+.calendar-grid-container > * {
+	/*border: 5px solid yellow;*/
+}
+
+.month-tens-top {
+	background-image: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 1000;
+}
+
+.month-tens-mid {
+	background-image: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 100;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.month-tens-base {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 10;
+	grid-column: 2;
+	grid-row: 3;
+}
+
+.month-ones-top {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 1000;
+}
+.month-ones-mid {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 100;
+	grid-column: 3;
+	grid-row: 2;
+}
+.month-ones-base {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 10;
+	grid-column: 3;
+	grid-row: 3;
+}
+
+.month-kanji{
+	background: url(images/monthKanji.png);
+	width: 54px;
+	height: 56px;
+	z-index: 100;
+}
+
 .weekday-sprite {
 	background: url(images/weekday_sprites.png);
-	position: relative;
-	display: inline-block;
 	background-position: 0px 0px;
 	width: 191px;
 	height: 74px;
@@ -57,62 +146,43 @@ body {
 
 .year-sprite {
 	background: url(images/currentYear.png);
-	position: relative;
-	display: inline-block;
 	width: 195px;
 	height: 105px;
 }
+.year-sprite-mid {
 
+}
+.year-sprite-base {
 
-.month-number-tens {
-	background: url(images/date-numbers-debug.png);
-	position: relative;
-	display: inline-block;
-	background-position: 0px 0px;
-	width: 56px;
-	height: 100px;
-	padding: 0px;
-	margin: 0px;
 }
 
-.month-number-ones {
-	background: url(images/date-numbers-debug.png);
-	position: relative;
-	display: inline-block;
-	background-position: 0px 0px;
-	width: 56px;
-	height: 100px;
-	padding: 0px;
-	margin: 0px;
-}
 
-.month-kanji{
-	background: url(images/monthKanji.png);
+/* weekday container */
+/* todo: will relegate this to an object later so we can display multiple */
+.weekday-container{
 	position: relative;
-	display: inline-block;
-	width: 54px;
-	height: 56px;
+	display:grid;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(9. 50px);
+	border: 5px solid yellow;
 }
-
 
 .day-number-tens {
-	background: url(images/date-numbers-debug.png);
-	position: relative;
-	display: inline-block;
+	background: url(images/numbers_spritesheet_2.png);
 	background-position: 0px 0px;
-	width: 56px;
-	height: 100px;
+	width: 100px;
+	height: 150px;
 	padding: 0px;
 	margin: 0px;
+	z-index: 1000;
 }
 
 .day-number-ones {
-	background: url(images/date-numbers-debug.png);
-	position: relative;
-	display: inline-block;
+	background: url(images/numbers_spritesheet_2.png);
 	background-position: 0px 0px;
-	width: 56px;
-	height: 100px;
+	width: 100px;
+	height: 150px;
 	padding: 0px;
 	margin: 0px;
+	z-index: 1000;
 }

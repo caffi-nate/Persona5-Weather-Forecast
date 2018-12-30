@@ -11,13 +11,14 @@ function setDate(){
 	console.log(currentTime.getSeconds());
 
 	const day = (currentTime.getDay() + 6) % 7;
-
 	const date = currentTime.getDate();
+	const month = currentTime.getMonth();
 
 	console.log(day);
 
 	updateDaySprite(day);
-	updateDateSprites(date);
+	updateDateDisplay(date);
+	updateMonthDisplay(month+1);
 
 	// for each of the functions below, test by toggling at the end of a minute
 
@@ -43,16 +44,39 @@ function updateDaySprite(currentDay, currentDate){
 	weekdaySprite.style.backgroundPosition =  positionString;
 }
 
-function updateDateSprites(date){
+function updateDateDisplay(date){
 	const dateTens = document.querySelector('.day-number-tens');
 	const dateOnes = document.querySelector('.day-number-ones');
 
-	const dateSpriteWidth = parseInt((getComputedStyle(dateOnes).width).replace(/px/,""));
+	const spriteWidth = parseInt((getComputedStyle(dateOnes).width).replace(/px/,""));
 
 	const ones = date % 10;
 	const tens = Math.floor(date / 10);
-	dateOnes.style.backgroundPosition = `${-ones * dateSpriteWidth}px`;
-	dateTens.style.backgroundPosition = `${-tens * dateSpriteWidth}px`;
+	dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
+	dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
+}
+
+function updateMonthDisplay(month){
+	const monthTens = document.querySelector('.month-tens-top');
+	const monthTensMid = document.querySelector('.month-tens-mid');
+	const monthTensBase = document.querySelector('.month-tens-base');
+
+	const monthOnes = document.querySelector('.month-ones-top');
+	const monthOnesMid = document.querySelector('.month-ones-mid');
+	const monthOnesBase = document.querySelector('.month-ones-base');
+
+	const spriteWidth = parseInt((getComputedStyle(monthOnes).width).replace(/px/,""));
+
+	const ones = month % 10;
+	const tens = Math.floor(month / 10);
+
+	monthOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
+	monthOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
+	monthOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
+
+	monthTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
+	monthTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
+	monthTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
 }
 
 
