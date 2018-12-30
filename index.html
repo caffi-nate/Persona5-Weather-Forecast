@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<title>Persona 5 Calendar</title>
+		<link rel = "stylesheet" href = "style.css">
+	</head>
+	<body>
+
+		<div class = "background-wrapper">
+			
+			<img class = "background-base" src = "images/city_background_day.png">
+			<img class = "background-overlay timeOfDay" src = "images/city_background_night.png">
+	
+
+			<div class = "weekday-sprite"></div>
+		</div>
+
+
+		<script>
+			let isDayTime = true;
+			let currentDay = 0;
+
+			function toggleBackground(){
+				const overlayImages = document.querySelectorAll('.timeOfDay');
+
+
+
+				isDayTime = !isDayTime;
+
+				overlayImages.forEach(overlayImage => {
+					if (isDayTime){
+						overlayImage.classList.remove('night');
+						currentDay = (currentDay + 1 % 7);
+					}
+					else {
+						overlayImage.classList.add('night');
+					}
+				});
+
+				console.log("Daytime: " + isDayTime);
+				console.log(currentDay);
+			};
+
+			window.addEventListener('mousedown', toggleBackground);
+		</script>
+	</body>
+</html>

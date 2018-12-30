@@ -1,0 +1,55 @@
+html {
+	background: black;
+	height: 100%;
+}
+
+body {
+	background: black;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+.background-wrapper {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+}
+
+.background-base {
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 99vw;
+	height: 99vh;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+}
+
+.background-overlay {
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 99vw;
+	height: 99vh;
+	margin: 0px
+	padding: 0px;
+	position: absolute;	
+}
+
+.timeOfDay {
+	opacity: 0;
+	transition: opacity 2s;
+}
+
+.timeOfDay.night {
+	opacity: 1;
+	background: black;
+}
+
+.weekday-sprite {
+	position: absolute;
+	background: url(images/weekday_sprites.png);
+	background-position: 0px 0px;
+	width: 191px;
+	height: 74px;	
+}
