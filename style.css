@@ -142,12 +142,6 @@ body {
 	width: 195px;
 	height: 105px;
 }
-.year-sprite-mid {
-
-}
-.year-sprite-base {
-
-}
 
 
 /* weekday container */
@@ -169,7 +163,6 @@ body {
 	margin: 0px;
 	z-index: 1000;
 }
-
 
 .date-tens-mid {
 	background: url(images/numbers_spritesheet_2.png);

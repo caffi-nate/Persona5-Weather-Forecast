@@ -1,9 +1,5 @@
-
-
-
 let isDayTime = true;
 let currentDay = 0;
-
 
 function setDate(){
 	const currentTime = new Date();
@@ -12,13 +8,13 @@ function setDate(){
 
 	const day = (currentTime.getDay() + 6) % 7;
 	const date = currentTime.getDate();
-	const month = currentTime.getMonth();
+	const month = currentTime.getMonth() + 1;
 
 	console.log(day);
 
-	updateDaySprite(day);
+	updateWeekdaySprite(day);
 	updateDateDisplay(date);
-	updateMonthDisplay(month+1);
+	updateMonthDisplay(month);
 
 	// for each of the functions below, test by toggling at the end of a minute
 
@@ -27,19 +23,17 @@ function setDate(){
 	// todo: write a script that toggles the current day at 12AM every night
 }
 
-function updateDaySprite(currentDay, currentDate){
+function updateWeekdaySprite(currentDay){
 	const weekdaySprite = document.querySelector('.weekday-sprite');
 
-	let positionString = "";
-	switch(currentDay){
-		case 0: positionString = "0px -0px"; break; // Monday
-		case 1: positionString = "-191px -0px"; break; // Tuesday
-		case 2: positionString = "-382px -0px"; break; // Wednesday
-		case 3: positionString = "-0px -74px"; break; // Thursday
-		case 4: positionString = "-191px -74px"; break; // Friday
-		case 5: positionString = "-382px -74px"; break; // Saturday
-		case 6: positionString = "-0px -148px"; break; // Sunday
-	}
+	// get dimensions directly from css incase I update the spritesheet later
+	const spriteWidth = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
+	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
+
+	const xPos = (currentDay % 3) * -spriteWidth;
+	const yPos = Math.floor(currentDay / 3) * -spriteHeight;
+
+	const positionString = `${xPos}px ${yPos}px`;
 
 	weekdaySprite.style.backgroundPosition =  positionString;
 }
