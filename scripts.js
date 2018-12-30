@@ -45,15 +45,32 @@ function updateDaySprite(currentDay, currentDate){
 }
 
 function updateDateDisplay(date){
-	const dateTens = document.querySelector('.day-number-tens');
-	const dateOnes = document.querySelector('.day-number-ones');
+
+	console.log(date);
+	const dateTens = document.querySelector('.date-tens-top');
+	const dateTensMid = document.querySelector('.date-tens-mid');
+	const dateTensBase = document.querySelector('.date-tens-base');
+
+
+
+	const dateOnes = document.querySelector('.date-ones-top');
+	const dateOnesMid = document.querySelector('.date-ones-mid');
+	const dateOnesBase = document.querySelector('.date-ones-base');
 
 	const spriteWidth = parseInt((getComputedStyle(dateOnes).width).replace(/px/,""));
 
 	const ones = date % 10;
 	const tens = Math.floor(date / 10);
+
 	dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
+	dateOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
+	dateOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
+
+	console.log(dateOnesMid);
+
 	dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
+	dateTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
+	dateTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
 }
 
 function updateMonthDisplay(month){

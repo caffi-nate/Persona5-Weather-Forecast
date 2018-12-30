@@ -137,13 +137,6 @@ body {
 	z-index: 100;
 }
 
-.weekday-sprite {
-	background: url(images/weekday_sprites.png);
-	background-position: 0px 0px;
-	width: 191px;
-	height: 74px;
-}
-
 .year-sprite {
 	background: url(images/currentYear.png);
 	width: 195px;
@@ -162,12 +155,12 @@ body {
 .weekday-container{
 	position: relative;
 	display:grid;
-	grid-template-columns: repeat(3, 100px);
-	grid-template-rows: repeat(9. 50px);
+	grid-template-columns: 72px 72px;
+	grid-template-rows: 0px 0px 108px 100px;
 	border: 5px solid yellow;
 }
 
-.day-number-tens {
+.date-tens-top {
 	background: url(images/numbers_spritesheet_2.png);
 	background-position: 0px 0px;
 	width: 100px;
@@ -177,12 +170,72 @@ body {
 	z-index: 1000;
 }
 
-.day-number-ones {
+
+.date-tens-mid {
 	background: url(images/numbers_spritesheet_2.png);
 	background-position: 0px 0px;
 	width: 100px;
 	height: 150px;
 	padding: 0px;
 	margin: 0px;
+	z-index: 100;
+	grid-column: 1;
+	grid-row: 2;
+}
+
+.date-tens-base {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 10;
+	grid-column: 1;
+	grid-row: 3;
+}
+
+.date-ones-top {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 1000;
+
+}
+
+.date-ones-mid {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 100;
+	grid-column: 2;
+	grid-row: 2;
+}
+
+.date-ones-base {
+	background: url(images/numbers_spritesheet_2.png);
+	background-position: 0px 0px;
+	width: 100px;
+	height: 150px;
+	padding: 0px;
+	margin: 0px;
+	z-index: 10;
+	grid-column: 2;
+	grid-row: 3;
+}
+
+.weekday-sprite {
+	background: url(images/weekday_sprites.png);
+	background-position: 0px 0px;
+	width: 191px;
+	height: 74px;
+	grid-column: 1;
+	grid-row: 4;
 	z-index: 1000;
 }
