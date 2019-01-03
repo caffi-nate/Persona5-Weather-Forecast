@@ -1,3 +1,18 @@
+@font-face {
+font-family: "P5hatty";
+src: url("p5hatty.ttf");
+/*
+src: 
+url("css/fonts/Harabara.woff") format("woff"),
+url("css/fonts/Harabara.otf") format("opentype"),
+url("css/fonts/Harabara.svg#filename") format("svg");*/
+}
+
+:root {
+	font-family: "P5hatty", sans-serif;
+	text-shadow: 2px 4px #000;
+}
+
 html {
 	background: white;
 	height: 100%;
@@ -258,23 +273,25 @@ span {
 .container {
 	border: 2px solid red;
 	display: grid;
-	grid-template-rows: 2fr 8fr;
 	text-align: center;
 	justify-content: center;
 	margin: 0 auto;
 	max-width: 1000px;
 	padding: 25px 5px;
+	color: white;
+	background-color: rgba(0,0,0,0.4);
 }
 
 .degrees {
 	display: grid;
 	grid-template-columns: auto auto;
-	border: 2px solid yellow;
+	/*border: 2px solid yellow;*/
 	justify-content: center;
+	color: white;
 }
 
 .weather-sprite{
-	background: url(images/weather_spritesheet.png);
+	background: url(images/weather_spritesheet2.png);
 	width: 75px;
 	height: 75px;
 	z-index: 1000;
