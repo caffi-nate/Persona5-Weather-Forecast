@@ -11,5 +11,5 @@ Created as a practice project to solidify understanding in
 
 Credits:
 - Atlus for Persona 5 sprites/backgrounds
-- HattyMikune for P5 font rip "P5hatty" https://www.youtube.com/watch?v=6B90DMr-OBY
+- HattyMikune for P5 font rip "P5hatty" https://drive.google.com/file/d/1CwDPE8fl6ahoktyoiGokwUnJdjp6Rw5d/view
 - Drew Clements for help with grabbing weather API information https://medium.com/@drewclementsdesign/building-a-weather-app-with-vanilla-javascript-920889a78ca2
