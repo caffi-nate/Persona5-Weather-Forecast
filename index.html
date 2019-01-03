@@ -8,8 +8,8 @@
 	<body>
 		<div class = "background-wrapper">
 			
-			<img class = "background-base" src = "images/city_background_day.png">
-			<img class = "background-overlay timeOfDay" src = "images/city_background_night.png">			
+			<!--<img class = "background-base" src = "images/city_background_day.png">
+			<img class = "background-overlay timeOfDay" src = "images/city_background_night.png">-->		
 
 			<div class = "calendar-grid-container">
 				<div class = "year-sprite"></div>
@@ -37,6 +37,20 @@
 			</div>
 		</div>
 
+		<div class = "container">
+			<h2 id = "city">Perth</h2>
+			<img src = "" alt = "icon" id = "icon">
+			<div class = "degrees">
+				<h1 id = "temp">22</h3><span>&#176;</span>
+			</div>
+			<h3 id = "weather-description">Sunny</h3>
+		</div>
+
 		<script type="text/javascript" src="scripts.js"></script>
+
+
+		<!-- Turn this off while testing html/css or we'll be asked if we trust it with our location every time -->
+		<script type = "text/javascript" src = "getWeather.js"></script>
+
 	</body>
 </html>

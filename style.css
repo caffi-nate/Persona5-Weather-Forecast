@@ -1,5 +1,5 @@
 html {
-	background: black;
+	background: white;
 	height: 100%;
 }
 
@@ -8,6 +8,30 @@ body {
 	padding: 0;
 	height: 100%;
 	z-index: -1000;
+}
+
+h1, h2, h3, span {
+	margin: 0;
+}
+
+p {
+	font-size: 16px;
+}
+
+h1 {
+	font-size: 16rem;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 3rem;
+}
+
+span {
+	font-size: 6rem;
 }
 
 .background-wrapper {
@@ -229,4 +253,19 @@ body {
 	grid-column: 1;
 	grid-row: 4;
 	z-index: 1000;
+}
+
+.container {
+	border: 2px solid red;
+	display: grid;
+	grid-template-rows: 2fr 8fr;
+	text-align: center;
+	padding: 25px 5px;
+}
+
+.degrees {
+	display: grid;
+	grid-template-columns: auto auto;
+	border: 2px solid yellow;
+	justify-content: center;
 }

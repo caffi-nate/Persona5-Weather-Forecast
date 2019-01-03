@@ -29,9 +29,9 @@ function updateWeekdaySprite(currentDay){
 	const weekdaySprite = document.querySelector('.weekday-sprite');
 	// get dimensions directly from css incase I update the spritesheet later
 	const spriteWidth = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
-	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
+	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).height).replace(/px/,""));
 
-	const xPos = (currentDay % 3) * -spriteWidth;
+	const xPos = (currentDay % 3) * - spriteWidth;
 	const yPos = Math.floor(currentDay / 3) * -spriteHeight;
 	const positionString = `${xPos}px ${yPos}px`;
 
@@ -158,6 +158,31 @@ function moveSprite(e){
 	weekdaySprite.style.backgroundPosition = `${left}px ${top}px`;
 	//weekdaySprite.style.left = `${leftPixels}px`;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // only run once per second
 setInterval(setDate, 1000);
