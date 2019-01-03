@@ -7,6 +7,7 @@
 // replace this depending on your personal API key from openweathermap.org
 const APPID = "32aa9a705e117c99f3cd712e3a521b18";
 const forecast = false; // set to false for single day weather, true for 5 day forecast
+let weatherSpriteIndex = 0;
 
 var getCoordinates = function() {
     if(navigator.geolocation){
@@ -93,7 +94,7 @@ function convertIcon(iconID){
   		weatherCondition = "Clouds"; break;
 
   		case "01d": case "01n":
-  		weatherCondition = "Sun"; break;
+  		weatherCondition = "Fine"; break;
 
   		case "13d":
   		weatherCondition = "Snow"; break;
@@ -117,8 +118,42 @@ function getMonthFromString(dateString){
 }
 
 function kelvinToCelcius(kelvin){
-	return kelvin -273.15;
+	let celcius = kelvin - 273.15;
+	celcius = celcius.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0]; // regex to round it to 1 dp
+
+	return celcius;
 }
+
+//setInterval(function(){ alert("Hello"); }, 3000);
+
+function whichWeatherSprite(conditionString){
+	let whichWeather = 0; // should give us rain as a test
+
+	switch(conditionString){
+		default:
+		case "Fine": whichWeather = 0; break;
+		case "Clouds": whichWeather = 1; break;
+		case "Rain": whichWeather = 2; break;
+		case "Snow": whichWeather = 3; break;
+	}
+
+	return whichWeather * 75;
+}
+
+window.setInterval(function updateWeatherSprite(condition){
+	const sprite = document.querySelector('.weather-sprite');
+	const spriteWidth = parseInt((getComputedStyle(sprite).width).replace(/px/,""));
+	const spriteHeight = parseInt((getComputedStyle(sprite).height).replace(/px/,""));
+
+	weatherSpriteIndex = (weatherSpriteIndex + 1) % 3;
+
+	const xPos = -whichWeatherSprite(condition);//(currentDay % 3) * - spriteWidth;
+	console.log("Sprite Index: " +weatherSpriteIndex);
+	const yPos = -(weatherSpriteIndex * spriteHeight);//Math.floor(currentDay / 3) * -spriteHeight;
+	const positionString = `${xPos}px ${yPos}px`;
+
+	sprite.style.backgroundPosition = positionString;
+}, 1000);
 
 
 /* debug functions */
@@ -128,10 +163,19 @@ function setWeatherTest(weather){
 	const temp = document.getElementById("temp");
 	const condition = document.getElementById("weather-description");
 
-
 	city.innerHTML = weather.city; // bugged right now... maybe don't use geolocation? or maybe it's good enough...
 	temp.innerHTML = weather.temp;
 	condition.innerHTML = weather.condition;
+
+	//updateWeatherSprite(weather.condition);
+
+	// update the icon based on the condition
+	switch (weather.condition){
+		case "Fine": break;
+		case "Clouds": break;
+		case "Rain": break;
+		case "Snow": break;
+	}
 
 
 	console.log("Setting weather...");

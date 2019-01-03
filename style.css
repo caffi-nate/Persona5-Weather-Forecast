@@ -260,6 +260,9 @@ span {
 	display: grid;
 	grid-template-rows: 2fr 8fr;
 	text-align: center;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 1000px;
 	padding: 25px 5px;
 }
 
@@ -268,4 +271,12 @@ span {
 	grid-template-columns: auto auto;
 	border: 2px solid yellow;
 	justify-content: center;
+}
+
+.weather-sprite{
+	background: url(images/weather_spritesheet.png);
+	width: 75px;
+	height: 75px;
+	z-index: 1000;
+	margin: 0 auto;
 }
