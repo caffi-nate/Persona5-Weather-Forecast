@@ -10,7 +10,7 @@ url("css/fonts/Harabara.svg#filename") format("svg");*/
 
 :root {
 	font-family: "P5hatty", sans-serif;
-	text-shadow: 2px 4px #000;
+	text-shadow: 0.1rem 0.2rem #000;
 }
 
 html {
@@ -27,6 +27,7 @@ body {
 
 h1, h2, h3, span {
 	margin: 0;
+	color: white;
 }
 
 p {
@@ -291,9 +292,15 @@ span {
 }
 
 .weather-sprite{
-	background: url(images/weather_spritesheet2.png);
+	background: url(images/weather_spritesheet3.png);
 	width: 75px;
-	height: 75px;
+	height: 72px;
 	z-index: 1000;
 	margin: 0 auto;
+}
+
+.clock {
+	display: grid;
+	grid-template-columns: repeat(10 10 3); /* place all digits into separate grid spaces */
+	border: 2px solid lime;
 }

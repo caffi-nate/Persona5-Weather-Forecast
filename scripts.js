@@ -5,6 +5,17 @@ function setDate(){
 	const currentTime = new Date();
 	const day = (currentTime.getDay() + 6) % 7;
 
+
+	
+
+	updateTime(currentTime);
+
+
+	
+
+
+
+
 	// only update datestrings once per day, not every second
 	if (day != currentDay){
 		const date = currentTime.getDate();
@@ -25,6 +36,34 @@ function setDate(){
 	// todo: write a script that toggles the current day at 12AM every night
 }
 
+function updateTime(currentTime){
+	const timeString = document.getElementById("time");
+
+	const currentHour = currentTime.getHours();
+	const currentMinute = currentTime.getMinutes();
+	const currentSeconds = currentTime.getSeconds();
+	let AMPM = (currentHour >= 12) ? "PM" : "AM";
+
+
+//  endTime.textContent = `Be Back At ${adjustedHour}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+
+	// use ternary expressions to add extra 0s in formatting where necessary
+	timeString.innerHTML = 		`${(currentHour % 12) < 10 ? '0' : ''}${currentHour % 12}:` +
+								`${currentMinute < 10 ? '0' : ''}${currentMinute}:` +
+								`${currentSeconds < 10 ? '0' : ''}${currentSeconds}:` +
+								` ${AMPM}`;
+
+
+	if (currentHour >= 18 || currentHour < 6){
+		if (isDayTime) toggleBackground();
+	}
+	else { // between 6AM and 6PM
+		if (!isDayTime) toggleBackground();
+	}
+
+}
+
 function updateWeekdaySprite(currentDay){
 	const weekdaySprite = document.querySelector('.weekday-sprite');
 	// get dimensions directly from css incase I update the spritesheet later
@@ -39,7 +78,7 @@ function updateWeekdaySprite(currentDay){
 }
 
 function updateDateDisplay(date){
-	console.log(date);
+	//console.log(date);
 	const dateTens = document.querySelector('.date-tens-top');
 	const dateTensMid = document.querySelector('.date-tens-mid');
 	const dateTensBase = document.querySelector('.date-tens-base');
@@ -57,7 +96,7 @@ function updateDateDisplay(date){
 	dateOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
 	dateOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
 
-	console.log(dateOnesMid);
+	//console.log(dateOnesMid);
 
 	dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
 	dateTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
@@ -103,8 +142,6 @@ function toggleBackground(){
 		}
 	});
 };
-
-
 
 function moveSprite(e){
 	const weekdaySprite = document.querySelector('.weekday-sprite');
@@ -159,31 +196,9 @@ function moveSprite(e){
 	//weekdaySprite.style.left = `${leftPixels}px`;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // only run once per second
 setInterval(setDate, 1000);
 setDate(); // call on page load
 
 window.addEventListener('mousedown', toggleBackground);
 document.addEventListener('keydown', moveSprite);
-
