@@ -180,13 +180,10 @@ function moveSprite(e){
 
 
 
-
-
-
-
 // only run once per second
 setInterval(setDate, 1000);
 setDate(); // call on page load
 
 window.addEventListener('mousedown', toggleBackground);
 document.addEventListener('keydown', moveSprite);
+
