@@ -12,7 +12,8 @@ let weatherLoaded = false;
 let weatherDays = [];
 
 // object constructor
-function DateWeather(date, month, minTemp, maxTemp, conditionInt) {
+function DateWeather(weekday,date, month, minTemp, maxTemp, conditionInt) {
+	this.weekday = weekday
 	this.date = date;
 	this.month = month;
 	this.minTemp = minTemp;
@@ -83,6 +84,7 @@ function sendRequest(url){
 					var dateTime = new Date(data.list[i].dt*1000); // unix time
 					const dt = dateTime.getDate();//getDateFromString(data.list[0].dt_txt);
 					let wthr = new DateWeather();
+					wthr.weekday = dateTime.getDay();
 					wthr.date = dt;
 					wthr.month = dateTime.getMonth();
 					wthr.minTemp = kelvinToCelcius(data.list[i].main.temp_min);
