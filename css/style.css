@@ -35,7 +35,7 @@ p {
 }
 
 h1 {
-  font-size: 16rem;
+  font-size: 8rem;
 }
 
 @media (max-width: 640px) {
@@ -50,6 +50,8 @@ h2, h3 {
 
 span {
   font-size: 6rem;
+  padding: 0;
+  margin: 0;
 }
 
 .background-image {
@@ -63,7 +65,7 @@ span {
 }
 
 .loading-overlay {
-  opacity: 1;
+  opacity: 0;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -119,8 +121,9 @@ span {
 .calendar-grid-container {
   position: relative;
   display: grid;
-  grid-template-columns: 180px 60px 24px 60px 72px 100px;
-  grid-template-rows: 0px 0px 120px 0px;
+  border: 2px solid red;
+  grid-template-columns: 180px 60px 0px 60px 72px 100px;
+  grid-template-rows: 0px 0px 108px 0px;
   grid-gap: 0px;
   margin: 20px 0px 100px 0px;
 }
@@ -141,6 +144,10 @@ span {
   height: 120px;
   padding: 0px;
   margin: 0px;
+  -webkit-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+  margin-top: 30px;
   z-index: 10;
   grid-column: 2;
   grid-row: 3;
@@ -153,6 +160,10 @@ span {
   height: 120px;
   padding: 0px;
   margin: 0px;
+  -webkit-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+  margin-top: 30px;
   z-index: 100;
   grid-column: 2;
   grid-row: 2;
@@ -165,6 +176,10 @@ span {
   height: 120px;
   padding: 0px;
   margin: 0px;
+  -webkit-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+  margin-top: 30px;
   z-index: 1000;
   grid-column: 2;
   grid-row: 1;
@@ -174,8 +189,8 @@ span {
   background: url(../images/monthKanji.png);
   width: 54px;
   height: 56px;
-  z-index: 1000;
-  margin-top: 60px;
+  z-index: 11;
+  margin-top: 80px;
   grid-column: 3;
 }
 
@@ -195,6 +210,10 @@ span {
   z-index: 1000;
   grid-column: 4;
   grid-row: 1;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: 0px;
 }
 
 .date-tens-mid {
@@ -207,6 +226,10 @@ span {
   z-index: 100;
   grid-column: 4;
   grid-row: 2;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: 0px;
 }
 
 .date-tens-base {
@@ -219,6 +242,10 @@ span {
   z-index: 10;
   grid-column: 4;
   grid-row: 3;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: 0px;
 }
 
 .date-ones-top {
@@ -230,6 +257,11 @@ span {
   margin: 0px;
   z-index: 1000;
   grid-column: 5;
+  grid-row: 1;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: -20px;
 }
 
 .date-ones-mid {
@@ -242,6 +274,10 @@ span {
   z-index: 100;
   grid-column: 5;
   grid-row: 2;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: -20px;
 }
 
 .date-ones-base {
@@ -254,6 +290,10 @@ span {
   z-index: 10;
   grid-column: 5;
   grid-row: 3;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: -20px;
 }
 
 .weekday-sprite {
@@ -263,9 +303,15 @@ span {
   height: 74px;
   padding: 0px;
   margin: 0px;
+  z-index: 1000;
   grid-column: 4;
   grid-row: 4;
-  z-index: 1000;
+  -webkit-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  margin-top: 0px;
+  margin-top: -20px;
+  margin-left: 10px;
 }
 
 .year-sprite {
@@ -286,6 +332,8 @@ span {
   height: 99px;
   grid-column: 6;
   grid-row: 1;
+  margin-top: -10px;
+  margin-left: -4px;
 }
 
 .current-weather-sprite {
@@ -296,7 +344,7 @@ span {
   grid-column: 6;
   grid-row: 2;
   margin-left: 8px;
-  margin-top: 8px;
+  margin-top: -2px;
   background-color: black;
   mix-blend-mode: difference;
 }
@@ -311,38 +359,21 @@ span {
 
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
-.weekday-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: 72px 72px;
-  grid-template-rows: 0px 0px 108px 100px;
-  border: 5px solid yellow;
-}
-
-.container {
+.weather-container {
+  border: 2px solid lime;
   display: grid;
   text-align: center;
+  margin: 0 auto;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin: 0 auto;
   max-width: 1000px;
-  padding: 25px 5px;
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.container h2 {
-  color: white;
-  font-family: "earwig-factory", sans-serif;
-  font-size: 6rem;
-  text-shadow: 0.1rem 0.5rem #000;
-}
-
-@media (max-width: 640px) {
-  .container h2 {
-    font-size: 3rem;
-  }
+.weather-container > * {
+  border: 1px solid yellow;
 }
 
 .degrees {
@@ -355,12 +386,36 @@ span {
   color: white;
 }
 
+#city {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid cyan;
+  color: white;
+  font-family: "earwig-factory", sans-serif;
+  text-transform: lowercase;
+  font-size: 5rem;
+  text-shadow: 0.1rem 0.5rem #000;
+}
+
+@media (max-width: 640px) {
+  #city {
+    font-size: 2.5rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 .clock {
-  position: absolute;
-  margin-left: 20px;
-  margin-top: 128px;
-  display: grid;
-  grid-template-columns: repeat(10 10 3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+  border: 1px solid orange;
   /* place all digits into separate grid spaces */
 }
 
@@ -371,5 +426,63 @@ span {
     justify-content: center;
     position: relative;
     margin-top: 20px;
+    -webkit-box-ordinal-group: 1;
+    -ms-flex-order: 0;
+    order: 0;
   }
+}
+
+.clock #time {
+  font-family: "earwig-factory", sans-serif;
+  color: white;
+}
+
+#header-flexbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 20px 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+#header-flexbox > * {
+  margin: -5px;
+}
+
+#weekday-container {
+  position: relative;
+  display: grid;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 2px solid yellow;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* repeat 4 columns per row */
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.weekday {
+  height: 200px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: grid;
+  border: 1px solid cyan;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  grid-template-columns: 0px 60px 0px 60px 72px 100px;
+  grid-template-rows: 0px 0px 108px 0px;
+  margin: 0;
+  grid-gap: 0px;
 }

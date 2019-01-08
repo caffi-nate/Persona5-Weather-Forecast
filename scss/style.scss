@@ -38,7 +38,7 @@ p {
 }
 
 h1 {
-    font-size: 16rem;
+    font-size: 8rem;
     @media (max-width: 640px) {
         font-size: 8rem;
     }
@@ -50,6 +50,8 @@ h2,h3 {
 
 span {
     font-size: 6rem;
+    padding: 0;
+    margin: 0;
 }
 .background-image {
     position: fixed;
@@ -62,7 +64,8 @@ span {
 }
 
 .loading-overlay{
-    opacity: 1; // set to 0 while testing to skip loader
+    // in IE we never make it past this screen, opacity doesnt work?
+    opacity: 0; // set to 0 while testing to skip loader
     position: fixed;
     top: 0;
     width: 100vw;
@@ -84,7 +87,6 @@ span {
 .loading-overlay.hide{
     opacity: 0;
 }
-
 
 .timeOfDay {
     opacity: 0;
@@ -109,9 +111,10 @@ span {
 .calendar-grid-container {
     position: relative;
     display: grid;
-    //border: 10px solid red;
-    grid-template-columns: 180px 60px 24px 60px 72px 100px;
-    grid-template-rows: 0px 0px 120px 0px;
+    border: 2px solid red;
+    // the 0px is where the kanji symbol used to be, removed to alleviate clutter
+    grid-template-columns: 180px 60px 0px 60px 72px 100px;
+    grid-template-rows: 0px 0px 108px 0px;
     //grid-template-rows: repeat(200px); // test where elements are positioned
     grid-gap: 0px;
     //padding: 0px 0px 100px 0px;
@@ -131,6 +134,7 @@ span {
 .month-base {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
+    @include date-month-position;
     z-index: $z-base;
     grid-column: 2;
     grid-row: 3;
@@ -139,6 +143,7 @@ span {
 .month-mid {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
+    @include date-month-position;
     z-index: $z-mid;
     grid-column: 2;
     grid-row: 2;
@@ -147,6 +152,7 @@ span {
 .month-top {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
+    @include date-month-position;
     z-index: $z-top;
     grid-column: 2;
     grid-row: 1;
@@ -156,8 +162,8 @@ span {
     background: url(../images/monthKanji.png);
     width: 54px;
     height: 56px;
-    z-index: $z-top;
-    margin-top: 60px;
+    z-index: ($z-base + 1);
+    margin-top: 80px;
     grid-column: 3;
     @media (max-width: 640px) {
         display: none;
@@ -170,6 +176,7 @@ span {
     z-index: $z-top;
     grid-column: 4;
     grid-row: 1;
+    @include date-tens-position;
 }
 
 .date-tens-mid {
@@ -178,6 +185,7 @@ span {
     z-index: $z-mid;
     grid-column: 4;
     grid-row: 2;
+    @include date-tens-position;
 }
 
 .date-tens-base {
@@ -186,6 +194,7 @@ span {
     z-index: $z-base;
     grid-column: 4;
     grid-row: 3;
+    @include date-tens-position;
 }
 
 .date-ones-top {
@@ -193,6 +202,8 @@ span {
     @include sprite_position(100,150);
     z-index: $z-top;
     grid-column: 5;
+    grid-row: 1;
+    @include date-ones-position;
 }
 
 .date-ones-mid {
@@ -201,6 +212,8 @@ span {
     z-index: $z-mid;
     grid-column: 5;
     grid-row: 2;
+    @include date-ones-position;
+
 }
 
 .date-ones-base {
@@ -209,14 +222,18 @@ span {
   z-index: $z-base;
   grid-column: 5;
   grid-row: 3;
+  @include date-ones-position;
 }
 
 .weekday-sprite {
   background: url(../images/weekday_sprites.png);
   @include sprite_position(191,74);
+  z-index: $z-top;
   grid-column: 4;
   grid-row: 4;
-  z-index: $z-top;
+  @include date-tens-position;
+  margin-top: -20px;
+  margin-left: 10px;
 }
 
 .year-sprite {
@@ -235,6 +252,8 @@ span {
     height: 99px;
     grid-column: 6;
     grid-row: 1;
+    margin-top: -10px;
+    margin-left: -4px;
 }
 
 .current-weather-sprite {
@@ -245,7 +264,9 @@ span {
     grid-column: 6;
     grid-row: 2;
     margin-left: 8px;
-    margin-top: 8px;
+    margin-top: -2px;
+
+    // edge doesn't like these...
     background-color: black;
     mix-blend-mode: difference;
 }
@@ -258,38 +279,33 @@ span {
   margin: 0 auto;
 }
 
-
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 
-.weekday-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: 72px 72px;
-    grid-template-rows: 0px 0px 108px 100px;
-    border: 5px solid yellow;
-}
 
-.container {
-    //border: 2px solid white;
+
+.weather-container {
+    border: 2px solid lime;
     display: grid;
+    //grid-template-rows: ;
     text-align: center;
+    margin: 0 auto;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin: 0 auto;
+
     max-width: 1000px;
-    padding: 25px 5px;
+    //padding: 25px 5px;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
-    h2 {
-        color: white;
-        font-family: "earwig-factory", sans-serif;
-        font-size: 6rem;
-        text-shadow: 0.1rem 0.5rem #000;
-        @media (max-width: 640px) {
-            font-size: 3rem;
-        }
+
+    h1 {
+        //color: red;
+        //font-size: 30vw;
+        //font-size: 100%;
+    }
+    > * {
+        border: 1px solid yellow;
     }
 }
 
@@ -303,19 +319,95 @@ span {
     color: white;
 }
 
-
+#city {
+    //display: grid;
+    display: flex;
+    border: 1px solid cyan;
+    color: white;
+    font-family: "earwig-factory", sans-serif;
+    text-transform: lowercase;
+    font-size: 5rem;
+    text-shadow: 0.1rem 0.5rem #000;
+    @media (max-width: 640px) {
+        font-size: 2.5rem;
+        justify-content: center;
+        text-align: center;
+    }
+}
 
 .clock {
-    position: absolute;
-    margin-left: 20px;
-    margin-top: 128px;
-    display: grid;
-    grid-template-columns: repeat(10 10 3);
-    /* place all digits into separate grid spaces */
-    //border: 2px solid lime;
+    display: flex;
+    order: 2;
+    border: 1px solid orange;
     @media (max-width: 640px) {
         justify-content: center;
         position: relative;
         margin-top: 20px;
+        order: 0;
     }
+    /* place all digits into separate grid spaces */
+    //border: 2px solid lime;
+    #time {
+        //position: absolute;
+
+        //margin-left: 0px;
+        //margin-top: 230px;
+        //display: grid;
+        //grid-template-columns: repeat(10 10 3);
+        font-family: "earwig-factory", sans-serif;
+        color: white;
+        //color:red;
+
+    }
+}
+
+#header-flexbox{
+    //position: fixed;
+    display: flex;
+    //flex: 1;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 20px 20px;
+    //border: 5px solid white;
+    // remove flexbox gaps between content
+    padding: 10px;
+    > * {
+        margin: -5px;
+    }
+    margin-bottom: 20px;
+    // fade this in for smaller devices?
+    background: rgba(0,0,0,0.5);
+}
+
+#weekday-container {
+    position: relative;
+    display: grid;
+    max-width: 1000px;
+    margin: 0 auto;
+    //grid-template-columns: 72px 72px;
+    //grid-template-rows: 0px 0px 108px 100px;
+    border: 2px solid yellow;
+    grid-gap: 20px;
+    //grid-template-columns: repeat(auto,minmax(200px,1fr));
+
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */
+    justify-content: center;
+    //grid-template-columns:repeat(2, 1fr); /* repeat 6 columns per row */
+}
+
+.weekday {
+    // this is a parent as well as a child
+    height: 200px;
+    justify-content: center;
+    display: grid;
+    //grid-gap: 10px;
+	border: 1px solid cyan;
+	background: rgba(0,0,0,0.5);
+    color: white;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    grid-template-columns: 0px 60px 0px 60px 72px 100px;
+    grid-template-rows: 0px 0px 108px 0px;
+    margin: 0;
+    //grid-template-rows: repeat(200px); // test where elements are positioned
+    grid-gap: 0px;
 }

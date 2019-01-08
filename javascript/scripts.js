@@ -34,7 +34,7 @@ function updateTime(currentTime){
 	const currentHour = currentTime.getHours();
 	const currentMinute = currentTime.getMinutes();
 	const currentSeconds = currentTime.getSeconds();
-	let AMPM = (currentHour >= 12) ? "PM" : "AM";
+	let AMPM = (currentHour >= 12) ? "pm" : "am";
 
 
 //  endTime.textContent = `Be Back At ${adjustedHour}:${minutes < 10 ? '0' : ''}${minutes}`;
@@ -42,9 +42,9 @@ function updateTime(currentTime){
 
 	// use ternary expressions to add extra 0s in formatting where necessary
 	timeString.innerHTML = 		`${(currentHour % 12) < 10 ? '0' : ''}${currentHour % 12}:` +
-								`${currentMinute < 10 ? '0' : ''}${currentMinute}:` +
-								`${currentSeconds < 10 ? '0' : ''}${currentSeconds}` +
-								` ${AMPM}`;
+								`${currentMinute < 10 ? '0' : ''}${currentMinute}` +
+								//`:${currentSeconds < 10 ? '0' : ''}${currentSeconds} ` +
+								`${AMPM}`;
 
 	if (currentHour >= 18 || currentHour < 6){
 		if (isDayTime) toggleBackground();

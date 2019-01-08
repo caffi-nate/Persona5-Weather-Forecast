@@ -183,7 +183,7 @@ function weatherConditionString(conditionInt, maxTemp){
 	return weatherString;
 }
 
-function updateWeatherSprite(sprite){
+function updateWeatherSprite(sprite, conditionInt){
 		// for now we'll just get condition globally i guess?
 		// this should be an interval function within something else...
 
@@ -193,7 +193,7 @@ function updateWeatherSprite(sprite){
 		weatherSpriteIndex = (weatherSpriteIndex + 1) % 3;
 
 		//console.log(conditionInt);
-		let conditionInt = weatherImageIndex;
+		//let conditionInt = weatherImageIndex;
 
 		const xPos = -conditionInt * spriteWidth;
 		const yPos = -(weatherSpriteIndex * spriteHeight);
@@ -206,7 +206,17 @@ window.setInterval(function animateWeatherSprite(){
 	const sprite = document.querySelector('.current-weather-sprite');
 	//const sprite = document.querySelector('.current-weather-sprite');
 
-	updateWeatherSprite(sprite);
+	updateWeatherSprite(sprite,weatherImageIndex);
+
+	if (weatherLoaded){
+		let gridWeatherItems = document.querySelectorAll('.weekday');
+		for (i = 0; i < gridWeatherItems.length; i++){
+			let gridWeatherItem = gridWeatherItems[i];
+			const weatherSprite = gridWeatherItem.querySelector('.current-weather-sprite');
+			const day = weatherDays[i+1]
+			updateWeatherSprite(weatherSprite,day.conditionInt);
+		}
+	}
 }, 1000);
 
 /* debug functions */
@@ -224,14 +234,53 @@ function setWeatherTest(weather){
 	condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
 	weatherLoaded = true;
 
+
 	// call update weather first so that there isn't any last minute funny business
 
-	updateWeatherSprite(todaysWeatherSprite);
-	updateWeatherSprite(containerWeatherSprite);
+	styleGridElementsTest();
+
+	updateWeatherSprite(todaysWeatherSprite,weatherImageIndex);
+	updateWeatherSprite(containerWeatherSprite,weatherImageIndex);
 
 	toggleLoadOpacity();
 }
 
+function styleGridElementsTest(){
+	let gridWeatherItems = document.querySelectorAll('.weekday');
+	console.log(gridWeatherItems);
+
+	//gridWeatherItems.forEach(gridWeatherItem =>{
+	for (i = 0; i < gridWeatherItems.length; i++){
+		let gridWeatherItem = gridWeatherItems[i];
+		const dateTens = gridWeatherItem.querySelector('.date-tens-top');
+		const dateTensMid = gridWeatherItem.querySelector('.date-tens-mid');
+		const dateTensBase = gridWeatherItem.querySelector('.date-tens-base');
+		const dateOnes = gridWeatherItem.querySelector('.date-ones-top');
+		const dateOnesMid = gridWeatherItem.querySelector('.date-ones-mid');
+		const dateOnesBase = gridWeatherItem.querySelector('.date-ones-base');
+		const spriteWidth = parseInt((getComputedStyle(dateOnes).width).replace(/px/,""));
+
+		const weatherSprite = gridWeatherItem.querySelector('.current-weather-sprite');
+
+		const day = weatherDays[i+1]
+		const tens = Math.floor(day.date / 10);
+		const ones = day.date % 10;
+
+		updateWeatherSprite(weatherSprite,day.conditionInt);
+
+
+		dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
+		dateOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
+		dateOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
+		dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
+		dateTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
+		dateTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
+	};
+}
+
+
+
 // start our test
 getCoordinates();
+
 console.log("Getting weather...");

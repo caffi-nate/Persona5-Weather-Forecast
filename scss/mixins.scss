@@ -5,3 +5,19 @@
     padding: 0px;
     margin: 0px;
 }
+
+
+@mixin date-ones-position(){
+    transform: rotate(-10deg);
+    margin-top: -20px;
+}
+
+@mixin date-tens-position(){
+    transform: rotate(-10deg);
+    margin-top: 0px;
+}
+
+@mixin date-month-position(){
+    transform: rotate(-20deg);
+    margin-top: 30px;
+}

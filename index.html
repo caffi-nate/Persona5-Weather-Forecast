@@ -9,46 +9,106 @@
 		<img class = "background-image" src = "images/city_background_day.png">
 		<img class = "background-image timeOfDay" src = "images/city_background_night.png">
 
-
 		<div class = "wrapper">
-			<div class = "clock">
-				<h2 id = "time">00.00:00AM</h2>
-			</div>
 
 
-			<div class = "calendar-grid-container">
-				<!-- todo: need a new yearsprite underlay -->
-				<div class = "year-sprite"></div>
-
-				<div class = "month-top"></div>
-				<div class = "month-mid"></div>
-				<div class = "month-base"></div>
-				<div class = "month-kanji"></div>
-
-				<div class = "date-tens-top"></div>
-				<div class = "date-ones-top"></div>
-				<div class = "date-tens-mid"></div>
-				<div class = "date-ones-mid"></div>
-				<div class = "date-tens-base"></div>
-				<div class = "date-ones-base"></div>
-				<div class = "weekday-sprite"></div>
-				<div class = "weather-card"></div>
-				<div class = "current-weather-sprite"></div>
-			</div>
-			<!-- todo: list all weekday objects here -->
-			<!--<div class = "weekday-container">
-			</div>-->
-
-			<div class = "container">
+			<div id = "header-flexbox">
+				<div class = "clock">
+					<h2 id = "time">00.00:00AM</h2>
+				</div>
 				<h2 id = "city">Loading City...</h2>
+
+				<div class = "calendar-grid-container">
+					<!-- todo: need a new yearsprite underlay -->
+					<div class = "year-sprite"></div>
+
+					<div class = "month-top"></div>
+					<div class = "month-mid"></div>
+					<div class = "month-base"></div>
+					<!--<div class = "month-kanji"></div>-->
+
+					<div class = "date-tens-top"></div>
+					<div class = "date-ones-top"></div>
+					<div class = "date-tens-mid"></div>
+					<div class = "date-ones-mid"></div>
+					<div class = "date-tens-base"></div>
+					<div class = "date-ones-base"></div>
+					<div class = "weekday-sprite"></div>
+					<div class = "weather-card"></div>
+					<div class = "current-weather-sprite"></div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<!-- todo: list all weekday objects here -->
+
+
+			<div class = "weather-container">
+
 				<!--<img src = "images/" alt = "icon" id = "icon">-->
-				<div class = "weather-sprite"></div>
+				<!--<div class = "weather-sprite"></div>-->
 				<div class = "degrees">
 					<h1 id = "temp">??</h3><span>&#176;</span>
 				</div>
 				<h3 id = "weather-description">Loading Weather...</h3>
 			</div>
-		</div> <!-- end background wrapper -->
+
+			<div id = "weekday-container">
+				<!-- populate with 4 test items -->
+				<div class = "weekday">
+					<div class = "date-tens-top"></div>
+					<div class = "date-ones-top"></div>
+					<div class = "date-tens-mid"></div>
+					<div class = "date-ones-mid"></div>
+					<div class = "date-tens-base"></div>
+					<div class = "date-ones-base"></div>
+					<div class = "weekday-sprite"></div>
+					<div class = "weather-card"></div>
+					<div class = "current-weather-sprite"></div>
+				<!--	</div>-->
+				</div>
+				<div class = "weekday">
+					<div class = "date-tens-top"></div>
+					<div class = "date-ones-top"></div>
+					<div class = "date-tens-mid"></div>
+					<div class = "date-ones-mid"></div>
+					<div class = "date-tens-base"></div>
+					<div class = "date-ones-base"></div>
+					<div class = "weekday-sprite"></div>
+					<div class = "weather-card"></div>
+					<div class = "current-weather-sprite"></div>
+				</div>
+				<div class = "weekday">
+					<div class = "date-tens-top"></div>
+					<div class = "date-ones-top"></div>
+					<div class = "date-tens-mid"></div>
+					<div class = "date-ones-mid"></div>
+					<div class = "date-tens-base"></div>
+					<div class = "date-ones-base"></div>
+					<div class = "weekday-sprite"></div>
+					<div class = "weather-card"></div>
+					<div class = "current-weather-sprite"></div>
+				</div>
+				<div class = "weekday">
+					<div class = "date-tens-top"></div>
+					<div class = "date-ones-top"></div>
+					<div class = "date-tens-mid"></div>
+					<div class = "date-ones-mid"></div>
+					<div class = "date-tens-base"></div>
+					<div class = "date-ones-base"></div>
+					<div class = "weekday-sprite"></div>
+					<div class = "weather-card"></div>
+					<div class = "current-weather-sprite"></div>
+				</div>
+			</div>
+
+
+		</div> <!-- end page wrapper -->
 
 
 		<div class = "loading-overlay">
