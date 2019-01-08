@@ -1,4 +1,4 @@
-@mixin numberSprite($spriteWidth, $spriteHeight) {
+@mixin sprite_position($spriteWidth, $spriteHeight) {
     background-position: 0px 0px;
     width: #{$spriteWidth}px;
     height: #{$spriteHeight}px;

@@ -8,6 +8,11 @@ url("css/fonts/Harabara.otf") format("opentype"),
 url("css/fonts/Harabara.svg#filename") format("svg");*/
 }
 
+@font-face {
+  font-family: "earwig-factory";
+  src: url(../fonts/earwig-factory.ttf);
+}
+
 :root {
   font-family: "P5hatty", sans-serif;
   text-shadow: 0.1rem 0.2rem #000;
@@ -36,6 +41,12 @@ p {
 
 h1 {
   font-size: 16rem;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 8rem;
+  }
 }
 
 h2, h3 {
@@ -80,16 +91,15 @@ span {
   position: relative;
   display: grid;
   border: 10px solid red;
-  grid-template-columns: 180px 64px 72px 50px;
-  grid-template-rows: repeat(3, 0px);
-  /* was 0 */
+  grid-template-columns: 180px 60px 24px 70px 100px;
+  grid-template-rows: 0px 0px 120px 0px;
   grid-gap: 0px;
-  padding: 0px 0px 100px 0px;
-  margin: 20px 0px 100px 0px;
 }
 
-.calendar-grid-container > * {
-  /*border: 5px solid yellow;*/
+@media (max-width: 640px) {
+  .calendar-grid-container {
+    grid-template-columns: 0px 60px 24px 70px 100px;
+  }
 }
 
 .month-base {
@@ -124,30 +134,17 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 1000;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .month-kanji {
   background: url(../images/monthKanji.png);
   width: 54px;
   height: 56px;
-  z-index: 10;
+  z-index: 1000;
   margin-top: 60px;
-}
-
-.year-sprite {
-  background: url(../images/currentYear.png);
-  width: 195px;
-  height: 105px;
-}
-
-/* weekday container */
-/* todo: will relegate this to an object later so we can display multiple */
-.weekday-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: 72px 72px;
-  grid-template-rows: 0px 0px 108px 100px;
-  border: 5px solid yellow;
+  grid-column: 3;
 }
 
 .date-tens-top {
@@ -158,6 +155,8 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 1000;
+  grid-column: 4;
+  grid-row: 1;
 }
 
 .date-tens-mid {
@@ -168,7 +167,7 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 100;
-  grid-column: 1;
+  grid-column: 4;
   grid-row: 2;
 }
 
@@ -180,7 +179,7 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 10;
-  grid-column: 1;
+  grid-column: 4;
   grid-row: 3;
 }
 
@@ -192,6 +191,7 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 1000;
+  grid-column: 5;
 }
 
 .date-ones-mid {
@@ -202,7 +202,7 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 100;
-  grid-column: 2;
+  grid-column: 5;
   grid-row: 2;
 }
 
@@ -214,7 +214,7 @@ span {
   padding: 0px;
   margin: 0px;
   z-index: 10;
-  grid-column: 2;
+  grid-column: 5;
   grid-row: 3;
 }
 
@@ -223,9 +223,33 @@ span {
   background-position: 0px 0px;
   width: 191px;
   height: 74px;
-  grid-column: 1;
+  padding: 0px;
+  margin: 0px;
+  grid-column: 4;
   grid-row: 4;
   z-index: 1000;
+}
+
+.year-sprite {
+  background: url(../images/currentYear.png);
+  width: 195px;
+  height: 105px;
+}
+
+@media (max-width: 640px) {
+  .year-sprite {
+    display: none;
+  }
+}
+
+/* weekday container */
+/* todo: will relegate this to an object later so we can display multiple */
+.weekday-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px 72px;
+  grid-template-rows: 0px 0px 108px 100px;
+  border: 5px solid yellow;
 }
 
 .container {
@@ -240,6 +264,19 @@ span {
   padding: 25px 5px;
   color: white;
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+.container h2 {
+  color: white;
+  font-family: "earwig-factory", sans-serif;
+  font-size: 6rem;
+  text-shadow: 0.1rem 0.5rem #000;
+}
+
+@media (max-width: 640px) {
+  .container h2 {
+    font-size: 3rem;
+  }
 }
 
 .degrees {

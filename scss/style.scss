@@ -10,6 +10,12 @@ url("css/fonts/Harabara.otf") format("opentype"),
 url("css/fonts/Harabara.svg#filename") format("svg");*/
 }
 
+@font-face {
+    font-family: "earwig-factory";
+    src: url(../fonts/earwig-factory.ttf);
+    //src: url(../fonts/earwig_factory_rg.otf);
+}
+
 :root {
   font-family: "P5hatty", sans-serif;
   text-shadow: 0.1rem 0.2rem #000;
@@ -38,6 +44,9 @@ p {
 
 h1 {
   font-size: 16rem;
+  @media (max-width: 640px) {
+      font-size: 8rem;
+  }
 }
 
 h2,h3 {
@@ -82,19 +91,25 @@ span {
     position: relative;
     display: grid;
     border: 10px solid red;
-    grid-template-columns: 180px 64px 72px 50px;
-    grid-template-rows: repeat(3, 0px); /* was 0 */
+    grid-template-columns: 180px 60px 24px 70px 100px;//180px 64px 72px 50px;
+    grid-template-rows: 0px 0px 120px 0px;
     grid-gap: 0px;
-    padding: 0px 0px 100px 0px;
-    margin: 20px 0px 100px 0px;
+    //padding: 0px 0px 100px 0px;
+    //margin: 20px 0px 100px 0px;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 0px 60px 24px 70px 100px;//180px 64px 72px 50px;
+    }
+
     > * {
-    	/*border: 5px solid yellow;*/
+        // debug: show element positions
+    	//border: 2px solid yellow;
     }
 }
 
 .month-base {
     background: url(../images/month-number-sprites.png);
-    @include numberSprite(120,120);
+    @include sprite_position(120,120);
     z-index: 10;
     grid-column: 2;
     grid-row: 3;
@@ -102,7 +117,7 @@ span {
 
 .month-mid {
     background: url(../images/month-number-sprites.png);
-    @include numberSprite(120,120);
+    @include sprite_position(120,120);
     z-index: 100;
     grid-column: 2;
     grid-row: 2;
@@ -110,94 +125,95 @@ span {
 
 .month-top {
     background: url(../images/month-number-sprites.png);
-    @include numberSprite(120,120);
+    @include sprite_position(120,120);
     z-index: 1000;
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .month-kanji {
     background: url(../images/monthKanji.png);
     width: 54px;
     height: 56px;
-    z-index: 10;
+    z-index: 1000;
     margin-top: 60px;
+    grid-column: 3;
+}
+
+.date-tens-top {
+    background: url(../images/numbers_spritesheet_2.png);
+    @include sprite_position(100,150);
+    z-index: 1000;
+    grid-column: 4;
+    grid-row: 1;
+}
+
+.date-tens-mid {
+    background: url(../images/numbers_spritesheet_2.png);
+    @include sprite_position(100,150);
+    z-index: 100;
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.date-tens-base {
+    background: url(../images/numbers_spritesheet_2.png);
+    @include sprite_position(100,150);
+    z-index: 10;
+    grid-column: 4;
+    grid-row: 3;
+}
+
+.date-ones-top {
+    background: url(../images/numbers_spritesheet_2.png);
+    @include sprite_position(100,150);
+    z-index: 1000;
+    grid-column: 5;
+}
+
+.date-ones-mid {
+    background: url(../images/numbers_spritesheet_2.png);
+    @include sprite_position(100,150);
+    z-index: 100;
+    grid-column: 5;
+    grid-row: 2;
+}
+
+.date-ones-base {
+  background: url(../images/numbers_spritesheet_2.png);
+  @include sprite_position(100,150);
+  z-index: 10;
+  grid-column: 5;
+  grid-row: 3;
+}
+
+.weekday-sprite {
+  background: url(../images/weekday_sprites.png);
+  @include sprite_position(191,74);
+  grid-column: 4;
+  grid-row: 4;
+  z-index: 1000;
 }
 
 .year-sprite {
     background: url(../images/currentYear.png);
     width: 195px;
     height: 105px;
+    @media (max-width: 640px)
+    {
+            display: none;
+    }
 }
 
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
+
 .weekday-container {
     position: relative;
     display: grid;
     grid-template-columns: 72px 72px;
     grid-template-rows: 0px 0px 108px 100px;
     border: 5px solid yellow;
-}
-
-.date-tens-top {
-    background: url(../images/numbers_spritesheet_2.png);
-    @include numberSprite(100,150);
-    z-index: 1000;
-}
-
-.date-tens-mid {
-    background: url(../images/numbers_spritesheet_2.png);
-    @include numberSprite(100,150);
-    z-index: 100;
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.date-tens-base {
-    background: url(../images/numbers_spritesheet_2.png);
-    @include numberSprite(100,150);
-    z-index: 10;
-    grid-column: 1;
-    grid-row: 3;
-}
-
-.date-ones-top {
-    background: url(../images/numbers_spritesheet_2.png);
-    @include numberSprite(100,150);
-    z-index: 1000;
-}
-
-.date-ones-mid {
-  background: url(../images/numbers_spritesheet_2.png);
-  background-position: 0px 0px;
-  width: 100px;
-  height: 150px;
-  padding: 0px;
-  margin: 0px;
-  z-index: 100;
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.date-ones-base {
-  background: url(../images/numbers_spritesheet_2.png);
-  background-position: 0px 0px;
-  width: 100px;
-  height: 150px;
-  padding: 0px;
-  margin: 0px;
-  z-index: 10;
-  grid-column: 2;
-  grid-row: 3;
-}
-
-.weekday-sprite {
-  background: url(../images/weekday_sprites.png);
-  background-position: 0px 0px;
-  width: 191px;
-  height: 74px;
-  grid-column: 1;
-  grid-row: 4;
-  z-index: 1000;
 }
 
 .container {
@@ -212,6 +228,16 @@ span {
   padding: 25px 5px;
   color: white;
   background-color: rgba(0, 0, 0, 0.4);
+
+  h2 {
+      color: white;
+      font-family: "earwig-factory", sans-serif;
+      font-size: 6rem;
+      text-shadow: 0.1rem 0.5rem #000;
+      @media (max-width: 640px) {
+          font-size: 3rem;
+      }
+  }
 }
 
 .degrees {
