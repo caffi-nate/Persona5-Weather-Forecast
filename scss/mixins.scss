@@ -1,0 +1,7 @@
+@mixin numberSprite($spriteWidth, $spriteHeight) {
+    background-position: 0px 0px;
+    width: #{$spriteWidth}px;
+    height: #{$spriteHeight}px;
+    padding: 0px;
+    margin: 0px;
+}

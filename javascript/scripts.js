@@ -5,22 +5,13 @@ function setDate(){
 	const currentTime = new Date();
 	const day = (currentTime.getDay() + 6) % 7;
 
-
-	
-
 	updateTime(currentTime);
-
-
-	
-
-
-
 
 	// only update datestrings once per day, not every second
 	if (day != currentDay){
 		const date = currentTime.getDate();
 		const month = currentTime.getMonth() + 1;
-		
+
 		updateWeekdaySprite(day);
 		updateDateDisplay(date);
 		updateMonthDisplay(month);
@@ -53,7 +44,6 @@ function updateTime(currentTime){
 								`${currentMinute < 10 ? '0' : ''}${currentMinute}:` +
 								`${currentSeconds < 10 ? '0' : ''}${currentSeconds}:` +
 								` ${AMPM}`;
-
 
 	if (currentHour >= 18 || currentHour < 6){
 		if (isDayTime) toggleBackground();
@@ -104,26 +94,17 @@ function updateDateDisplay(date){
 }
 
 function updateMonthDisplay(month){
-	const monthTens = document.querySelector('.month-tens-top');
-	const monthTensMid = document.querySelector('.month-tens-mid');
-	const monthTensBase = document.querySelector('.month-tens-base');
+	const monthTop = document.querySelector('.month-top');
+	const monthMid = document.querySelector('.month-mid');
+	const monthBase = document.querySelector('.month-base');
 
-	const monthOnes = document.querySelector('.month-ones-top');
-	const monthOnesMid = document.querySelector('.month-ones-mid');
-	const monthOnesBase = document.querySelector('.month-ones-base');
+	const spriteWidth = parseInt((getComputedStyle(monthTop).width).replace(/px/,""));
 
-	const spriteWidth = parseInt((getComputedStyle(monthOnes).width).replace(/px/,""));
+	//month = 5; // debug
 
-	const ones = month % 10;
-	const tens = Math.floor(month / 10);
-
-	monthOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
-	monthOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
-	monthOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
-
-	monthTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
-	monthTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
-	monthTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
+	monthTop.style.backgroundPosition = `${-(month-1) * spriteWidth}px 0px`;
+	monthMid.style.backgroundPosition = `${-(month-1) * spriteWidth}px -120px`;
+	monthBase.style.backgroundPosition = `${-(month-1) * spriteWidth}px -240px`;
 }
 
 
@@ -149,7 +130,7 @@ function moveSprite(e){
 	// get the background position from the css and split it into 2 integers
 	const backgroundPos = getComputedStyle(weekdaySprite).backgroundPosition;
 	let left =  parseInt(backgroundPos.split(" ")[0].replace(/px/,""));
-	let top = parseInt(backgroundPos.split(" ")[1].replace(/px/,"")); 
+	let top = parseInt(backgroundPos.split(" ")[1].replace(/px/,""));
 
 	console.log(top);
 	console.log(left);
@@ -161,7 +142,7 @@ function moveSprite(e){
 	const topString = getComputedStyle(weekdaySprite).top;
 	const leftString = getComputedStyle(weekdaySprite).left;
 
-	
+
 	let leftPixels = parseInt(leftString.replace(/px/,""));
 
 	console.log(topPixels);
@@ -170,7 +151,7 @@ function moveSprite(e){
 	let x_movement = 0;
 	let y_movement = 0;
 	const moveSpeed = 2;
-	
+
 	if (e.key == "ArrowRight"){
 		x_movement = moveSpeed;
 		//console.log(e);
