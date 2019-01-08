@@ -1,3 +1,4 @@
+@import "variables";
 @import "mixins";
 
 @font-face {
@@ -30,7 +31,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  z-index: -1000;
+  z-index: $z-background;
 }
 
 h1, h2, h3, span {
@@ -56,34 +57,58 @@ h2,h3 {
 span {
   font-size: 6rem;
 }
-
-.background-wrapper {
-  margin: 0px;
-  padding: 0px;
-  position: relative;
-}
-
 .background-image {
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 99vw;
-    height: 99vh;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-width:100%;
     margin: 0px;
     padding: 0px;
-    position: absolute;
-    z-index: -1000;
+    z-index: $z-background;
 }
+
+.loading-overlay{
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 2s;
+    img {
+        display: flex;
+        position: relative;
+        margin: 0 auto;
+        //opacity: 20%;
+    }
+}
+
+.loading-overlay.hide{
+    opacity: 0;
+}
+
 
 .timeOfDay {
     opacity: 0;
-    -webkit-transition: opacity 2s;
-    -o-transition: opacity 2s;
-    transition: opacity 2s;
+    -webkit-transition: opacity 5s;
+    -o-transition: opacity 5s;
+    transition: opacity 5s;
 }
 
 .timeOfDay.night {
     opacity: 1;
     background: black;
+}
+
+.wrapper {
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
 }
 
 /* now start the HUD grid */
@@ -110,7 +135,7 @@ span {
 .month-base {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
-    z-index: 10;
+    z-index: $z-base;
     grid-column: 2;
     grid-row: 3;
 }
@@ -118,7 +143,7 @@ span {
 .month-mid {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
-    z-index: 100;
+    z-index: $z-mid;
     grid-column: 2;
     grid-row: 2;
 }
@@ -126,7 +151,7 @@ span {
 .month-top {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
-    z-index: 1000;
+    z-index: $z-top;
     grid-column: 2;
     grid-row: 1;
 }
@@ -135,7 +160,7 @@ span {
     background: url(../images/monthKanji.png);
     width: 54px;
     height: 56px;
-    z-index: 1000;
+    z-index: $z-top;
     margin-top: 60px;
     grid-column: 3;
 }
@@ -143,7 +168,7 @@ span {
 .date-tens-top {
     background: url(../images/numbers_spritesheet_2.png);
     @include sprite_position(100,150);
-    z-index: 1000;
+    z-index: $z-top;
     grid-column: 4;
     grid-row: 1;
 }
@@ -151,7 +176,7 @@ span {
 .date-tens-mid {
     background: url(../images/numbers_spritesheet_2.png);
     @include sprite_position(100,150);
-    z-index: 100;
+    z-index: $z-mid;
     grid-column: 4;
     grid-row: 2;
 }
@@ -159,7 +184,7 @@ span {
 .date-tens-base {
     background: url(../images/numbers_spritesheet_2.png);
     @include sprite_position(100,150);
-    z-index: 10;
+    z-index: $z-base;
     grid-column: 4;
     grid-row: 3;
 }
@@ -167,14 +192,14 @@ span {
 .date-ones-top {
     background: url(../images/numbers_spritesheet_2.png);
     @include sprite_position(100,150);
-    z-index: 1000;
+    z-index: $z-top;
     grid-column: 5;
 }
 
 .date-ones-mid {
     background: url(../images/numbers_spritesheet_2.png);
     @include sprite_position(100,150);
-    z-index: 100;
+    z-index: $z-mid;
     grid-column: 5;
     grid-row: 2;
 }
@@ -182,7 +207,7 @@ span {
 .date-ones-base {
   background: url(../images/numbers_spritesheet_2.png);
   @include sprite_position(100,150);
-  z-index: 10;
+  z-index: $z-base;
   grid-column: 5;
   grid-row: 3;
 }
@@ -192,7 +217,7 @@ span {
   @include sprite_position(191,74);
   grid-column: 4;
   grid-row: 4;
-  z-index: 1000;
+  z-index: $z-top;
 }
 
 .year-sprite {

@@ -6,17 +6,17 @@
 		<link rel = "stylesheet" href = "css/style.css">
 	</head>
 	<body>
-		<div class = "background-wrapper">
+		<img class = "background-image" src = "images/city_background_day.png">
+		<img class = "background-image timeOfDay" src = "images/city_background_night.png">
 
+
+		<div class = "wrapper">
 			<div class = "clock">
 				<h2 id = "time">00.00:00AM</h2>
 			</div>
 
-			<img class = "background-image" src = "images/city_background_day.png">
-			<img class = "background-image timeOfDay" src = "images/city_background_night.png">
 
 			<div class = "calendar-grid-container">
-
 				<!-- todo: need a new yearsprite underlay -->
 				<div class = "year-sprite"></div>
 
@@ -38,17 +38,25 @@
 			<!-- todo: list all weekday objects here -->
 			<!--<div class = "weekday-container">
 			</div>-->
+
+			<div class = "container">
+				<h2 id = "city">Loading City...</h2>
+				<!--<img src = "images/" alt = "icon" id = "icon">-->
+				<div class = "weather-sprite"></div>
+				<div class = "degrees">
+					<h1 id = "temp">??</h3><span>&#176;</span>
+				</div>
+				<h3 id = "weather-description">Loading Weather...</h3>
+			</div>
+		</div> <!-- end background wrapper -->
+
+
+		<div class = "loading-overlay">
+			<img class = "loading-graphic" src = "images/loading.gif">
 		</div>
 
-		<div class = "container">
-			<h2 id = "city">Loading City...</h2>
-			<!--<img src = "images/" alt = "icon" id = "icon">-->
-			<div class = "weather-sprite"></div>
-			<div class = "degrees">
-				<h1 id = "temp">??</h3><span>&#176;</span>
-			</div>
-			<h3 id = "weather-description">Loading Weather...</h3>
-		</div>
+
+
 
 		<script type="text/javascript" src="javascript/scripts.js"></script>
 

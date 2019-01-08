@@ -57,33 +57,67 @@ span {
   font-size: 6rem;
 }
 
-.background-wrapper {
-  margin: 0px;
-  padding: 0px;
-  position: relative;
-}
-
 .background-image {
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 99vw;
-  height: 99vh;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
   margin: 0px;
   padding: 0px;
-  position: absolute;
   z-index: -1000;
 }
 
-.timeOfDay {
-  opacity: 0;
+.loading-overlay {
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  z-index: 100000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-transition: opacity 2s;
   -o-transition: opacity 2s;
   transition: opacity 2s;
 }
 
+.loading-overlay img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+}
+
+.loading-overlay.hide {
+  opacity: 0;
+}
+
+.timeOfDay {
+  opacity: 0;
+  -webkit-transition: opacity 5s;
+  -o-transition: opacity 5s;
+  transition: opacity 5s;
+}
+
 .timeOfDay.night {
   opacity: 1;
   background: black;
+}
+
+.wrapper {
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
 }
 
 /* now start the HUD grid */

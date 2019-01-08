@@ -1,5 +1,5 @@
 /*
-	Credit to Drew Clements for some help getting OpenWeatherMap API with vanilla JS 
+	Credit to Drew Clements for some help getting OpenWeatherMap API with vanilla JS
 	https://medium.com/@drewclementsdesign/building-a-weather-app-with-vanilla-javascript-920889a78ca2
 */
 
@@ -46,7 +46,7 @@ function sendRequest(url){
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function(){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-			
+
 			var weather = {};
 
 			if (!forecast){
@@ -60,12 +60,12 @@ function sendRequest(url){
 
 	  			console.log(data);
 	  			//const testDate = "2019-01-03 15:00:00";
-	  			
+
 	  			// tests for date functions
 	  			// can't use data.dt yet because it's not in the right format
 	  			weather.date = dateTime.getDate(); //getDateFromString(testDate2);
 	  			weather.month = dateTime.getMonth();//getMonthFromString(testDate2);
-	  			
+
 	  			//console.log(weather);
 			}
 			else {
@@ -76,8 +76,8 @@ function sendRequest(url){
 				let dates = new Set();
 				let j = 0;
 
-				// up to 8 readings per day for 5 days. 
-				// there may exist a sixth day on the end of the list. 
+				// up to 8 readings per day for 5 days.
+				// there may exist a sixth day on the end of the list.
 				// probably best to get rid of the sixth day: the max/min readings can get really weird
 
 				for (i = 0; i < data.list.length; i++){
@@ -111,7 +111,7 @@ function sendRequest(url){
 					// add to our unique set so that we can compare it next time we loop
 					dates.add(dt);
 				}
-				
+
 				console.log("weatherDays: ");
 				console.log(weatherDays);
 
@@ -172,8 +172,8 @@ function weatherConditionString(conditionInt, maxTemp){
 	let weatherString = "";
 	switch(conditionInt){
 		default:
-		case 0: 
-			weatherString = "Clear"; 
+		case 0:
+			weatherString = "Clear";
 			if (maxTemp >= 30) weatherString = "Hot";
 			break;
 		case 1: weatherString = "Clouds"; break;
@@ -216,6 +216,8 @@ function setWeatherTest(weather){
 	temp.innerHTML = weather.temp;
 	condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
 	weatherLoaded = true;
+
+	toggleLoadOpacity();
 }
 
 // start our test

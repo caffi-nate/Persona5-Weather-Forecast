@@ -1,5 +1,6 @@
 let isDayTime = true;
 let currentDay = -1;
+let pageLoading = false;
 
 function setDate(){
 	const currentTime = new Date();
@@ -46,10 +47,10 @@ function updateTime(currentTime){
 								` ${AMPM}`;
 
 	if (currentHour >= 18 || currentHour < 6){
-		if (isDayTime) toggleBackground();
+		//if (isDayTime) toggleBackground();
 	}
 	else { // between 6AM and 6PM
-		if (!isDayTime) toggleBackground();
+		//if (!isDayTime) toggleBackground();
 	}
 
 }
@@ -177,9 +178,43 @@ function moveSprite(e){
 	//weekdaySprite.style.left = `${leftPixels}px`;
 }
 
+/*
+window.setInterval(function toggleLoadOpacity(){
+	const loadingScreen = document.querySelector('.loading-overlay');
+	let opacity = getComputedStyle(loadingScreen).opacity;
+	const fadeSpeed = 0.025;
+
+
+	if (!pageLoading){
+		if (opacity > 0) opacity -= fadeSpeed;
+		else {
+			//console.log("finished");
+		}
+	}
+	else {
+		if (opacity < 1) opacity += fadeSpeed;
+	}
+	console.log("changed opacity");
+	loadingScreen.style.opacity = opacity;
+}, 50);
+*/
+
+function toggleLoadOpacity(){
+	const loadingOverlay = document.querySelector('.loading-overlay');
+	pageLoading = !pageLoading;
+	if (pageLoading){
+		loadingOverlay.classList.add('hide');
+	}
+	else {
+		loadingOverlay.classList.remove('hide');
+	}
+	console.log("toggleOverlay");
+}
+
 // only run once per second
 setInterval(setDate, 1000);
 setDate(); // call on page load
 
 window.addEventListener('mousedown', toggleBackground);
+//window.addEventListener('mousedown', toggleLoadOpacity);
 document.addEventListener('keydown', moveSprite);
