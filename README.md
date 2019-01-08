@@ -1,5 +1,7 @@
 # Persona5_Calendar
-Simple Clock+Calendar based off the Persona 5 Interface
+Simple Clock/Weather App based off the Persona 5 Interface
+
+![alt text](/projectImages/weatherversion1_0801a.gif)
 
 Created as a practice project to solidify understanding in
 
@@ -8,6 +10,8 @@ Created as a practice project to solidify understanding in
 - External APIs for weather information (openweathermap.org)
 
 
+Future Updates:
+- Display 5 day weather forecast
 
 Credits:
 - Atlus for Persona 5 sprites/backgrounds
