@@ -183,27 +183,31 @@ function weatherConditionString(conditionInt, maxTemp){
 	return weatherString;
 }
 
-window.setInterval(function updateWeatherSprite(){
+function updateWeatherSprite(sprite){
+		// for now we'll just get condition globally i guess?
+		// this should be an interval function within something else...
 
-	// for now we'll just get condition globally i guess?
-	// this should be an interval function within something else...
+		const spriteWidth = parseInt((getComputedStyle(sprite).width).replace(/px/,""));
+		const spriteHeight = parseInt((getComputedStyle(sprite).height).replace(/px/,""));
 
-	const sprite = document.querySelector('.weather-sprite');
-	const spriteWidth = parseInt((getComputedStyle(sprite).width).replace(/px/,""));
-	const spriteHeight = parseInt((getComputedStyle(sprite).height).replace(/px/,""));
+		weatherSpriteIndex = (weatherSpriteIndex + 1) % 3;
 
-	weatherSpriteIndex = (weatherSpriteIndex + 1) % 3;
+		//console.log(conditionInt);
+		let conditionInt = weatherImageIndex;
 
-	//console.log(conditionInt);
-	let conditionInt = weatherImageIndex;
+		const xPos = -conditionInt * spriteWidth;
+		const yPos = -(weatherSpriteIndex * spriteHeight);
+		const positionString = `${xPos}px ${yPos}px`;
 
-	const xPos = -conditionInt * spriteWidth;
-	const yPos = -(weatherSpriteIndex * spriteHeight);
-	const positionString = `${xPos}px ${yPos}px`;
+		sprite.style.backgroundPosition = positionString;
+}
 
-	sprite.style.backgroundPosition = positionString;
+window.setInterval(function animateWeatherSprite(){
+	const sprite = document.querySelector('.current-weather-sprite');
+	//const sprite = document.querySelector('.current-weather-sprite');
+
+	updateWeatherSprite(sprite);
 }, 1000);
-
 
 /* debug functions */
 
@@ -211,11 +215,19 @@ function setWeatherTest(weather){
 	const city = document.getElementById("city");
 	const temp = document.getElementById("temp");
 	const condition = document.getElementById("weather-description");
+	const todaysWeatherSprite = document.querySelector('.current-weather-sprite');
+	const containerWeatherSprite = document.querySelector('.weather-sprite');
+
 
 	city.innerHTML = weather.city; // bugged right now... maybe don't use geolocation? or maybe it's good enough...
 	temp.innerHTML = weather.temp;
 	condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
 	weatherLoaded = true;
+
+	// call update weather first so that there isn't any last minute funny business
+
+	updateWeatherSprite(todaysWeatherSprite);
+	updateWeatherSprite(containerWeatherSprite);
 
 	toggleLoadOpacity();
 }

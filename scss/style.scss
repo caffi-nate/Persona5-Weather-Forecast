@@ -2,60 +2,54 @@
 @import "mixins";
 
 @font-face {
-  font-family: "P5hatty";
-  src: url(../fonts/p5hatty.ttf);
-  /*
-src:
-url("css/fonts/Harabara.woff") format("woff"),
-url("css/fonts/Harabara.otf") format("opentype"),
-url("css/fonts/Harabara.svg#filename") format("svg");*/
+    font-family: "P5hatty";
+    src: url(../fonts/p5hatty.ttf);
 }
 
 @font-face {
     font-family: "earwig-factory";
     src: url(../fonts/earwig-factory.ttf);
-    //src: url(../fonts/earwig_factory_rg.otf);
 }
 
 :root {
-  font-family: "P5hatty", sans-serif;
-  text-shadow: 0.1rem 0.2rem #000;
+    font-family: "P5hatty", sans-serif;
+    text-shadow: 0.1rem 0.2rem #000;
 }
 
 html {
-  background: white;
-  height: 100%;
+    background: white;
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  z-index: $z-background;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    z-index: $z-background;
 }
 
 h1, h2, h3, span {
-  margin: 0;
-  color: white;
+    margin: 0;
+    color: white;
 }
 
 p {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 h1 {
-  font-size: 16rem;
-  @media (max-width: 640px) {
-      font-size: 8rem;
-  }
+    font-size: 16rem;
+    @media (max-width: 640px) {
+        font-size: 8rem;
+    }
 }
 
 h2,h3 {
-  font-size: 3rem;
+    font-size: 3rem;
 }
 
 span {
-  font-size: 6rem;
+    font-size: 6rem;
 }
 .background-image {
     position: fixed;
@@ -68,7 +62,7 @@ span {
 }
 
 .loading-overlay{
-    opacity: 1;
+    opacity: 1; // set to 0 while testing to skip loader
     position: fixed;
     top: 0;
     width: 100vw;
@@ -78,7 +72,7 @@ span {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 2s;
+    transition: opacity 1s;
     img {
         display: flex;
         position: relative;
@@ -115,15 +109,17 @@ span {
 .calendar-grid-container {
     position: relative;
     display: grid;
-    border: 10px solid red;
-    grid-template-columns: 180px 60px 24px 70px 100px;//180px 64px 72px 50px;
+    //border: 10px solid red;
+    grid-template-columns: 180px 60px 24px 60px 72px 100px;
     grid-template-rows: 0px 0px 120px 0px;
+    //grid-template-rows: repeat(200px); // test where elements are positioned
     grid-gap: 0px;
     //padding: 0px 0px 100px 0px;
-    //margin: 20px 0px 100px 0px;
+    margin: 20px 0px 100px 0px;
 
     @media (max-width: 640px) {
-        grid-template-columns: 0px 60px 24px 70px 100px;//180px 64px 72px 50px;
+        grid-template-columns: 0px 60px 0px 60px 72px 100px;//180px 64px 72px 50px;
+        justify-content: center;
     }
 
     > * {
@@ -163,10 +159,13 @@ span {
     z-index: $z-top;
     margin-top: 60px;
     grid-column: 3;
+    @media (max-width: 640px) {
+        display: none;
+    }
 }
 
 .date-tens-top {
-    background: url(../images/numbers_spritesheet_2.png);
+    background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
     z-index: $z-top;
     grid-column: 4;
@@ -174,7 +173,7 @@ span {
 }
 
 .date-tens-mid {
-    background: url(../images/numbers_spritesheet_2.png);
+    background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
     z-index: $z-mid;
     grid-column: 4;
@@ -182,7 +181,7 @@ span {
 }
 
 .date-tens-base {
-    background: url(../images/numbers_spritesheet_2.png);
+    background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
     z-index: $z-base;
     grid-column: 4;
@@ -190,14 +189,14 @@ span {
 }
 
 .date-ones-top {
-    background: url(../images/numbers_spritesheet_2.png);
+    background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
     z-index: $z-top;
     grid-column: 5;
 }
 
 .date-ones-mid {
-    background: url(../images/numbers_spritesheet_2.png);
+    background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
     z-index: $z-mid;
     grid-column: 5;
@@ -205,7 +204,7 @@ span {
 }
 
 .date-ones-base {
-  background: url(../images/numbers_spritesheet_2.png);
+  background: url(../images/numbers_spritesheet_3.png);
   @include sprite_position(100,150);
   z-index: $z-base;
   grid-column: 5;
@@ -230,6 +229,36 @@ span {
     }
 }
 
+.weather-card {
+    background: url(../images/weather-card-sprite.png);
+    width: 100px;
+    height: 99px;
+    grid-column: 6;
+    grid-row: 1;
+}
+
+.current-weather-sprite {
+    background: url(../images/weather_spritesheet3.png);
+    width: 75px;
+    height: 72px;
+    z-index: 1000;
+    grid-column: 6;
+    grid-row: 2;
+    margin-left: 8px;
+    margin-top: 8px;
+    background-color: black;
+    mix-blend-mode: difference;
+}
+
+.weather-sprite {
+  background: url(../images/weather_spritesheet3.png);
+  width: 75px;
+  height: 72px;
+  z-index: 1000;
+  margin: 0 auto;
+}
+
+
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 
@@ -242,50 +271,51 @@ span {
 }
 
 .container {
-  border: 2px solid red;
-  display: grid;
-  text-align: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 25px 5px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.4);
-
-  h2 {
-      color: white;
-      font-family: "earwig-factory", sans-serif;
-      font-size: 6rem;
-      text-shadow: 0.1rem 0.5rem #000;
-      @media (max-width: 640px) {
-          font-size: 3rem;
-      }
-  }
+    //border: 2px solid white;
+    display: grid;
+    text-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 25px 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    h2 {
+        color: white;
+        font-family: "earwig-factory", sans-serif;
+        font-size: 6rem;
+        text-shadow: 0.1rem 0.5rem #000;
+        @media (max-width: 640px) {
+            font-size: 3rem;
+        }
+    }
 }
 
 .degrees {
-  display: grid;
-  grid-template-columns: auto auto;
-  /*border: 2px solid yellow;*/
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  color: white;
+    display: grid;
+    grid-template-columns: auto auto;
+    /*border: 2px solid yellow;*/
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: white;
 }
 
-.weather-sprite {
-  background: url(../images/weather_spritesheet3.png);
-  width: 75px;
-  height: 72px;
-  z-index: 1000;
-  margin: 0 auto;
-}
+
 
 .clock {
-  display: grid;
-  grid-template-columns: repeat(10 10 3);
-  /* place all digits into separate grid spaces */
-  border: 2px solid lime;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 128px;
+    display: grid;
+    grid-template-columns: repeat(10 10 3);
+    /* place all digits into separate grid spaces */
+    //border: 2px solid lime;
+    @media (max-width: 640px) {
+        justify-content: center;
+        position: relative;
+        margin-top: 20px;
+    }
 }

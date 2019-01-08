@@ -43,14 +43,14 @@ function updateTime(currentTime){
 	// use ternary expressions to add extra 0s in formatting where necessary
 	timeString.innerHTML = 		`${(currentHour % 12) < 10 ? '0' : ''}${currentHour % 12}:` +
 								`${currentMinute < 10 ? '0' : ''}${currentMinute}:` +
-								`${currentSeconds < 10 ? '0' : ''}${currentSeconds}:` +
+								`${currentSeconds < 10 ? '0' : ''}${currentSeconds}` +
 								` ${AMPM}`;
 
 	if (currentHour >= 18 || currentHour < 6){
-		//if (isDayTime) toggleBackground();
+		if (isDayTime) toggleBackground();
 	}
 	else { // between 6AM and 6PM
-		//if (!isDayTime) toggleBackground();
+		if (!isDayTime) toggleBackground();
 	}
 
 }
@@ -86,7 +86,6 @@ function updateDateDisplay(date){
 	dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
 	dateOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
 	dateOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
-
 	//console.log(dateOnesMid);
 
 	dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
@@ -98,9 +97,7 @@ function updateMonthDisplay(month){
 	const monthTop = document.querySelector('.month-top');
 	const monthMid = document.querySelector('.month-mid');
 	const monthBase = document.querySelector('.month-base');
-
 	const spriteWidth = parseInt((getComputedStyle(monthTop).width).replace(/px/,""));
-
 	//month = 5; // debug
 
 	monthTop.style.backgroundPosition = `${-(month-1) * spriteWidth}px 0px`;
@@ -111,9 +108,7 @@ function updateMonthDisplay(month){
 
 function toggleBackground(){
 	const overlayImages = document.querySelectorAll('.timeOfDay');
-
 	isDayTime = !isDayTime;
-
 	overlayImages.forEach(overlayImage => {
 		if (isDayTime){
 			overlayImage.classList.remove('night');
@@ -177,27 +172,6 @@ function moveSprite(e){
 	weekdaySprite.style.backgroundPosition = `${left}px ${top}px`;
 	//weekdaySprite.style.left = `${leftPixels}px`;
 }
-
-/*
-window.setInterval(function toggleLoadOpacity(){
-	const loadingScreen = document.querySelector('.loading-overlay');
-	let opacity = getComputedStyle(loadingScreen).opacity;
-	const fadeSpeed = 0.025;
-
-
-	if (!pageLoading){
-		if (opacity > 0) opacity -= fadeSpeed;
-		else {
-			//console.log("finished");
-		}
-	}
-	else {
-		if (opacity < 1) opacity += fadeSpeed;
-	}
-	console.log("changed opacity");
-	loadingScreen.style.opacity = opacity;
-}, 50);
-*/
 
 function toggleLoadOpacity(){
 	const loadingOverlay = document.querySelector('.loading-overlay');
