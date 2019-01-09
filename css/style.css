@@ -121,7 +121,6 @@ span {
 .calendar-grid-container {
   position: relative;
   display: grid;
-  border: 2px solid red;
   grid-template-columns: 180px 60px 0px 60px 72px 100px;
   grid-template-rows: 0px 0px 108px 0px;
   grid-gap: 0px;
@@ -360,7 +359,6 @@ span {
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 .weather-container {
-  border: 2px solid lime;
   display: grid;
   text-align: center;
   margin: 0 auto;
@@ -370,10 +368,6 @@ span {
   max-width: 1000px;
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
-}
-
-.weather-container > * {
-  border: 1px solid yellow;
 }
 
 .degrees {
@@ -390,7 +384,6 @@ span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid cyan;
   color: white;
   font-family: "earwig-factory", sans-serif;
   text-transform: lowercase;
@@ -415,7 +408,6 @@ span {
   -webkit-box-ordinal-group: 3;
   -ms-flex-order: 2;
   order: 2;
-  border: 1px solid orange;
   /* place all digits into separate grid spaces */
 }
 
@@ -475,7 +467,6 @@ span {
   display: grid;
   max-width: 1000px;
   margin: 0 auto;
-  border: 2px solid yellow;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* repeat 4 columns per row */
@@ -490,11 +481,7 @@ span {
   -ms-flex-pack: center;
   justify-content: center;
   display: grid;
-  border: 1px solid cyan;
-  background: rgba(0, 0, 0, 0.5);
   color: white;
-  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   grid-template-columns: 0px 60px 0px 60px 72px 100px;
   grid-template-rows: 0px 0px 108px 0px;
   margin: 0;

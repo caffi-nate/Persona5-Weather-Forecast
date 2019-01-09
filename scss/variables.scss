@@ -1,4 +1,5 @@
 // z indexes, subject to change
+$debugMode: false;
 $z-top: 1000;
 $z-mid: 100;
 $z-base: 10;
@@ -8,4 +9,7 @@ $dropTransitionDelay: 0.05s;
 
 // turn these on and off for debug purposes
 $loadingScreen: 1;
+@if ($debugMode) {
+    $loadingScreen: 0;
+}
 $headerInitialZoom: 0;

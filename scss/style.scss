@@ -111,7 +111,9 @@ span {
 .calendar-grid-container {
     position: relative;
     display: grid;
-    border: 2px solid red;
+    @if ($debugMode){
+        border: 2px solid red;
+    }
     // the 0px is where the kanji symbol used to be, removed to alleviate clutter
     grid-template-columns: 180px 60px 0px 60px 72px 100px;
     grid-template-rows: 0px 0px 108px 0px;
@@ -285,7 +287,9 @@ span {
 
 
 .weather-container {
-    border: 2px solid lime;
+    @if ($debugMode){
+        border: 2px solid lime;
+    }
     display: grid;
     //grid-template-rows: ;
     text-align: center;
@@ -305,7 +309,9 @@ span {
         //font-size: 100%;
     }
     > * {
-        border: 1px solid yellow;
+        @if ($debugMode) {
+            border: 1px solid yellow;
+        }
     }
 }
 
@@ -322,7 +328,9 @@ span {
 #city {
     //display: grid;
     display: flex;
-    border: 1px solid cyan;
+    @if ($debugMode){
+        border: 1px solid cyan;
+    }
     color: white;
     font-family: "earwig-factory", sans-serif;
     text-transform: lowercase;
@@ -338,7 +346,9 @@ span {
 .clock {
     display: flex;
     order: 2;
-    border: 1px solid orange;
+    @if ($debugMode){
+        border: 1px solid orange;
+    }
     @media (max-width: 640px) {
         justify-content: center;
         position: relative;
@@ -393,7 +403,9 @@ span {
     margin: 0 auto;
     //grid-template-columns: 72px 72px;
     //grid-template-rows: 0px 0px 108px 100px;
-    border: 2px solid yellow;
+    @if ($debugMode){
+        border: 2px solid yellow;
+    }
     grid-gap: 20px;
     //grid-template-columns: repeat(auto,minmax(200px,1fr));
 
@@ -408,10 +420,12 @@ span {
     justify-content: center;
     display: grid;
     //grid-gap: 10px;
-	border: 1px solid cyan;
-	background: rgba(0,0,0,0.5);
+    @if ($debugMode) {
+	       border: 1px solid cyan;
+    }
+	//background: rgba(0,0,0,0.5);
     color: white;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	//box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     grid-template-columns: 0px 60px 0px 60px 72px 100px;
     grid-template-rows: 0px 0px 108px 0px;
     margin: 0;
