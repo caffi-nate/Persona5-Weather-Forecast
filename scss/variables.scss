@@ -1,15 +1,19 @@
-// z indexes, subject to change
+// debug
 $debugMode: false;
-$z-top: 1000;
-$z-mid: 100;
-$z-base: 10;
-$z-background: -1000;
-
-$dropTransitionDelay: 0.05s;
-
-// turn these on and off for debug purposes
 $loadingScreen: 1;
 @if ($debugMode) {
     $loadingScreen: 0;
 }
 $headerInitialZoom: 0;
+
+// z indexes, subject to change
+$z-top: 1000;
+$z-mid: 100;
+$z-base: 10;
+$z-background: -1000;
+
+// colours
+$loadingGray: #9b9b9b;
+
+// animation variables
+$dropTransitionDelay: 0.05s;

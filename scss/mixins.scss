@@ -25,3 +25,14 @@
     zoom: (#{$amount});
     -moz-transform: scale((#{$amount}));
 }
+
+
+@mixin backgroundWithScreenshake(){
+    width: 110vw;
+    height: 110vh;
+    max-width: 110%;
+    top: 50%;
+    left: 50%;
+    margin-top: -50vh; // when we screenshake, we'll move this between 50 and 55
+    margin-left: -55vw; /* Negative half of width. */
+}

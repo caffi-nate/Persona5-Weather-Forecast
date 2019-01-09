@@ -4,6 +4,7 @@
 */
 
 var getCoordinates = function() {
+	updateLoadingText("Getting geolocation...");
     if(navigator.geolocation){
     	navigator.geolocation.getCurrentPosition(function(position){
         	var lat = position.coords.latitude;
@@ -12,11 +13,13 @@ var getCoordinates = function() {
     	})
     }
     else {
-    	console.log("Error: Could not get geolocation");
+		updateLoadingText("Could not get geolocation. Make sure you enable geolocation services.");
+    	//console.log("Error: Could not get geolocation");
     }
 }
 
 function updateByGeo(lat, lon){
+	updateLoadingText("Getting weather by location...");
   	let url = "";
   	if (forecast) url += "https://api.openweathermap.org/data/2.5/forecast?";
   	else url += "https://api.openweathermap.org/data/2.5/weather?";
@@ -25,101 +28,58 @@ function updateByGeo(lat, lon){
 }
 
 function sendRequest(url){
+	updateLoadingText("Fetching weather data...");
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function(){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-
 			var weather = {};
+			var data = JSON.parse(xmlhttp.responseText);
+			let dates = new Set(); // create a set of unique dates for data comparison
+			let j = 0;
+			// up to 8 readings per day for 5 days.
+			// there may exist a sixth day on the end of the list.
+			// we'll just use the first 5 to avoid bad max-min data
+			for (i = 0; i < data.list.length; i++){
+				var dateTime = new Date(data.list[i].dt*1000); // unix time
+				const dt = dateTime.getDate();
+				let wthr = new DateWeather();
+				wthr.weekday = dateTime.getDay();
+				wthr.date = dt;
+				wthr.month = dateTime.getMonth();
+				wthr.minTemp = kelvinToCelcius(data.list[i].main.temp_min);
+				wthr.maxTemp = kelvinToCelcius(data.list[i].main.temp_max);
+				wthr.conditionInt = convertIcon(data.list[i].weather[0].icon);
 
-			if (!forecast){
-	  			console.log("parsing weather...");
-	  			var data = JSON.parse(xmlhttp.responseText);
-	  			var dateTime = new Date(data.dt*1000); // unix time
-	  			weather.icon = data.weather[0].icon;
-	  			weather.condition = convertIcon(data.weather[0].icon);
-	  			weather.city = data.name;
-	  			weather.temp = kelvinToCelcius(data.main.temp);
-
-	  			console.log(data);
-	  			//const testDate = "2019-01-03 15:00:00";
-
-	  			// tests for date functions
-	  			// can't use data.dt yet because it's not in the right format
-	  			weather.date = dateTime.getDate(); //getDateFromString(testDate2);
-	  			weather.month = dateTime.getMonth();//getMonthFromString(testDate2);
-
-	  			//console.log(weather);
-			}
-			else {
-				console.log("parsing forecast...")
-				var data = JSON.parse(xmlhttp.responseText);
-
-				// create a set of unique dates to help comparisons
-				let dates = new Set();
-				let j = 0;
-
-				// up to 8 readings per day for 5 days.
-				// there may exist a sixth day on the end of the list.
-				// probably best to get rid of the sixth day: the max/min readings can get really weird
-
-				for (i = 0; i < data.list.length; i++){
-					var dateTime = new Date(data.list[i].dt*1000); // unix time
-					const dt = dateTime.getDate();//getDateFromString(data.list[0].dt_txt);
-					let wthr = new DateWeather();
-					wthr.weekday = dateTime.getDay();
-					wthr.date = dt;
-					wthr.month = dateTime.getMonth();
-					wthr.minTemp = kelvinToCelcius(data.list[i].main.temp_min);
-					wthr.maxTemp = kelvinToCelcius(data.list[i].main.temp_max);
-					wthr.conditionInt = convertIcon(data.list[i].weather[0].icon);
-
-					if (dates.has(dt)){ // if the date already exists in our set, compare values
-						//todo: look up weird javascript quirk: why do we have to use j-1 instead of j?
-
-						// compare the readings to find minTemp
-						weatherDays[j-1].minTemp = Math.min(weatherDays[j-1].minTemp, wthr.minTemp);
-
-						// compare the readings to find maxTemp
-						weatherDays[j-1].maxTemp = Math.max(weatherDays[j-1].maxTemp, wthr.maxTemp);
-
-						// find the worst predicted weather where Sun < Clouds < Rain < Snow
-						weatherDays[j-1].conditionInt = Math.max(weatherDays[j-1].conditionInt, wthr.conditionInt);
-					}
-					else { // it's a new date so we'll add it to our DateWeather array
-						weatherDays.push(wthr);
-						// add to the array and increment
-						j++;
-					}
-					// add to our unique set so that we can compare it next time we loop
-					dates.add(dt);
+				if (dates.has(dt)){ // if the date already exists in our set, compare values
+					//todo: look up weird javascript quirk: why do we have to use j-1 instead of j?
+					weatherDays[j-1].minTemp = Math.min(weatherDays[j-1].minTemp, wthr.minTemp);
+					weatherDays[j-1].maxTemp = Math.max(weatherDays[j-1].maxTemp, wthr.maxTemp);
+					weatherDays[j-1].conditionInt = Math.max(weatherDays[j-1].conditionInt, wthr.conditionInt);
 				}
-
-				console.log("weatherDays: ");
-				console.log(weatherDays);
-
-				// today's weather should exist separately? arrange in a grid with current weather up top, then 5 day forecast
-				weather.icon = data.list[0].weather[0].icon;
-				weather.conditionInt = convertIcon(data.list[0].weather[0].icon);
-				weather.city = data.city.name;
-				weather.temp = kelvinToCelcius(data.list[0].main.temp);
-
-
-				weatherImageIndex = weather.conditionInt;
-				console.log(weatherImageIndex);
-				//weather.date = dateTime.getDate();//getDateFromString(data.list[0].dt_txt);
-				//weather.month = dateTime.getMonth();//getMonthFromString(data.list[0].dt_txt);
+				else { // it's a new date so we'll add it to our DateWeather array and increment
+					weatherDays.push(wthr);
+					j++;
+				}
+				// add to our unique set so that we can compare it next time we loop
+				dates.add(dt);
 			}
-			console.log(weather);
+			// today's weather should exist separately to our forecast predictions
+			weather.icon = data.list[0].weather[0].icon;
+			weather.conditionInt = convertIcon(data.list[0].weather[0].icon);
+			weather.city = data.city.name;
+			weather.temp = kelvinToCelcius(data.list[0].main.temp);
+			weatherImageIndex = weather.conditionInt;
 			setWeatherTest(weather);
-			console.log(data);
 		}
 	};
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 }
 
-
+function updateLoadingText(loadingString){
+	const loadingText = document.getElementById('loading-text');
+	loadingText.innerHTML = loadingString;
+}
 
 // start our test
 getCoordinates();
-console.log("Getting weather...");

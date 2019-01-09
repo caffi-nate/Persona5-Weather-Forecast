@@ -17,7 +17,7 @@
 }
 
 html {
-    background: white;
+    background: black;
     height: 100%;
 }
 
@@ -48,19 +48,63 @@ h2,h3 {
     font-size: 3rem;
 }
 
+h4 {
+    font-size: 2rem;
+}
+
+h6 {
+    font-size: 2rem;
+    color: white;
+
+}
+
 span {
     font-size: 6rem;
     padding: 0;
     margin: 0;
 }
 .background-image {
+    //zoom: 3;
     position: fixed;
     width: 100vw;
     height: 100vh;
-    max-width:100%;
+    max-width: 100%;
     margin: 0px;
     padding: 0px;
+    //@include backgroundWithScreenshake;
     z-index: $z-background;
+}
+
+.background-image.screenshake{
+    //zoom: 2;
+    animation: shake 0.2s;
+    animation-iteration-count: 1;
+}
+
+@keyframes shake {
+/*
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }*/
+  0% { transform: translate(3px, 3px) rotate(0deg); }
+  10% { transform: translate(-2px, -3px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(2px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-2px, 1px) rotate(0deg); }
+  70% { transform: translate(2px, 1px) rotate(-0deg); }
+  80% { transform: translate(-1px, -1px) rotate(0deg); }
+  90% { transform: translate(1px, 1px) rotate(0deg); }
+  100% { transform: translate(1px, -1px) rotate(0deg); }
 }
 
 .loading-overlay{
@@ -73,6 +117,7 @@ span {
     background-color: black;
     z-index: 100000;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: opacity 1s;
@@ -86,6 +131,12 @@ span {
 
 .loading-overlay.hide{
     opacity: 0;
+}
+
+#loading-text{
+    display: flex;
+    margin: 0 auto;
+    color: $loadingGray;
 }
 
 .timeOfDay {
@@ -105,6 +156,8 @@ span {
     margin: 0px;
     padding: 0px;
     width: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
 }
 
 /* now start the HUD grid */
@@ -281,6 +334,8 @@ span {
   margin: 0 auto;
 }
 
+
+
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 
@@ -344,6 +399,7 @@ span {
 }
 
 .clock {
+
     display: flex;
     order: 2;
     @if ($debugMode){
@@ -391,6 +447,7 @@ span {
     margin-bottom: 20px;
     // fade this in for smaller devices?
     background: rgba(0,0,0,0.5);
+
 }
 #header-flexbox.bounceIn{
     @include zoom(1);
@@ -427,14 +484,20 @@ span {
     color: white;
 	//box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     grid-template-columns: 0px 60px 0px 60px 72px 100px;
-    grid-template-rows: 0px 0px 108px 0px;
+    grid-template-rows: 0px 0px 108px 50px 0px;
     margin: 0;
-    margin-top: -800px;
+    margin-top: -1200px; // start way off screen else sometimes some dates get caught
     transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
 
     //grid-template-rows: repeat(200px); // test where elements are positioned
     grid-gap: 0px;
+}
 
+.max-min-temp{
+    // style it as a non grid item later
+    grid-column: 1/-1;
+    grid-row: 5;
+    //margin: 0 auto;
 }
 
 .weekday.bounceDown{
@@ -463,5 +526,11 @@ span {
             @include zoom(0.6);
             transition-delay: 0.2s + 3 * $dropTransitionDelay;
         }
+    }
+
+    &:hover{
+        //margin-left: 100px;
+        @include zoom(1.1);
+        transition: all 0.1s;
     }
 }

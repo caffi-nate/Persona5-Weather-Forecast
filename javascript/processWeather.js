@@ -90,11 +90,19 @@ function styleGridElementsTest(){
 		const weatherSprite = gridWeatherItem.querySelector('.current-weather-sprite');
 
 		const day = weatherDays[i+1]
+        console.log(day);
 		const tens = Math.floor(day.date / 10);
 		const ones = day.date % 10;
 
-		updateWeatherSprite(weatherSprite,day.conditionInt);
+        const minTemp = day.minTemp;
+        const maxTemp = day.maxTemp;
 
+        const maxMinTemp = gridWeatherItem.querySelector('.max-min-temp');
+
+        maxMinTemp.innerHTML = `${minTemp}` + "\u00B0" +`- ${maxTemp}`  + "\u00B0";
+
+
+		updateWeatherSprite(weatherSprite,day.conditionInt);
 		updateWeekdaySprite((day.weekday + 6) % 7,weekdaySprite);
 
 		dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
@@ -103,5 +111,10 @@ function styleGridElementsTest(){
 		dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
 		dateTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
 		dateTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
+
+
+
+
+
 	};
 }

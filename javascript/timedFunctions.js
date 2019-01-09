@@ -64,8 +64,6 @@ function onLoadComplete(){
 	const loadingOverlay = document.querySelector('.loading-overlay');
 	const headerFlexbox = document.querySelector('#header-flexbox');
 
-
-
 	pageLoading = !pageLoading;
 	if (pageLoading){
 		loadingOverlay.classList.add('hide');
@@ -74,18 +72,48 @@ function onLoadComplete(){
 			const weekDays = document.querySelectorAll('.weekday');
 			weekDays.forEach(weekday => weekday.classList.add('bounceDown'));
 		}, 400);
+
+		// hacky since we're not getting precise delay but oh well
+		setTimeout(function(){
+			screenShake();
+		},800);
+
+
+
+		// remove overlay after a delay
+		setTimeout(function(){
+			//var element = document.getElementById(elementId);
+			loadingOverlay.parentNode.removeChild(loadingOverlay);
+		},1000);
+
 	}
 	else {
 		loadingOverlay.classList.remove('hide');
 		headerFlexbox.classList.remove('bounceIn');
 		//weekDays.forEach(weekday => weekday.classList.remove('bounceDown'));
 	}
-	console.log("toggleOverlay");
+	//console.log("toggleOverlay");
 }
+
+
+function screenShake(){
+	const bgs = document.querySelectorAll('.background-image');
+
+	bgs.forEach(bg => {
+		//const shakeAmount = 1;
+		//let top = parseInt((getComputedStyle(bg).marginTop).replace(/px/,""));
+		//let top = getComputedStyle(bg).marginTop;
+		//console.log(top);
+		bg.classList.add('screenshake');
+		//top += shakeAmount;
+		//bg.style.marginTop = `${top}px`
+	});
+}
+
 
 // only run once per second
 setInterval(setDateTime, 1000);
 setDateTime(); // call on page load
 
 //window.addEventListener('mousedown', toggleBackground);
-//window.addEventListener('mousedown', toggleLoadOpacity);
+//window.addEventListener('mousedown', screenShake);
