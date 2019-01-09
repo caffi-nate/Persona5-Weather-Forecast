@@ -21,3 +21,8 @@
     transform: rotate(-20deg);
     margin-top: 30px;
 }
+
+@mixin zoom($amount){
+    zoom: (#{$amount});
+    -moz-transform: scale((#{$amount}));
+}

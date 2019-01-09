@@ -68,7 +68,7 @@ function setWeatherTest(weather){
 	updateWeatherSprite(todaysWeatherSprite,weatherImageIndex);
 	//updateWeatherSprite(containerWeatherSprite,weatherImageIndex);
 
-	toggleLoadOpacity();
+	onLoadComplete();
 }
 
 function styleGridElementsTest(){

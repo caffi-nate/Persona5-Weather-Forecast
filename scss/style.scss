@@ -65,7 +65,7 @@ span {
 
 .loading-overlay{
     // in IE we never make it past this screen, opacity doesnt work?
-    opacity: 0; // set to 0 while testing to skip loader
+    opacity: $loadingScreen; // set to 0 while testing to skip loader
     position: fixed;
     top: 0;
     width: 100vw;
@@ -253,7 +253,7 @@ span {
     grid-column: 6;
     grid-row: 1;
     margin-top: -10px;
-    margin-left: -4px;
+    margin-left: -8px;
 }
 
 .current-weather-sprite {
@@ -263,7 +263,7 @@ span {
     z-index: 1000;
     grid-column: 6;
     grid-row: 2;
-    margin-left: 8px;
+    margin-left: 6px;
     margin-top: -2px;
 
     // edge doesn't like these...
@@ -362,6 +362,10 @@ span {
 }
 
 #header-flexbox{
+    transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-delay: 0.2s;
+    @include zoom($headerInitialZoom);
     //position: fixed;
     display: flex;
     //flex: 1;
@@ -377,6 +381,9 @@ span {
     margin-bottom: 20px;
     // fade this in for smaller devices?
     background: rgba(0,0,0,0.5);
+}
+#header-flexbox.bounceIn{
+    @include zoom(1);
 }
 
 #weekday-container {
@@ -408,6 +415,39 @@ span {
     grid-template-columns: 0px 60px 0px 60px 72px 100px;
     grid-template-rows: 0px 0px 108px 0px;
     margin: 0;
+    margin-top: -800px;
+    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
+
     //grid-template-rows: repeat(200px); // test where elements are positioned
     grid-gap: 0px;
+
+}
+
+.weekday.bounceDown{
+    //padding-bottom: 100px;
+    margin-top: 0px;
+    @media (min-width: 800px) {
+        // todo: write a loop for transition delay somehow (js?)
+        &:nth-child(1){
+            margin-top: -80px;
+            @include zoom(0.8);
+            transition-delay: 0.2s;
+        }
+        &:nth-child(2){
+            margin-top: -30px;
+            @include zoom(1);
+            transition-delay: 0.2s + $dropTransitionDelay;
+
+        }
+        &:nth-child(3){
+            margin-top: -50px;
+            @include zoom(0.8);
+            transition-delay: 0.2s + 2 * $dropTransitionDelay;
+        }
+        &:nth-child(4){
+            margin-top: -100px;
+            @include zoom(0.6);
+            transition-delay: 0.2s + 3 * $dropTransitionDelay;
+        }
+    }
 }

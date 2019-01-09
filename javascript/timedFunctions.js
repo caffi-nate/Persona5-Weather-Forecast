@@ -60,14 +60,25 @@ function toggleBackground(){
 	});
 };
 
-function toggleLoadOpacity(){
+function onLoadComplete(){
 	const loadingOverlay = document.querySelector('.loading-overlay');
+	const headerFlexbox = document.querySelector('#header-flexbox');
+
+
+
 	pageLoading = !pageLoading;
 	if (pageLoading){
 		loadingOverlay.classList.add('hide');
+		headerFlexbox.classList.add('bounceIn');
+		setTimeout(function(){
+			const weekDays = document.querySelectorAll('.weekday');
+			weekDays.forEach(weekday => weekday.classList.add('bounceDown'));
+		}, 400);
 	}
 	else {
 		loadingOverlay.classList.remove('hide');
+		headerFlexbox.classList.remove('bounceIn');
+		//weekDays.forEach(weekday => weekday.classList.remove('bounceDown'));
 	}
 	console.log("toggleOverlay");
 }
