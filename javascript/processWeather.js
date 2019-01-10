@@ -13,11 +13,11 @@ function convertIcon(iconID){
   		weatherCondition = 1; break;
 
   		// Rain
-  		case "13d":
+  		 case "10d": case "09d": case "11d":
   		weatherCondition = 2; break;
 
   		// Snow
-  		case "10d": case "11d": case "13d": case "09d":
+        case "13d":
   		weatherCondition = 3; break;
   	}
   	return weatherCondition;
@@ -54,16 +54,13 @@ function setWeatherTest(weather){
 	const todaysWeatherSprite = document.querySelector('.current-weather-sprite');
 	const containerWeatherSprite = document.querySelector('.weather-sprite');
 
-
 	city.innerHTML = weather.city; // bugged right now... maybe don't use geolocation? or maybe it's good enough...
 	temp.innerHTML = weather.temp;
 	condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
 	weatherLoaded = true;
-
-
 	// call update weather first so that there isn't any last minute funny business
 
-	styleGridElementsTest();
+	getWeeklyForecastSprites();
 
 	updateWeatherSprite(todaysWeatherSprite,weatherImageIndex);
 	//updateWeatherSprite(containerWeatherSprite,weatherImageIndex);
@@ -71,29 +68,22 @@ function setWeatherTest(weather){
 	onLoadComplete();
 }
 
-function styleGridElementsTest(){
+function getWeeklyForecastSprites(){
 	let gridWeatherItems = document.querySelectorAll('.weekday');
-	console.log(gridWeatherItems);
+	//console.log(gridWeatherItems);
 
 	//gridWeatherItems.forEach(gridWeatherItem =>{
 	for (i = 0; i < gridWeatherItems.length; i++){
 		let gridWeatherItem = gridWeatherItems[i];
-		const dateTens = gridWeatherItem.querySelector('.date-tens-top');
-		const dateTensMid = gridWeatherItem.querySelector('.date-tens-mid');
-		const dateTensBase = gridWeatherItem.querySelector('.date-tens-base');
-		const dateOnes = gridWeatherItem.querySelector('.date-ones-top');
-		const dateOnesMid = gridWeatherItem.querySelector('.date-ones-mid');
-		const dateOnesBase = gridWeatherItem.querySelector('.date-ones-base');
-		const spriteWidth = parseInt((getComputedStyle(dateOnes).width).replace(/px/,""));
+        const day = weatherDays[i+1];
+        const tens = Math.floor(day.date / 10);
+        const ones = day.date % 10;
+
+        updateStackedSprite(ones, '.date-ones', gridWeatherItem);
+        updateStackedSprite(tens, '.date-tens', gridWeatherItem);
+
 		const weekdaySprite = gridWeatherItem.querySelector('.weekday-sprite');
-
 		const weatherSprite = gridWeatherItem.querySelector('.current-weather-sprite');
-
-		const day = weatherDays[i+1]
-        console.log(day);
-		const tens = Math.floor(day.date / 10);
-		const ones = day.date % 10;
-
         const minTemp = day.minTemp;
         const maxTemp = day.maxTemp;
 
@@ -101,20 +91,7 @@ function styleGridElementsTest(){
 
         maxMinTemp.innerHTML = `${minTemp}` + "\u00B0" +`- ${maxTemp}`  + "\u00B0";
 
-
 		updateWeatherSprite(weatherSprite,day.conditionInt);
 		updateWeekdaySprite((day.weekday + 6) % 7,weekdaySprite);
-
-		dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
-		dateOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
-		dateOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
-		dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
-		dateTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
-		dateTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
-
-
-
-
-
 	};
 }

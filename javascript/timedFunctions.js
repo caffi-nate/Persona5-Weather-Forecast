@@ -12,7 +12,9 @@ function setDateTime(){
 
 		updateWeekdaySprite(day,weekdaySprite);
 		updateDateDisplay(date);
-		updateMonthDisplay(month);
+
+		//updateMonthDisplay(month-1);
+		updateStackedSprite(month-1, '.month',document);
 		// update
 		currentDay = day;
 	}

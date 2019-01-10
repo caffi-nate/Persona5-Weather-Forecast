@@ -58,6 +58,14 @@ h6 {
 
 }
 
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 span {
     font-size: 6rem;
     padding: 0;
@@ -82,18 +90,6 @@ span {
 }
 
 @keyframes shake {
-/*
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }*/
   0% { transform: translate(3px, 3px) rotate(0deg); }
   10% { transform: translate(-2px, -3px) rotate(-1deg); }
   20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -211,18 +207,6 @@ span {
     z-index: $z-top;
     grid-column: 2;
     grid-row: 1;
-}
-
-.month-kanji {
-    background: url(../images/monthKanji.png);
-    width: 54px;
-    height: 56px;
-    z-index: ($z-base + 1);
-    margin-top: 80px;
-    grid-column: 3;
-    @media (max-width: 640px) {
-        display: none;
-    }
 }
 
 .date-tens-top {
@@ -472,31 +456,37 @@ span {
 }
 
 .weekday {
-    // this is a parent as well as a child
+    display: flex;
+    flex-direction: column;
     height: 200px;
+    margin-top: -1200px; // start way off screen else sometimes some dates get caught
+    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
+}
+
+.date-box{
+    // this is a parent as well as a child
+
     justify-content: center;
     display: grid;
     //grid-gap: 10px;
     @if ($debugMode) {
-	       border: 1px solid cyan;
+           border: 1px solid cyan;
     }
-	//background: rgba(0,0,0,0.5);
+    //background: rgba(0,0,0,0.5);
     color: white;
-	//box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    //box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     grid-template-columns: 0px 60px 0px 60px 72px 100px;
     grid-template-rows: 0px 0px 108px 50px 0px;
     margin: 0;
-    margin-top: -1200px; // start way off screen else sometimes some dates get caught
-    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
-
-    //grid-template-rows: repeat(200px); // test where elements are positioned
     grid-gap: 0px;
 }
 
 .max-min-temp{
     // style it as a non grid item later
+    margin: 0 auto;
     grid-column: 1/-1;
     grid-row: 5;
+    color: white;
     //margin: 0 auto;
 }
 

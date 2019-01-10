@@ -57,6 +57,15 @@ h6 {
   color: white;
 }
 
+img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 span {
   font-size: 6rem;
   padding: 0;
@@ -81,18 +90,6 @@ span {
 }
 
 @-webkit-keyframes shake {
-  /*
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }*/
   0% {
     -webkit-transform: translate(3px, 3px) rotate(0deg);
     transform: translate(3px, 3px) rotate(0deg);
@@ -140,18 +137,6 @@ span {
 }
 
 @keyframes shake {
-  /*
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }*/
   0% {
     -webkit-transform: translate(3px, 3px) rotate(0deg);
     transform: translate(3px, 3px) rotate(0deg);
@@ -199,7 +184,7 @@ span {
 }
 
 .loading-overlay {
-  opacity: 1;
+  opacity: 0;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -269,6 +254,7 @@ span {
 .calendar-grid-container {
   position: relative;
   display: grid;
+  border: 2px solid red;
   grid-template-columns: 180px 60px 0px 60px 72px 100px;
   grid-template-rows: 0px 0px 108px 0px;
   grid-gap: 0px;
@@ -330,21 +316,6 @@ span {
   z-index: 1000;
   grid-column: 2;
   grid-row: 1;
-}
-
-.month-kanji {
-  background: url(../images/monthKanji.png);
-  width: 54px;
-  height: 56px;
-  z-index: 11;
-  margin-top: 80px;
-  grid-column: 3;
-}
-
-@media (max-width: 640px) {
-  .month-kanji {
-    display: none;
-  }
 }
 
 .date-tens-top {
@@ -507,6 +478,7 @@ span {
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 .weather-container {
+  border: 2px solid lime;
   display: grid;
   text-align: center;
   margin: 0 auto;
@@ -516,6 +488,10 @@ span {
   max-width: 1000px;
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.weather-container > * {
+  border: 1px solid yellow;
 }
 
 .degrees {
@@ -532,6 +508,7 @@ span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border: 1px solid cyan;
   color: white;
   font-family: "earwig-factory", sans-serif;
   text-transform: lowercase;
@@ -556,6 +533,7 @@ span {
   -webkit-box-ordinal-group: 3;
   -ms-flex-order: 2;
   order: 2;
+  border: 1px solid orange;
   /* place all digits into separate grid spaces */
 }
 
@@ -615,6 +593,7 @@ span {
   display: grid;
   max-width: 1000px;
   margin: 0 auto;
+  border: 2px solid yellow;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* repeat 4 columns per row */
@@ -624,25 +603,38 @@ span {
 }
 
 .weekday {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   height: 200px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  display: grid;
-  color: white;
-  grid-template-columns: 0px 60px 0px 60px 72px 100px;
-  grid-template-rows: 0px 0px 108px 50px 0px;
-  margin: 0;
   margin-top: -1200px;
   -webkit-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   -o-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+.date-box {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  display: grid;
+  border: 1px solid cyan;
+  color: white;
+  grid-template-columns: 0px 60px 0px 60px 72px 100px;
+  grid-template-rows: 0px 0px 108px 50px 0px;
+  margin: 0;
   grid-gap: 0px;
 }
 
 .max-min-temp {
+  margin: 0 auto;
   grid-column: 1/-1;
   grid-row: 5;
+  color: white;
 }
 
 .weekday.bounceDown {

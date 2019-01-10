@@ -1,19 +1,3 @@
-function updateWeekdaySprite(currentDay,weekdaySprite){
-	//const weekdaySprite = document.querySelector('.weekday-sprite');
-	// get dimensions directly from css incase I update the spritesheet later
-
-    //todo: needs extra layers later
-	const spriteWidth = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
-	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).height).replace(/px/,""));
-
-	const xPos = (currentDay % 3) * - spriteWidth;
-	const yPos = Math.floor(currentDay / 3) * -spriteHeight;
-	const positionString = `${xPos}px ${yPos}px`;
-
-	weekdaySprite.style.backgroundPosition = positionString;
-}
-
-
 window.setInterval(function animateWeatherSprite(){
 	const todaysWeatherSprite = document.querySelector('.current-weather-sprite');
 
@@ -32,7 +16,6 @@ window.setInterval(function animateWeatherSprite(){
 	}
 }, 1000);
 
-
 function updateWeatherSprite(sprite, conditionInt){
         // todo: don't fetch x position every second - only need it once on load
 		const spriteWidth = parseInt((getComputedStyle(sprite).width).replace(/px/,""));
@@ -44,39 +27,37 @@ function updateWeatherSprite(sprite, conditionInt){
 		sprite.style.backgroundPosition = positionString;
 }
 
-function updateMonthDisplay(month){
-	const monthTop = document.querySelector('.month-top');
-	const monthMid = document.querySelector('.month-mid');
-	const monthBase = document.querySelector('.month-base');
-	const spriteWidth = parseInt((getComputedStyle(monthTop).width).replace(/px/,""));
-	//month = 5; // debug
+function updateStackedSprite(spriteIndex, idString, obj){
+    const elementTop = obj.querySelector(idString + '-top');
+    const elementMid = obj.querySelector(idString + '-mid');
+    const elementBase = obj.querySelector(idString + '-base');
+    const spriteWidth = parseInt((getComputedStyle(elementTop).width).replace(/px/,""));
+    const spriteHeight = parseInt((getComputedStyle(elementTop).height).replace(/px/,""));
 
-	monthTop.style.backgroundPosition = `${-(month-1) * spriteWidth}px 0px`;
-	monthMid.style.backgroundPosition = `${-(month-1) * spriteWidth}px -120px`;
-	monthBase.style.backgroundPosition = `${-(month-1) * spriteWidth}px -240px`;
+    elementTop.style.backgroundPosition = `${-(spriteIndex) * spriteWidth}px 0px`;
+    elementMid.style.backgroundPosition = `${-(spriteIndex) * spriteWidth}px -${spriteHeight}px`;
+    elementBase.style.backgroundPosition = `${-(spriteIndex) * spriteWidth}px -${2 * spriteHeight}px`;
 }
 
 function updateDateDisplay(date){
-	//console.log(date);
-	const dateTens = document.querySelector('.date-tens-top');
-	const dateTensMid = document.querySelector('.date-tens-mid');
-	const dateTensBase = document.querySelector('.date-tens-base');
-
-	const dateOnes = document.querySelector('.date-ones-top');
-	const dateOnesMid = document.querySelector('.date-ones-mid');
-	const dateOnesBase = document.querySelector('.date-ones-base');
-
-	const spriteWidth = parseInt((getComputedStyle(dateOnes).width).replace(/px/,""));
-
-	const ones = date % 10;
+    const ones = date % 10;
 	const tens = Math.floor(date / 10);
 
-	dateOnes.style.backgroundPosition = `${-ones * spriteWidth}px 0px`;
-	dateOnesMid.style.backgroundPosition = `${-ones * spriteWidth}px -150px`;
-	dateOnesBase.style.backgroundPosition = `${-ones * spriteWidth}px -300px`;
-	//console.log(dateOnesMid);
+    updateStackedSprite(ones, '.date-ones', document);
+    updateStackedSprite(tens, '.date-tens', document);
+}
 
-	dateTens.style.backgroundPosition = `${-tens * spriteWidth}px 0px`;
-	dateTensMid.style.backgroundPosition = `${-tens * spriteWidth}px -150px`;
-	dateTensBase.style.backgroundPosition = `${-tens * spriteWidth}px -300px`;
+function updateWeekdaySprite(currentDay,weekdaySprite){
+	//const weekdaySprite = document.querySelector('.weekday-sprite');
+	// get dimensions directly from css incase I update the spritesheet later
+
+    //todo: needs extra layers later
+	const spriteWidth = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
+	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).height).replace(/px/,""));
+
+	const xPos = (currentDay % 3) * - spriteWidth;
+	const yPos = Math.floor(currentDay / 3) * -spriteHeight;
+	const positionString = `${xPos}px ${yPos}px`;
+
+	weekdaySprite.style.backgroundPosition = positionString;
 }

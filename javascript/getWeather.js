@@ -39,6 +39,10 @@ function sendRequest(url){
 			// up to 8 readings per day for 5 days.
 			// there may exist a sixth day on the end of the list.
 			// we'll just use the first 5 to avoid bad max-min data
+
+			//console.log("Data:");
+			//console.log(data);
+
 			for (i = 0; i < data.list.length; i++){
 				var dateTime = new Date(data.list[i].dt*1000); // unix time
 				const dt = dateTime.getDate();
@@ -48,6 +52,7 @@ function sendRequest(url){
 				wthr.month = dateTime.getMonth();
 				wthr.minTemp = kelvinToCelcius(data.list[i].main.temp_min);
 				wthr.maxTemp = kelvinToCelcius(data.list[i].main.temp_max);
+				//console.log("Icon " + data.list[i].weather[0].icon);
 				wthr.conditionInt = convertIcon(data.list[i].weather[0].icon);
 
 				if (dates.has(dt)){ // if the date already exists in our set, compare values
