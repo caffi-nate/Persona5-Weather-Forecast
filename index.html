@@ -9,23 +9,19 @@
 		<img class = "background-image" src = "images/city_background_day.png">
 		<img class = "background-image timeOfDay" src = "images/city_background_night.png">
 		<div id = "wrapper">
-
-
 			<div id = "header-flexbox">
 				<div id = "clock">
 					<h2 id = "time">00.00:00AM</h2>
 				</div>
 				<h2 id = "city">Loading City...</h2>
-
+			</div>
+			<div class = "weather-container">
 				<div class = "calendar-grid-container">
 					<!-- todo: need a new yearsprite underlay -->
-					<div class = "year-sprite"></div>
-
 					<div class = "month-top"></div>
 					<div class = "month-mid"></div>
 					<div class = "month-base"></div>
 					<!--<div class = "month-kanji"></div>-->
-
 					<div class = "date-tens-top"></div>
 					<div class = "date-ones-top"></div>
 					<div class = "date-tens-mid"></div>
@@ -36,16 +32,32 @@
 					<div class = "weather-card"></div>
 					<div class = "current-weather-sprite"></div>
 				</div>
-			</div>
-
-			<div class = "weather-container">
+				<div id = "current-temp-container">
+					<div id = "current-temp-background"></div>
+					<div id = "current-temp-sign"></div>
+					<div id = "current-temp-tens"></div>
+					<div id = "current-temp-ones"></div>
+					<div id = "current-temp-decimal"></div>
+					<div id = "current-temp-tenths"></div>
+					<div id = "current-temp-degrees"></div>
+				</div>
+				<div class = "max-min-temp">
+					<div class = "max-min-background"></div>
+					<div class = "max-temp-sign"></div>
+					<div class = "max-temp-tens"></div>
+					<div class = "max-temp-ones"></div>
+					<div class = "max-temp-degrees"></div>
+					<div class = "min-temp-sign"></div>
+					<div class = "min-temp-tens"></div>
+					<div class = "min-temp-ones"></div>
+					<div class = "min-temp-degrees"></div>
+				</div>
 				<!--<img src = "images/" alt = "icon" id = "icon">-->
 				<!--<div class = "weather-sprite"></div>-->
-				<div class = "degrees">
-					<h1 id = "temp">??</h3><span>&#176;</span>
-				</div>
-				<h3 id = "weather-description">Loading Weather...</h3>
-			</div>
+				<!--<div class = "degrees"><h1 id = "temp">??</h3><span>&#176;</span>-->
+		</div>
+				<!--<h3 id = "weather-description">Loading Weather...</h3>-->
+			<!--</div>-->
 
 			<div id = "weekday-container">
 				<!-- populate with 4 test items -->

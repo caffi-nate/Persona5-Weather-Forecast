@@ -61,3 +61,42 @@ function updateWeekdaySprite(currentDay,weekdaySprite){
 
 	weekdaySprite.style.backgroundPosition = positionString;
 }
+
+function updateMaxMin(minTemp,maxTemp,obj){
+    const maxSign = obj.querySelector('.max-temp-sign');
+    const maxTens = obj.querySelector('.max-temp-tens');
+    const maxOnes = obj.querySelector('.max-temp-ones');
+    const minSign = obj.querySelector('.min-temp-sign');
+    const minTens = obj.querySelector('.min-temp-tens');
+    const minOnes = obj.querySelector('.min-temp-ones');
+
+    const wth = 32;
+
+    console.log(minTemp);
+
+    // remove negative sign if necessary
+    if (maxTemp >= 0) maxSign.style.backgroundPosition = `${-384}px 0px`;
+    if (minTemp >= 0) minSign.style.backgroundPosition = `${-384}px 0px`;
+
+    maxTens.style.backgroundPosition = `${Math.floor(maxTemp/10) * -wth}px 0px`;
+    maxOnes.style.backgroundPosition = `${Math.floor(maxTemp % 10) * -wth}px 0px`;
+    minTens.style.backgroundPosition = `${Math.floor(minTemp/10) * -wth}px 0px`;
+    minOnes.style.backgroundPosition = `${Math.floor(minTemp%10) * -wth}px 0px`;
+}
+
+function setCurrentTempSprites(temp){
+    const tempSign = document.querySelector('#current-temp-sign');
+    const tempTens = document.querySelector('#current-temp-tens');
+    const tempOnes = document.querySelector('#current-temp-ones');
+    const tempTenths = document.querySelector('#current-temp-tenths');
+
+    const wth = 72;
+
+    tempTens.style.backgroundPosition = `${Math.floor(temp/10) * -wth}px 0px`;
+    tempOnes.style.backgroundPosition = `${Math.floor(temp%10) * -wth}px 0px`;
+
+    const remainder = Math.floor(10 * (temp - Math.floor(temp)));
+
+    //console.log(remainder);
+    tempTenths.style.backgroundPosition = `${(remainder * -wth)}px 0px`;
+}

@@ -156,41 +156,6 @@ span {
 }
 
 /* now start the HUD grid */
-.calendar-grid-container {
-    position: relative;
-    display: grid;
-    @if ($debugMode){
-        border: 2px solid red;
-    }
-    // the 0px is where the kanji symbol used to be, removed to alleviate clutter
-    grid-template-columns: 180px 60px 0px 60px 72px 100px;
-    grid-template-rows: 0px 0px 108px 0px;
-    //grid-template-rows: repeat(200px); // test where elements are positioned
-    grid-gap: 0px;
-    //padding: 0px 0px 100px 0px;
-    margin: 20px 0px 100px 0px;
-
-    @media (max-width: 640px) {
-        grid-template-columns: 0px 60px 0px 60px 72px 100px;//180px 64px 72px 50px;
-        justify-content: center;
-    }
-
-    > * {
-        // debug: show element positions
-    	//border: 2px solid yellow;
-    }
-}
-
-.year-sprite {
-    background: url(../images/currentYear.png);
-    width: 195px;
-    height: 105px;
-    @media (max-width: 640px)
-    {
-            display: none;
-    }
-}
-
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
 .weather-container {
@@ -198,17 +163,18 @@ span {
         border: 2px solid lime;
     }
     display: grid;
+    grid-template-columns: 150px 180px;
+    grid-template-rows: 200px 100px;
+    //flex-direction: column;
     //grid-template-rows: ;
     text-align: center;
     margin: 0 auto;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-
-    max-width: 1000px;
+    max-width: 500px;
     //padding: 25px 5px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.6);
+    //background-color: rgba(0, 0, 0, 0.6);
+    height: 300px;
 
     h1 {
         //color: red;
@@ -219,6 +185,27 @@ span {
         @if ($debugMode) {
             border: 1px solid yellow;
         }
+    }
+}
+
+.calendar-grid-container {
+    @include zoom(1.2);
+    position: relative;
+    display: grid;
+    @if ($debugMode){
+        border: 2px solid red;
+    }
+    // the 0px is where the kanji symbol used to be, removed to alleviate clutter
+    grid-template-columns: 0px 0px 60px 62px 70px;
+    grid-template-rows: 0px 0px 108px 0px;
+    justify-content: center;
+    //grid-template-rows: repeat(200px); // test where elements are positioned
+    grid-gap: 0px;
+    //padding: 0px 0px 100px 0px;
+    margin: 20px 0px 100px 0px;
+    > * {
+        // debug: show element positions
+    	//border: 2px solid yellow;
     }
 }
 
@@ -282,7 +269,9 @@ span {
         margin: -5px;
     }
     margin-bottom: 20px;
-    background: rgba(0,0,0,0.5);
+    @if ($debugMode){
+        background: rgba(0,0,0,0.5);
+    }
 }
 #header-flexbox.bounceIn{
     @include zoom(1);
@@ -301,13 +290,19 @@ span {
     justify-content: center;
 }
 
+.weekday {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    margin-top: -1200px; // start way off screen else sometimes some dates get caught
+    @if ($debugMode){
+        margin-top: 0px;
+    }
+    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
+}
 
-
-
-
-
-
-.weekday.bounceDown{
+//.weekday.bounceDown{
+.bounceDown{
     margin-top: 0px;
     @media (min-width: 800px) {
         // todo: write a loop for transition delay somehow (js?)

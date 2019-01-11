@@ -50,15 +50,18 @@ function weatherConditionString(conditionInt, maxTemp){
 function setWeatherTest(weather){
 	const city = document.getElementById("city");
 	const temp = document.getElementById("temp");
-	const condition = document.getElementById("weather-description");
+	//const condition = document.getElementById("weather-description");
 	const todaysWeatherSprite = document.querySelector('.current-weather-sprite');
 	const containerWeatherSprite = document.querySelector('.weather-sprite');
 
 	city.innerHTML = weather.city; // bugged right now... maybe don't use geolocation? or maybe it's good enough...
-	temp.innerHTML = weather.temp;
-	condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
+	//temp.innerHTML = weather.temp;
+	//condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
 	weatherLoaded = true;
 	// call update weather first so that there isn't any last minute funny business
+
+
+    setCurrentTempSprites(weather.temp);
 
 	getWeeklyForecastSprites();
 
@@ -98,28 +101,4 @@ function getWeeklyForecastSprites(){
 
 
 	};
-}
-
-function updateMaxMin(minTemp,maxTemp,obj){
-    const maxSign = obj.querySelector('.max-temp-sign');
-    const maxTens = obj.querySelector('.max-temp-tens');
-    const maxOnes = obj.querySelector('.max-temp-ones');
-    const minSign = obj.querySelector('.min-temp-sign');
-    const minTens = obj.querySelector('.min-temp-tens');
-    const minOnes = obj.querySelector('.min-temp-ones');
-
-    const wth = 32;
-
-    // remove negative sign if necessary
-    if (maxTemp >= 0) maxSign.style.backgroundPosition = `${-384}px 0px`;
-    if (minTemp >= 0) minSign.style.backgroundPosition = `${-384}px 0px`;
-
-    maxTens.style.backgroundPosition = `${Math.floor(maxTemp/10) * -wth}px 0px`;
-    maxOnes.style.backgroundPosition = `${Math.floor(maxTemp % 10) * -wth}px 0px`;
-    minTens.style.backgroundPosition = `${Math.floor(minTemp/10) * -wth}px 0px`;
-    minOnes.style.backgroundPosition = `${Math.floor(minTemp%10) * -wth}px 0px`;
-
-    console.log(minTemp);
-    console.log(maxTemp);
-
 }

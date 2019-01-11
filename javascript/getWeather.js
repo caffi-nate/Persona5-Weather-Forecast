@@ -73,8 +73,13 @@ function sendRequest(url){
 			weather.conditionInt = convertIcon(data.list[0].weather[0].icon);
 			weather.city = data.city.name;
 			weather.temp = kelvinToCelcius(data.list[0].main.temp);
+			weather.maxTemp = weatherDays[0].maxTemp;
+			weather.minTemp = weatherDays[0].minTemp;
 			weatherImageIndex = weather.conditionInt;
 			setWeatherTest(weather);
+
+			const weatherContainer = document.querySelector('.weather-container');
+			updateMaxMin(weather.minTemp,weather.maxTemp,weatherContainer)
 		}
 	};
 	xmlhttp.open("GET", url, true);
