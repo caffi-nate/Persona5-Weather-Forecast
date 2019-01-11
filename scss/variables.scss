@@ -1,5 +1,5 @@
 // debug
-$debugMode: true;
+$debugMode: false;
 $loadingScreen: 1;
 @if ($debugMode) {
     $loadingScreen: 0;
@@ -14,6 +14,8 @@ $z-background: -1000;
 
 // colours
 $loadingGray: #9b9b9b;
+$navy: #171519;
+$blue: #4f4559;
 
 // animation variables
 $dropTransitionDelay: 0.05s;

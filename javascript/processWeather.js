@@ -87,11 +87,39 @@ function getWeeklyForecastSprites(){
         const minTemp = day.minTemp;
         const maxTemp = day.maxTemp;
 
-        const maxMinTemp = gridWeatherItem.querySelector('.max-min-temp');
+        //const maxMinTemp = gridWeatherItem.querySelector('.max-min-temp p');
 
-        maxMinTemp.innerHTML = `${minTemp}` + "\u00B0" +`- ${maxTemp}`  + "\u00B0";
+        //maxMinTemp.innerHTML = `${minTemp}` + "\u00B0" +`- ${maxTemp}`  + "\u00B0";
 
 		updateWeatherSprite(weatherSprite,day.conditionInt);
 		updateWeekdaySprite((day.weekday + 6) % 7,weekdaySprite);
+
+        updateMaxMin(minTemp, maxTemp, gridWeatherItem);
+
+
 	};
+}
+
+function updateMaxMin(minTemp,maxTemp,obj){
+    const maxSign = obj.querySelector('.max-temp-sign');
+    const maxTens = obj.querySelector('.max-temp-tens');
+    const maxOnes = obj.querySelector('.max-temp-ones');
+    const minSign = obj.querySelector('.min-temp-sign');
+    const minTens = obj.querySelector('.min-temp-tens');
+    const minOnes = obj.querySelector('.min-temp-ones');
+
+    const wth = 32;
+
+    // remove negative sign if necessary
+    if (maxTemp >= 0) maxSign.style.backgroundPosition = `${-384}px 0px`;
+    if (minTemp >= 0) minSign.style.backgroundPosition = `${-384}px 0px`;
+
+    maxTens.style.backgroundPosition = `${Math.floor(maxTemp/10) * -wth}px 0px`;
+    maxOnes.style.backgroundPosition = `${Math.floor(maxTemp % 10) * -wth}px 0px`;
+    minTens.style.backgroundPosition = `${Math.floor(minTemp/10) * -wth}px 0px`;
+    minOnes.style.backgroundPosition = `${Math.floor(minTemp%10) * -wth}px 0px`;
+
+    console.log(minTemp);
+    console.log(maxTemp);
+
 }

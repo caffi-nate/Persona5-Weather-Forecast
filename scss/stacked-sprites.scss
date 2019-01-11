@@ -1,0 +1,217 @@
+.weekday {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    margin-top: -1200px; // start way off screen else sometimes some dates get caught
+    @if ($debugMode){
+        margin-top: 0px;
+    }
+    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
+}
+
+.date-box{
+    justify-content: center;
+    display: grid;
+    @if ($debugMode) {
+           border: 1px solid cyan;
+    }
+    color: white;
+    grid-template-columns: 0px 60px 0px 60px 72px 100px;
+    grid-template-rows: 0px 0px 108px 50px 0px;
+    margin: 0;
+    grid-gap: 0px;
+    //background: red;
+}
+
+.month-base {
+    background: url(../images/month-number-sprites.png);
+    @include sprite_position(120,120);
+    @include date-month-position;
+    z-index: $z-base;
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.month-mid {
+    background: url(../images/month-number-sprites.png);
+    @include sprite_position(120,120);
+    @include date-month-position;
+    z-index: $z-mid;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.month-top {
+    background: url(../images/month-number-sprites.png);
+    @include sprite_position(120,120);
+    @include date-month-position;
+    z-index: $z-top;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.date-tens-top {
+    background: url(../images/numbers_spritesheet_3.png);
+    @include sprite_position(100,150);
+    z-index: $z-top;
+    grid-column: 4;
+    grid-row: 1;
+    @include date-tens-position;
+}
+
+.date-tens-mid {
+    background: url(../images/numbers_spritesheet_3.png);
+    @include sprite_position(100,150);
+    z-index: $z-mid;
+    grid-column: 4;
+    grid-row: 2;
+    @include date-tens-position;
+}
+
+.date-tens-base {
+    background: url(../images/numbers_spritesheet_3.png);
+    @include sprite_position(100,150);
+    z-index: $z-base;
+    grid-column: 4;
+    grid-row: 3;
+    @include date-tens-position;
+}
+
+.date-ones-top {
+    background: url(../images/numbers_spritesheet_3.png);
+    @include sprite_position(100,150);
+    z-index: $z-top;
+    grid-column: 5;
+    grid-row: 1;
+    @include date-ones-position;
+}
+
+.date-ones-mid {
+    background: url(../images/numbers_spritesheet_3.png);
+    @include sprite_position(100,150);
+    z-index: $z-mid;
+    grid-column: 5;
+    grid-row: 2;
+    @include date-ones-position;
+
+}
+
+.date-ones-base {
+  background: url(../images/numbers_spritesheet_3.png);
+  @include sprite_position(100,150);
+  z-index: $z-base;
+  grid-column: 5;
+  grid-row: 3;
+  @include date-ones-position;
+}
+
+.weekday-sprite {
+  background: url(../images/weekday_sprites.png);
+  @include sprite_position(191,74);
+  z-index: $z-top;
+  grid-column: 4;
+  grid-row: 4;
+  @include date-tens-position;
+  margin-top: -20px;
+  margin-left: 10px;
+}
+
+.weather-card {
+    background: url(../images/weather-card-sprite.png);
+    width: 100px;
+    height: 99px;
+    grid-column: 6;
+    grid-row: 1;
+    margin-top: -10px;
+    margin-left: -8px;
+}
+
+.current-weather-sprite {
+    background: url(../images/weather_spritesheet4.png);
+    width: 75px;
+    height: 72px;
+    z-index: 1000;
+    grid-column: 6;
+    grid-row: 2;
+    margin-left: 6px;
+    margin-top: -2px;
+}
+
+
+// max min //
+// container:
+.max-min-temp{
+    justify-content: center;
+    margin: 0;
+    //background: blue;
+    //margin: 0 auto;
+    color: white;
+    display: grid;
+    //grid-template-columns: 14px 14px 12px 8px 30px 14px 14px 12px 8px 30px;
+    grid-template-columns: repeat(2, 10px 14px 18px 20px);
+    grid-template-rows: 12px 100px;
+    height: 500px;
+    //width: 150px;
+    margin-top: -12px;
+    margin-left: 40px;
+    transform: rotate(-15deg);
+
+    p {
+        color: white;
+    }
+    //background: blue;
+}
+.max-min-background{
+    background: url(../images/max-min-bg.png);
+    display: grid;
+    width: 141px;
+    height: 55px;
+    z-index: 10;
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: -4px;
+}
+
+.max-temp-sign {
+    @include max-temp;
+    grid-column: 1;
+    background-position: -352px 0px;
+}
+
+.max-temp-tens {
+    @include max-temp;
+    grid-column: 2;
+}
+
+.max-temp-ones {
+    @include max-temp;
+    grid-column: 3;
+}
+
+.max-temp-degrees {
+    @include max-temp;
+    grid-column: 4;
+    background-position: -320px 0px;
+}
+
+.min-temp-sign {
+    @include min-temp;
+    grid-column: 5;
+    background-position: -352px 0px;
+}
+
+.min-temp-tens {
+    @include min-temp;
+    grid-column: 6;
+}
+
+.min-temp-ones {
+    @include min-temp;
+    grid-column: 7;
+}
+
+.min-temp-degrees {
+    @include min-temp;
+    grid-column: 8;
+    background-position: -320px 0px;
+}

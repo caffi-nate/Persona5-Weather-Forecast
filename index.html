@@ -8,12 +8,11 @@
 	<body>
 		<img class = "background-image" src = "images/city_background_day.png">
 		<img class = "background-image timeOfDay" src = "images/city_background_night.png">
-
-		<div class = "wrapper">
+		<div id = "wrapper">
 
 
 			<div id = "header-flexbox">
-				<div class = "clock">
+				<div id = "clock">
 					<h2 id = "time">00.00:00AM</h2>
 				</div>
 				<h2 id = "city">Loading City...</h2>
@@ -39,17 +38,7 @@
 				</div>
 			</div>
 
-
-
-
-
-
-
-			<!-- todo: list all weekday objects here -->
-
-
 			<div class = "weather-container">
-
 				<!--<img src = "images/" alt = "icon" id = "icon">-->
 				<!--<div class = "weather-sprite"></div>-->
 				<div class = "degrees">
@@ -72,7 +61,17 @@
 						<div class = "weather-card"></div>
 						<div class = "current-weather-sprite"></div>
 					</div>
-					<h4 class = "max-min-temp">55-55</h4>
+					<div class = "max-min-temp">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
 				<!--	</div>-->
 				</div>
 				<div class = "weekday">
@@ -87,7 +86,17 @@
 						<div class = "weather-card"></div>
 						<div class = "current-weather-sprite"></div>
 					</div>
-					<h4 class = "max-min-temp">55-55</h4>
+					<div class = "max-min-temp">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
 				</div>
 				<div class = "weekday">
 					<div class = "date-box">
@@ -101,7 +110,17 @@
 						<div class = "weather-card"></div>
 						<div class = "current-weather-sprite"></div>
 					</div>
-					<h4 class = "max-min-temp">55-55</h4>
+					<div class = "max-min-temp">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
 				</div>
 				<div class = "weekday">
 					<div class = "date-box">
@@ -115,7 +134,17 @@
 						<div class = "weather-card"></div>
 						<div class = "current-weather-sprite"></div>
 					</div>
-					<h4 class = "max-min-temp">55-55</h4>
+					<div class = "max-min-temp">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
 				</div>
 			</div>
 
@@ -124,7 +153,7 @@
 
 
 		<div class = "loading-overlay">
-			<h6 id = "loading-text">Hello World</h6>
+			<h6 id = "loading-text">Loading Page...</h6>
 			<img class = "loading-graphic" src = "images/loading.gif">
 		</div>
 

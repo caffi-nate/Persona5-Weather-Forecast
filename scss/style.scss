@@ -1,15 +1,7 @@
 @import "variables";
 @import "mixins";
-
-@font-face {
-    font-family: "P5hatty";
-    src: url(../fonts/p5hatty.ttf);
-}
-
-@font-face {
-    font-family: "earwig-factory";
-    src: url(../fonts/earwig-factory.ttf);
-}
+@import "fonts";
+@import "stacked-sprites";
 
 :root {
     font-family: "P5hatty", sans-serif;
@@ -18,6 +10,9 @@
 
 html {
     background: black;
+    @if ($debugMode){
+        background: $blue;
+    }
     height: 100%;
 }
 
@@ -81,6 +76,10 @@ span {
     padding: 0px;
     //@include backgroundWithScreenshake;
     z-index: $z-background;
+
+    @if ($debugMode){
+        display: none;
+    }
 }
 
 .background-image.screenshake{
@@ -147,7 +146,7 @@ span {
     background: black;
 }
 
-.wrapper {
+#wrapper {
     position: absolute;
     margin: 0px;
     padding: 0px;
@@ -182,99 +181,6 @@ span {
     }
 }
 
-.month-base {
-    background: url(../images/month-number-sprites.png);
-    @include sprite_position(120,120);
-    @include date-month-position;
-    z-index: $z-base;
-    grid-column: 2;
-    grid-row: 3;
-}
-
-.month-mid {
-    background: url(../images/month-number-sprites.png);
-    @include sprite_position(120,120);
-    @include date-month-position;
-    z-index: $z-mid;
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.month-top {
-    background: url(../images/month-number-sprites.png);
-    @include sprite_position(120,120);
-    @include date-month-position;
-    z-index: $z-top;
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.date-tens-top {
-    background: url(../images/numbers_spritesheet_3.png);
-    @include sprite_position(100,150);
-    z-index: $z-top;
-    grid-column: 4;
-    grid-row: 1;
-    @include date-tens-position;
-}
-
-.date-tens-mid {
-    background: url(../images/numbers_spritesheet_3.png);
-    @include sprite_position(100,150);
-    z-index: $z-mid;
-    grid-column: 4;
-    grid-row: 2;
-    @include date-tens-position;
-}
-
-.date-tens-base {
-    background: url(../images/numbers_spritesheet_3.png);
-    @include sprite_position(100,150);
-    z-index: $z-base;
-    grid-column: 4;
-    grid-row: 3;
-    @include date-tens-position;
-}
-
-.date-ones-top {
-    background: url(../images/numbers_spritesheet_3.png);
-    @include sprite_position(100,150);
-    z-index: $z-top;
-    grid-column: 5;
-    grid-row: 1;
-    @include date-ones-position;
-}
-
-.date-ones-mid {
-    background: url(../images/numbers_spritesheet_3.png);
-    @include sprite_position(100,150);
-    z-index: $z-mid;
-    grid-column: 5;
-    grid-row: 2;
-    @include date-ones-position;
-
-}
-
-.date-ones-base {
-  background: url(../images/numbers_spritesheet_3.png);
-  @include sprite_position(100,150);
-  z-index: $z-base;
-  grid-column: 5;
-  grid-row: 3;
-  @include date-ones-position;
-}
-
-.weekday-sprite {
-  background: url(../images/weekday_sprites.png);
-  @include sprite_position(191,74);
-  z-index: $z-top;
-  grid-column: 4;
-  grid-row: 4;
-  @include date-tens-position;
-  margin-top: -20px;
-  margin-left: 10px;
-}
-
 .year-sprite {
     background: url(../images/currentYear.png);
     width: 195px;
@@ -285,46 +191,8 @@ span {
     }
 }
 
-.weather-card {
-    background: url(../images/weather-card-sprite.png);
-    width: 100px;
-    height: 99px;
-    grid-column: 6;
-    grid-row: 1;
-    margin-top: -10px;
-    margin-left: -8px;
-}
-
-.current-weather-sprite {
-    background: url(../images/weather_spritesheet3.png);
-    width: 75px;
-    height: 72px;
-    z-index: 1000;
-    grid-column: 6;
-    grid-row: 2;
-    margin-left: 6px;
-    margin-top: -2px;
-
-    // edge doesn't like these...
-    background-color: black;
-    mix-blend-mode: difference;
-}
-
-.weather-sprite {
-  background: url(../images/weather_spritesheet3.png);
-  width: 75px;
-  height: 72px;
-  z-index: 1000;
-  margin: 0 auto;
-}
-
-
-
 /* weekday container */
 /* todo: will relegate this to an object later so we can display multiple */
-
-
-
 .weather-container {
     @if ($debugMode){
         border: 2px solid lime;
@@ -382,8 +250,7 @@ span {
     }
 }
 
-.clock {
-
+#clock {
     display: flex;
     order: 2;
     @if ($debugMode){
@@ -395,19 +262,9 @@ span {
         margin-top: 20px;
         order: 0;
     }
-    /* place all digits into separate grid spaces */
-    //border: 2px solid lime;
     #time {
-        //position: absolute;
-
-        //margin-left: 0px;
-        //margin-top: 230px;
-        //display: grid;
-        //grid-template-columns: repeat(10 10 3);
         font-family: "earwig-factory", sans-serif;
         color: white;
-        //color:red;
-
     }
 }
 
@@ -416,22 +273,16 @@ span {
     transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: 0.2s;
     @include zoom($headerInitialZoom);
-    //position: fixed;
     display: flex;
-    //flex: 1;
     flex-direction: column;
     max-width: 600px;
     margin: 20px 20px;
-    //border: 5px solid white;
-    // remove flexbox gaps between content
     padding: 10px;
     > * {
         margin: -5px;
     }
     margin-bottom: 20px;
-    // fade this in for smaller devices?
     background: rgba(0,0,0,0.5);
-
 }
 #header-flexbox.bounceIn{
     @include zoom(1);
@@ -442,56 +293,21 @@ span {
     display: grid;
     max-width: 1000px;
     margin: 0 auto;
-    //grid-template-columns: 72px 72px;
-    //grid-template-rows: 0px 0px 108px 100px;
     @if ($debugMode){
         border: 2px solid yellow;
     }
     grid-gap: 20px;
-    //grid-template-columns: repeat(auto,minmax(200px,1fr));
-
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */
     justify-content: center;
-    //grid-template-columns:repeat(2, 1fr); /* repeat 6 columns per row */
 }
 
-.weekday {
-    display: flex;
-    flex-direction: column;
-    height: 200px;
-    margin-top: -1200px; // start way off screen else sometimes some dates get caught
-    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
-}
 
-.date-box{
-    // this is a parent as well as a child
 
-    justify-content: center;
-    display: grid;
-    //grid-gap: 10px;
-    @if ($debugMode) {
-           border: 1px solid cyan;
-    }
-    //background: rgba(0,0,0,0.5);
-    color: white;
-    //box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    grid-template-columns: 0px 60px 0px 60px 72px 100px;
-    grid-template-rows: 0px 0px 108px 50px 0px;
-    margin: 0;
-    grid-gap: 0px;
-}
 
-.max-min-temp{
-    // style it as a non grid item later
-    margin: 0 auto;
-    grid-column: 1/-1;
-    grid-row: 5;
-    color: white;
-    //margin: 0 auto;
-}
+
+
 
 .weekday.bounceDown{
-    //padding-bottom: 100px;
     margin-top: 0px;
     @media (min-width: 800px) {
         // todo: write a loop for transition delay somehow (js?)
@@ -504,7 +320,6 @@ span {
             margin-top: -30px;
             @include zoom(1);
             transition-delay: 0.2s + $dropTransitionDelay;
-
         }
         &:nth-child(3){
             margin-top: -50px;
@@ -519,7 +334,6 @@ span {
     }
 
     &:hover{
-        //margin-left: 100px;
         @include zoom(1.1);
         transition: all 0.1s;
     }

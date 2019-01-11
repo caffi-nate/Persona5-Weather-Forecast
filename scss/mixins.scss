@@ -36,3 +36,23 @@
     margin-top: -50vh; // when we screenshake, we'll move this between 50 and 55
     margin-left: -55vw; /* Negative half of width. */
 }
+
+
+
+@mixin max-temp(){
+    background: url(../images/degrees-small-red-2.png);
+    width: 32px;
+    height: 32px;
+    z-index: 100;
+    grid-row: 2;
+    background-position: 0px 0px;
+}
+
+@mixin min-temp(){
+    background: url(../images/degrees-small-blue-2.png);
+    width: 32px;
+    height: 32px;
+    z-index: 100;
+    grid-row: 2;
+    background-position: 0px 0px;
+}
