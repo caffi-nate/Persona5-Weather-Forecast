@@ -72,16 +72,14 @@ function updateMaxMin(minTemp,maxTemp,obj){
 
     const wth = 32;
 
-    console.log(minTemp);
-
     // remove negative sign if necessary
     if (maxTemp >= 0) maxSign.style.backgroundPosition = `${-384}px 0px`;
     if (minTemp >= 0) minSign.style.backgroundPosition = `${-384}px 0px`;
 
-    maxTens.style.backgroundPosition = `${Math.floor(maxTemp/10) * -wth}px 0px`;
-    maxOnes.style.backgroundPosition = `${Math.floor(maxTemp % 10) * -wth}px 0px`;
-    minTens.style.backgroundPosition = `${Math.floor(minTemp/10) * -wth}px 0px`;
-    minOnes.style.backgroundPosition = `${Math.floor(minTemp%10) * -wth}px 0px`;
+    maxTens.style.backgroundPosition = `${Math.floor(Math.abs(maxTemp)/10) * -wth}px 0px`;
+    maxOnes.style.backgroundPosition = `${Math.round(Math.abs(maxTemp) % 10) * -wth}px 0px`;
+    minTens.style.backgroundPosition = `${Math.floor(Math.abs(minTemp)/10) * -wth}px 0px`;
+    minOnes.style.backgroundPosition = `${Math.round(Math.abs(minTemp)%10) * -wth}px 0px`;
 }
 
 function setCurrentTempSprites(temp){
@@ -92,8 +90,8 @@ function setCurrentTempSprites(temp){
 
     const wth = 72;
 
-    tempTens.style.backgroundPosition = `${Math.floor(temp/10) * -wth}px 0px`;
-    tempOnes.style.backgroundPosition = `${Math.floor(temp%10) * -wth}px 0px`;
+    tempTens.style.backgroundPosition = `${Math.floor(Math.abs(temp)/10) * -wth}px 0px`;
+    tempOnes.style.backgroundPosition = `${Math.floor(Math.abs(temp)%10) * -wth}px 0px`;
 
     const remainder = Math.floor(10 * (temp - Math.floor(temp)));
 

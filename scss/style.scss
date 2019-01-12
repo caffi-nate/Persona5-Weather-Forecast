@@ -89,11 +89,11 @@ span {
 }
 
 @keyframes shake {
-  0% { transform: translate(3px, 3px) rotate(0deg); }
-  10% { transform: translate(-2px, -3px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(2px, -1px) rotate(1deg); }
+  0% { transform: translate(4px, 4px) rotate(2deg); }
+  10% { transform: translate(-3px, -3px) rotate(-2deg); }
+  20% { transform: translate(-3px, 1px) rotate(1deg); }
+  30% { transform: translate(3px, 3px) rotate(0deg); }
+  40% { transform: translate(2px, -2px) rotate(1deg); }
   50% { transform: translate(-1px, 2px) rotate(-1deg); }
   60% { transform: translate(-2px, 1px) rotate(0deg); }
   70% { transform: translate(2px, 1px) rotate(-0deg); }
@@ -164,17 +164,23 @@ span {
     }
     display: grid;
     grid-template-columns: 150px 180px;
-    grid-template-rows: 200px 100px;
+    grid-template-rows: 200px 0px 80px;
+    max-width: 500px;
+    @media (max-width: 640px) {
+        grid-template-columns: 150px;
+        grid-template-rows: 200px 0px 150px;
+    }
     //flex-direction: column;
     //grid-template-rows: ;
     text-align: center;
     margin: 0 auto;
     justify-content: center;
-    max-width: 500px;
+
     //padding: 25px 5px;
     color: white;
     //background-color: rgba(0, 0, 0, 0.6);
-    height: 300px;
+    //border: 1px solid red;
+    //height: 300px;
 
     h1 {
         //color: red;
@@ -186,11 +192,24 @@ span {
             border: 1px solid yellow;
         }
     }
+    margin-top: -1000px;
+    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
 }
+
+.mainBounceDown {
+    margin-top: -50px;
+    transition-delay: 0.5s;
+    &:hover{
+        @include zoom(1.2);
+        transition: all 0.1s;
+    }
+}
+
 
 .calendar-grid-container {
     @include zoom(1.2);
     position: relative;
+    //grid-row: 1;
     display: grid;
     @if ($debugMode){
         border: 2px solid red;
@@ -219,49 +238,15 @@ span {
     color: white;
 }
 
-#city {
-    //display: grid;
-    display: flex;
-    @if ($debugMode){
-        border: 1px solid cyan;
-    }
-    color: white;
-    font-family: "earwig-factory", sans-serif;
-    text-transform: lowercase;
-    font-size: 5rem;
-    text-shadow: 0.1rem 0.5rem #000;
-    @media (max-width: 640px) {
-        font-size: 2.5rem;
-        justify-content: center;
-        text-align: center;
-    }
-}
-
-#clock {
-    display: flex;
-    order: 2;
-    @if ($debugMode){
-        border: 1px solid orange;
-    }
-    @media (max-width: 640px) {
-        justify-content: center;
-        position: relative;
-        margin-top: 20px;
-        order: 0;
-    }
-    #time {
-        font-family: "earwig-factory", sans-serif;
-        color: white;
-    }
-}
-
 #header-flexbox{
     transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: 0.2s;
     @include zoom($headerInitialZoom);
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0px 80px 50px;
+    //justify-items: center;
     max-width: 600px;
     margin: 20px 20px;
     padding: 10px;
@@ -270,12 +255,70 @@ span {
     }
     margin-bottom: 20px;
     @if ($debugMode){
-        background: rgba(0,0,0,0.5);
+        //background: rgba(0,0,0,0.5);
+        @include zoom(1);
     }
+
+    @media (max-width: 640px) {
+        //@include zoom(0.5);
+    }
+
 }
 #header-flexbox.bounceIn{
     @include zoom(1);
 }
+
+#header-background {
+    grid-row: 1;
+    background: url(../images/time-town-background.png);
+    width: 427px;
+    height: 161px;
+    margin-top: 12px;
+}
+
+#city {
+    grid-row: 2;
+    @if ($debugMode){
+        border: 1px solid cyan;
+    }
+    color: white;
+    font-family: "earwig-factory", sans-serif;
+    text-transform: lowercase;
+    font-size: 5rem;
+    text-shadow: 0.1rem 0.5rem #000;
+    /*
+    @media (max-width: 640px) {
+        font-size: 2.5rem;
+        justify-content: center;
+        text-align: center;
+    }
+    */
+    transform: rotate(-8deg);
+    z-index: 100;
+}
+
+#clock {
+    grid-row: 3;
+    @if ($debugMode){
+        border: 1px solid orange;
+    }
+    /*
+    @media (max-width: 640px) {
+        justify-content: center;
+        position: relative;
+        margin-top: 20px;
+        order: 0;
+    }
+    */
+    margin-left: 50px;
+    #time {
+        font-family: "earwig-factory", sans-serif;
+        color: white;
+    }
+    transform: rotate(-8deg);
+    z-index: 1000;
+}
+
 
 #weekday-container {
     position: relative;

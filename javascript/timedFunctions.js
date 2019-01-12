@@ -65,11 +65,16 @@ function toggleBackground(){
 function onLoadComplete(){
 	const loadingOverlay = document.querySelector('.loading-overlay');
 	const headerFlexbox = document.querySelector('#header-flexbox');
+	const todaysWeather = document.querySelector('.weather-container');
+
+	//console
+	//console.log(todaysWeather);
 
 	pageLoading = !pageLoading;
 	if (pageLoading){
 		loadingOverlay.classList.add('hide');
 		headerFlexbox.classList.add('bounceIn');
+		todaysWeather.classList.add('mainBounceDown');
 		setTimeout(function(){
 			const weekDays = document.querySelectorAll('.weekday');
 			weekDays.forEach(weekday => weekday.classList.add('bounceDown'));
@@ -78,7 +83,7 @@ function onLoadComplete(){
 		// hacky since we're not getting precise delay but oh well
 		setTimeout(function(){
 			screenShake();
-		},800);
+		},650);
 
 
 

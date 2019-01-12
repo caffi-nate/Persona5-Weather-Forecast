@@ -144,7 +144,7 @@
     margin-top: -12px;
     margin-left: 40px;
     transform: rotate(-15deg);
-
+    z-index: $z-background;
     p {
         color: white;
     }
@@ -155,7 +155,7 @@
     display: grid;
     width: 141px;
     height: 55px;
-    z-index: -100;
+    z-index: $z-background;
     grid-column: 1;
     grid-row: 1;
     margin-top: -4px;
@@ -213,6 +213,11 @@
     z-index: -10;
     margin-top: 32px;
     margin-left: 16px;
+    @media (max-width: 640px) {
+        grid-row: 3;
+        margin-top: -24px;
+        margin-left: 0px;
+    }
     //grid-template-columns: repeat(6,100px);
 }
 

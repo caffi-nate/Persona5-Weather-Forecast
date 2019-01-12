@@ -7,8 +7,13 @@ var getCoordinates = function() {
 	updateLoadingText("Getting geolocation...");
     if(navigator.geolocation){
     	navigator.geolocation.getCurrentPosition(function(position){
-        	var lat = position.coords.latitude;
-        	var long = position.coords.longitude;
+        	let lat = position.coords.latitude;
+        	let long = position.coords.longitude;
+
+			// add custom location data if you want to view other cities
+			//lat = 36;
+			//long = 138;
+
         	updateByGeo(lat,long);
     	})
     }
@@ -41,7 +46,7 @@ function sendRequest(url){
 			// we'll just use the first 5 to avoid bad max-min data
 
 			//console.log("Data:");
-			//console.log(data);
+
 
 			for (i = 0; i < data.list.length; i++){
 				var dateTime = new Date(data.list[i].dt*1000); // unix time
@@ -51,6 +56,7 @@ function sendRequest(url){
 				wthr.date = dt;
 				wthr.month = dateTime.getMonth();
 				wthr.minTemp = kelvinToCelcius(data.list[i].main.temp_min);
+				//console.log(wthr.minTemp);
 				wthr.maxTemp = kelvinToCelcius(data.list[i].main.temp_max);
 				//console.log("Icon " + data.list[i].weather[0].icon);
 				wthr.conditionInt = convertIcon(data.list[i].weather[0].icon);

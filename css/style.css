@@ -217,6 +217,7 @@
   -webkit-transform: rotate(-15deg);
   -ms-transform: rotate(-15deg);
   transform: rotate(-15deg);
+  z-index: -1000;
 }
 
 .max-min-temp p {
@@ -228,7 +229,7 @@
   display: grid;
   width: 141px;
   height: 55px;
-  z-index: -100;
+  z-index: -1000;
   grid-column: 1;
   grid-row: 1;
   margin-top: -4px;
@@ -325,6 +326,14 @@
   z-index: -10;
   margin-top: 32px;
   margin-left: 16px;
+}
+
+@media (max-width: 640px) {
+  #current-temp-container {
+    grid-row: 3;
+    margin-top: -24px;
+    margin-left: 0px;
+  }
 }
 
 #current-temp-background {
@@ -484,24 +493,24 @@ span {
 
 @-webkit-keyframes shake {
   0% {
+    -webkit-transform: translate(4px, 4px) rotate(2deg);
+    transform: translate(4px, 4px) rotate(2deg);
+  }
+  10% {
+    -webkit-transform: translate(-3px, -3px) rotate(-2deg);
+    transform: translate(-3px, -3px) rotate(-2deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 1px) rotate(1deg);
+    transform: translate(-3px, 1px) rotate(1deg);
+  }
+  30% {
     -webkit-transform: translate(3px, 3px) rotate(0deg);
     transform: translate(3px, 3px) rotate(0deg);
   }
-  10% {
-    -webkit-transform: translate(-2px, -3px) rotate(-1deg);
-    transform: translate(-2px, -3px) rotate(-1deg);
-  }
-  20% {
-    -webkit-transform: translate(-3px, 0px) rotate(1deg);
-    transform: translate(-3px, 0px) rotate(1deg);
-  }
-  30% {
-    -webkit-transform: translate(3px, 2px) rotate(0deg);
-    transform: translate(3px, 2px) rotate(0deg);
-  }
   40% {
-    -webkit-transform: translate(2px, -1px) rotate(1deg);
-    transform: translate(2px, -1px) rotate(1deg);
+    -webkit-transform: translate(2px, -2px) rotate(1deg);
+    transform: translate(2px, -2px) rotate(1deg);
   }
   50% {
     -webkit-transform: translate(-1px, 2px) rotate(-1deg);
@@ -531,24 +540,24 @@ span {
 
 @keyframes shake {
   0% {
+    -webkit-transform: translate(4px, 4px) rotate(2deg);
+    transform: translate(4px, 4px) rotate(2deg);
+  }
+  10% {
+    -webkit-transform: translate(-3px, -3px) rotate(-2deg);
+    transform: translate(-3px, -3px) rotate(-2deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 1px) rotate(1deg);
+    transform: translate(-3px, 1px) rotate(1deg);
+  }
+  30% {
     -webkit-transform: translate(3px, 3px) rotate(0deg);
     transform: translate(3px, 3px) rotate(0deg);
   }
-  10% {
-    -webkit-transform: translate(-2px, -3px) rotate(-1deg);
-    transform: translate(-2px, -3px) rotate(-1deg);
-  }
-  20% {
-    -webkit-transform: translate(-3px, 0px) rotate(1deg);
-    transform: translate(-3px, 0px) rotate(1deg);
-  }
-  30% {
-    -webkit-transform: translate(3px, 2px) rotate(0deg);
-    transform: translate(3px, 2px) rotate(0deg);
-  }
   40% {
-    -webkit-transform: translate(2px, -1px) rotate(1deg);
-    transform: translate(2px, -1px) rotate(1deg);
+    -webkit-transform: translate(2px, -2px) rotate(1deg);
+    transform: translate(2px, -2px) rotate(1deg);
   }
   50% {
     -webkit-transform: translate(-1px, 2px) rotate(-1deg);
@@ -649,15 +658,40 @@ span {
 .weather-container {
   display: grid;
   grid-template-columns: 150px 180px;
-  grid-template-rows: 200px 100px;
+  grid-template-rows: 200px 0px 80px;
+  max-width: 500px;
   text-align: center;
   margin: 0 auto;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  max-width: 500px;
   color: white;
-  height: 300px;
+  margin-top: -1000px;
+  -webkit-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  -o-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+@media (max-width: 640px) {
+  .weather-container {
+    grid-template-columns: 150px;
+    grid-template-rows: 200px 0px 150px;
+  }
+}
+
+.mainBounceDown {
+  margin-top: -50px;
+  -webkit-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.mainBounceDown:hover {
+  zoom: 1.2;
+  -moz-transform: scale(1.2);
+  -webkit-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
 }
 
 .calendar-grid-container {
@@ -684,54 +718,6 @@ span {
   color: white;
 }
 
-#city {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  color: white;
-  font-family: "earwig-factory", sans-serif;
-  text-transform: lowercase;
-  font-size: 5rem;
-  text-shadow: 0.1rem 0.5rem #000;
-}
-
-@media (max-width: 640px) {
-  #city {
-    font-size: 2.5rem;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-  }
-}
-
-#clock {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-ordinal-group: 3;
-  -ms-flex-order: 2;
-  order: 2;
-}
-
-@media (max-width: 640px) {
-  #clock {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    position: relative;
-    margin-top: 20px;
-    -webkit-box-ordinal-group: 1;
-    -ms-flex-order: 0;
-    order: 0;
-  }
-}
-
-#clock #time {
-  font-family: "earwig-factory", sans-serif;
-  color: white;
-}
-
 #header-flexbox {
   -webkit-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -o-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -742,13 +728,9 @@ span {
   transition-delay: 0.2s;
   zoom: 0;
   -moz-transform: scale(0);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0px 80px 50px;
   max-width: 600px;
   margin: 20px 20px;
   padding: 10px;
@@ -762,6 +744,56 @@ span {
 #header-flexbox.bounceIn {
   zoom: 1;
   -moz-transform: scale(1);
+}
+
+#header-background {
+  grid-row: 1;
+  background: url(../images/time-town-background.png);
+  width: 427px;
+  height: 161px;
+  margin-top: 12px;
+}
+
+#city {
+  grid-row: 2;
+  color: white;
+  font-family: "earwig-factory", sans-serif;
+  text-transform: lowercase;
+  font-size: 5rem;
+  text-shadow: 0.1rem 0.5rem #000;
+  /*
+    @media (max-width: 640px) {
+        font-size: 2.5rem;
+        justify-content: center;
+        text-align: center;
+    }
+    */
+  -webkit-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+  z-index: 100;
+}
+
+#clock {
+  grid-row: 3;
+  /*
+    @media (max-width: 640px) {
+        justify-content: center;
+        position: relative;
+        margin-top: 20px;
+        order: 0;
+    }
+    */
+  margin-left: 50px;
+  -webkit-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+  z-index: 1000;
+}
+
+#clock #time {
+  font-family: "earwig-factory", sans-serif;
+  color: white;
 }
 
 #weekday-container {
