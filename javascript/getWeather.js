@@ -11,9 +11,9 @@ var getCoordinates = function() {
         	let long = position.coords.longitude;
 
 			// add custom location data if you want to view other cities
-			//lat = 36;
-			//long = 138;
-
+			//-90, 0
+			//lat = -90.0;
+			//long = 0.0;
         	updateByGeo(lat,long);
     	})
     }
@@ -44,10 +44,6 @@ function sendRequest(url){
 			// up to 8 readings per day for 5 days.
 			// there may exist a sixth day on the end of the list.
 			// we'll just use the first 5 to avoid bad max-min data
-
-			//console.log("Data:");
-
-
 			for (i = 0; i < data.list.length; i++){
 				var dateTime = new Date(data.list[i].dt*1000); // unix time
 				const dt = dateTime.getDate();
@@ -56,13 +52,13 @@ function sendRequest(url){
 				wthr.date = dt;
 				wthr.month = dateTime.getMonth();
 				wthr.minTemp = kelvinToCelcius(data.list[i].main.temp_min);
-				//console.log(wthr.minTemp);
+
+				console.log(wthr.minTemp);
 				wthr.maxTemp = kelvinToCelcius(data.list[i].main.temp_max);
 				//console.log("Icon " + data.list[i].weather[0].icon);
 				wthr.conditionInt = convertIcon(data.list[i].weather[0].icon);
 
 				if (dates.has(dt)){ // if the date already exists in our set, compare values
-					//todo: look up weird javascript quirk: why do we have to use j-1 instead of j?
 					weatherDays[j-1].minTemp = Math.min(weatherDays[j-1].minTemp, wthr.minTemp);
 					weatherDays[j-1].maxTemp = Math.max(weatherDays[j-1].maxTemp, wthr.maxTemp);
 					weatherDays[j-1].conditionInt = Math.max(weatherDays[j-1].conditionInt, wthr.conditionInt);
@@ -85,7 +81,7 @@ function sendRequest(url){
 			setWeatherTest(weather);
 
 			const weatherContainer = document.querySelector('.weather-container');
-			updateMaxMin(weather.minTemp,weather.maxTemp,weatherContainer)
+			updateMaxMin(Math.round(weather.minTemp),Math.round(weather.maxTemp),weatherContainer)
 		}
 	};
 	xmlhttp.open("GET", url, true);
@@ -97,5 +93,5 @@ function updateLoadingText(loadingString){
 	loadingText.innerHTML = loadingString;
 }
 
-// start our test
+// start
 getCoordinates();

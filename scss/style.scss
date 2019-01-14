@@ -13,7 +13,7 @@ html {
     @if ($debugMode){
         background: $blue;
     }
-    height: 100%;
+    font-size: 16px;
 }
 
 body {
@@ -23,34 +23,19 @@ body {
     z-index: $z-background;
 }
 
-h1, h2, h3, span {
+h1,h2,h3 {
     margin: 0;
     color: white;
+    font-family: "earwig-factory", "P5hatty", sans-serif;
+    font-size: 3em;
+}
+
+h4, h5, h6 {
+    font-size: 2em;
 }
 
 p {
-    font-size: 1rem;
-}
-
-h1 {
-    font-size: 8rem;
-    @media (max-width: 640px) {
-        font-size: 8rem;
-    }
-}
-
-h2,h3 {
-    font-size: 3rem;
-}
-
-h4 {
-    font-size: 2rem;
-}
-
-h6 {
-    font-size: 2rem;
-    color: white;
-
+    font-size: 1em;
 }
 
 img {
@@ -61,29 +46,20 @@ img {
     user-select: none;
 }
 
-span {
-    font-size: 6rem;
-    padding: 0;
-    margin: 0;
-}
 .background-image {
-    //zoom: 3;
     position: fixed;
     width: 100vw;
     height: 100vh;
     max-width: 100%;
     margin: 0px;
     padding: 0px;
-    //@include backgroundWithScreenshake;
     z-index: $z-background;
-
     @if ($debugMode){
         display: none;
     }
 }
 
 .background-image.screenshake{
-    //zoom: 2;
     animation: shake 0.2s;
     animation-iteration-count: 1;
 }
@@ -118,20 +94,25 @@ span {
     transition: opacity 1s;
     img {
         display: flex;
+        flex: 1;
         position: relative;
         margin: 0 auto;
-        //opacity: 20%;
+        @media (max-width: 640px) {
+            // apparently doesnt work in IE though, and some phones
+            object-fit: cover;
+            width: 100%;
+            height: 360px;
+        }
+    }
+    #loading-text{
+        display: flex;
+        margin: 0 auto;
+        color: $loadingGray;
     }
 }
 
 .loading-overlay.hide{
     opacity: 0;
-}
-
-#loading-text{
-    display: flex;
-    margin: 0 auto;
-    color: $loadingGray;
 }
 
 .timeOfDay {
@@ -151,14 +132,11 @@ span {
     margin: 0px;
     padding: 0px;
     width: 100%;
-    margin-left: 0px;
-    margin-top: 0px;
 }
 
 /* now start the HUD grid */
-/* weekday container */
-/* todo: will relegate this to an object later so we can display multiple */
 .weather-container {
+    //position: relative;
     @if ($debugMode){
         border: 2px solid lime;
     }
@@ -170,23 +148,9 @@ span {
         grid-template-columns: 150px;
         grid-template-rows: 200px 0px 150px;
     }
-    //flex-direction: column;
-    //grid-template-rows: ;
     text-align: center;
     margin: 0 auto;
     justify-content: center;
-
-    //padding: 25px 5px;
-    color: white;
-    //background-color: rgba(0, 0, 0, 0.6);
-    //border: 1px solid red;
-    //height: 300px;
-
-    h1 {
-        //color: red;
-        //font-size: 30vw;
-        //font-size: 100%;
-    }
     > * {
         @if ($debugMode) {
             border: 1px solid yellow;
@@ -205,11 +169,9 @@ span {
     }
 }
 
-
 .calendar-grid-container {
     @include zoom(1.2);
     position: relative;
-    //grid-row: 1;
     display: grid;
     @if ($debugMode){
         border: 2px solid red;
@@ -218,24 +180,12 @@ span {
     grid-template-columns: 0px 0px 60px 62px 70px;
     grid-template-rows: 0px 0px 108px 0px;
     justify-content: center;
-    //grid-template-rows: repeat(200px); // test where elements are positioned
     grid-gap: 0px;
-    //padding: 0px 0px 100px 0px;
     margin: 20px 0px 100px 0px;
     > * {
         // debug: show element positions
     	//border: 2px solid yellow;
     }
-}
-
-.degrees {
-    display: grid;
-    grid-template-columns: auto auto;
-    /*border: 2px solid yellow;*/
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: white;
 }
 
 #header-flexbox{
@@ -246,7 +196,6 @@ span {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0px 80px 50px;
-    //justify-items: center;
     max-width: 600px;
     margin: 20px 20px;
     padding: 10px;
@@ -255,14 +204,10 @@ span {
     }
     margin-bottom: 20px;
     @if ($debugMode){
-        //background: rgba(0,0,0,0.5);
         @include zoom(1);
     }
-
     @media (max-width: 640px) {
-        //@include zoom(0.5);
     }
-
 }
 #header-flexbox.bounceIn{
     @include zoom(1);
@@ -277,7 +222,6 @@ span {
 }
 
 #city {
-    grid-row: 2;
     @if ($debugMode){
         border: 1px solid cyan;
     }
@@ -286,39 +230,18 @@ span {
     text-transform: lowercase;
     font-size: 5rem;
     text-shadow: 0.1rem 0.5rem #000;
-    /*
-    @media (max-width: 640px) {
-        font-size: 2.5rem;
-        justify-content: center;
-        text-align: center;
-    }
-    */
     transform: rotate(-8deg);
     z-index: 100;
 }
 
 #clock {
-    grid-row: 3;
     @if ($debugMode){
         border: 1px solid orange;
     }
-    /*
-    @media (max-width: 640px) {
-        justify-content: center;
-        position: relative;
-        margin-top: 20px;
-        order: 0;
-    }
-    */
     margin-left: 50px;
-    #time {
-        font-family: "earwig-factory", sans-serif;
-        color: white;
-    }
     transform: rotate(-8deg);
-    z-index: 1000;
+    z-index: 100;
 }
-
 
 #weekday-container {
     position: relative;
@@ -344,7 +267,6 @@ span {
     transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
 }
 
-//.weekday.bounceDown{
 .bounceDown{
     margin-top: 0px;
     @media (min-width: 800px) {
@@ -370,7 +292,6 @@ span {
             transition-delay: 0.2s + 3 * $dropTransitionDelay;
         }
     }
-
     &:hover{
         @include zoom(1.1);
         transition: all 0.1s;

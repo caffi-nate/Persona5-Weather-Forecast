@@ -97,7 +97,7 @@ function getWeeklyForecastSprites(){
 		updateWeatherSprite(weatherSprite,day.conditionInt);
 		updateWeekdaySprite((day.weekday + 6) % 7,weekdaySprite);
 
-        updateMaxMin(minTemp, maxTemp, gridWeatherItem);
+        updateMaxMin(Math.round(minTemp), Math.round(maxTemp), gridWeatherItem);
 
 
 	};

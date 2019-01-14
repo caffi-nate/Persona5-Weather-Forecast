@@ -11,10 +11,10 @@
 		<div id = "wrapper">
 			<div id = "header-flexbox">
 				<div id = "header-background"></div>
+				<h1 id = "city">Loading City...</h1>
 				<div id = "clock">
 					<h2 id = "time">00.00:00AM</h2>
 				</div>
-				<h2 id = "city">Loading City...</h2>
 			</div>
 			<div class = "weather-container">
 				<div class = "calendar-grid-container">
@@ -53,15 +53,8 @@
 					<div class = "min-temp-ones"></div>
 					<div class = "min-temp-degrees"></div>
 				</div>
-				<!--<img src = "images/" alt = "icon" id = "icon">-->
-				<!--<div class = "weather-sprite"></div>-->
-				<!--<div class = "degrees"><h1 id = "temp">??</h3><span>&#176;</span>-->
 			</div>
-				<!--<h3 id = "weather-description">Loading Weather...</h3>-->
-			<!--</div>-->
-
 			<div id = "weekday-container">
-				<!-- populate with 4 test items -->
 				<div class = "weekday">
 					<div class = "date-box">
 						<div class = "date-tens-top"></div>
@@ -85,7 +78,6 @@
 						<div class = "min-temp-ones"></div>
 						<div class = "min-temp-degrees"></div>
 					</div>
-				<!--	</div>-->
 				</div>
 				<div class = "weekday">
 					<div class = "date-box">
@@ -160,21 +152,16 @@
 					</div>
 				</div>
 			</div>
-
-
 		</div> <!-- end page wrapper -->
-
 
 		<div class = "loading-overlay">
 			<h6 id = "loading-text">Loading Page...</h6>
 			<img class = "loading-graphic" src = "images/loading.gif">
 		</div>
-
-
+		<!--Cleanup with webpack later -->
 		<script type = "text/javascript" src = "javascript/initialise.js"></script>
 		<script type = "text/javascript" src = "javascript/updateSprites.js"></script>
 		<script type="text/javascript" src="javascript/timedFunctions.js"></script>
-		<!-- Turn this off while testing html/css or we'll be asked if we trust it with our location every time -->
 		<script type = "text/javascript" src = "javascript/getWeather.js"></script>
 		<script type="text/javascript" src="javascript/processWeather.js"></script>
 	</body>

@@ -77,9 +77,9 @@ function updateMaxMin(minTemp,maxTemp,obj){
     if (minTemp >= 0) minSign.style.backgroundPosition = `${-384}px 0px`;
 
     maxTens.style.backgroundPosition = `${Math.floor(Math.abs(maxTemp)/10) * -wth}px 0px`;
-    maxOnes.style.backgroundPosition = `${Math.round(Math.abs(maxTemp) % 10) * -wth}px 0px`;
+    maxOnes.style.backgroundPosition = `${Math.floor(Math.abs(maxTemp) % 10) * -wth}px 0px`;
     minTens.style.backgroundPosition = `${Math.floor(Math.abs(minTemp)/10) * -wth}px 0px`;
-    minOnes.style.backgroundPosition = `${Math.round(Math.abs(minTemp)%10) * -wth}px 0px`;
+    minOnes.style.backgroundPosition = `${Math.floor(Math.abs(minTemp)%10) * -wth}px 0px`;
 }
 
 function setCurrentTempSprites(temp){

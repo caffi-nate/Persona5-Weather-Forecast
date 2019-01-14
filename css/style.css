@@ -417,7 +417,7 @@
 
 html {
   background: black;
-  height: 100%;
+  font-size: 16px;
 }
 
 body {
@@ -427,36 +427,19 @@ body {
   z-index: -1000;
 }
 
-h1, h2, h3, span {
+h1, h2, h3 {
   margin: 0;
   color: white;
+  font-family: "earwig-factory", "P5hatty", sans-serif;
+  font-size: 3em;
+}
+
+h4, h5, h6 {
+  font-size: 2em;
 }
 
 p {
-  font-size: 1rem;
-}
-
-h1 {
-  font-size: 8rem;
-}
-
-@media (max-width: 640px) {
-  h1 {
-    font-size: 8rem;
-  }
-}
-
-h2, h3 {
-  font-size: 3rem;
-}
-
-h4 {
-  font-size: 2rem;
-}
-
-h6 {
-  font-size: 2rem;
-  color: white;
+  font-size: 1em;
 }
 
 img {
@@ -466,12 +449,6 @@ img {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-span {
-  font-size: 6rem;
-  padding: 0;
-  margin: 0;
 }
 
 .background-image {
@@ -615,20 +592,32 @@ span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   position: relative;
   margin: 0 auto;
 }
 
-.loading-overlay.hide {
-  opacity: 0;
+@media (max-width: 640px) {
+  .loading-overlay img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 360px;
+  }
 }
 
-#loading-text {
+.loading-overlay #loading-text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin: 0 auto;
   color: #9b9b9b;
+}
+
+.loading-overlay.hide {
+  opacity: 0;
 }
 
 .timeOfDay {
@@ -648,13 +637,9 @@ span {
   margin: 0px;
   padding: 0px;
   width: 100%;
-  margin-left: 0px;
-  margin-top: 0px;
 }
 
 /* now start the HUD grid */
-/* weekday container */
-/* todo: will relegate this to an object later so we can display multiple */
 .weather-container {
   display: grid;
   grid-template-columns: 150px 180px;
@@ -665,7 +650,6 @@ span {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  color: white;
   margin-top: -1000px;
   -webkit-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   -o-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
@@ -708,16 +692,6 @@ span {
   margin: 20px 0px 100px 0px;
 }
 
-.degrees {
-  display: grid;
-  grid-template-columns: auto auto;
-  /*border: 2px solid yellow;*/
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  color: white;
-}
-
 #header-flexbox {
   -webkit-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   -o-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -755,19 +729,11 @@ span {
 }
 
 #city {
-  grid-row: 2;
   color: white;
   font-family: "earwig-factory", sans-serif;
   text-transform: lowercase;
   font-size: 5rem;
   text-shadow: 0.1rem 0.5rem #000;
-  /*
-    @media (max-width: 640px) {
-        font-size: 2.5rem;
-        justify-content: center;
-        text-align: center;
-    }
-    */
   -webkit-transform: rotate(-8deg);
   -ms-transform: rotate(-8deg);
   transform: rotate(-8deg);
@@ -775,25 +741,11 @@ span {
 }
 
 #clock {
-  grid-row: 3;
-  /*
-    @media (max-width: 640px) {
-        justify-content: center;
-        position: relative;
-        margin-top: 20px;
-        order: 0;
-    }
-    */
   margin-left: 50px;
   -webkit-transform: rotate(-8deg);
   -ms-transform: rotate(-8deg);
   transform: rotate(-8deg);
-  z-index: 1000;
-}
-
-#clock #time {
-  font-family: "earwig-factory", sans-serif;
-  color: white;
+  z-index: 100;
 }
 
 #weekday-container {
