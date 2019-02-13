@@ -1,5 +1,5 @@
 // debug
-$debugMode: false;
+$debugMode: true;
 $loadingScreen: 1;
 @if ($debugMode) {
     $loadingScreen: 0;

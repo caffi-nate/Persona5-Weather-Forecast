@@ -65,7 +65,7 @@ function toggleBackground(){
 function onLoadComplete(){
 	const loadingOverlay = document.querySelector('.loading-overlay');
 	const headerFlexbox = document.querySelector('#header-flexbox');
-	const todaysWeather = document.querySelector('.weather-container');
+	const todaysWeather = document.querySelector('.todays-weather-container');
 
 	//console
 	//console.log(todaysWeather);

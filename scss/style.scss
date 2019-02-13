@@ -14,6 +14,7 @@ html {
         background: $blue;
     }
     font-size: 16px;
+    height: 100%;
 }
 
 body {
@@ -36,6 +37,8 @@ h4, h5, h6 {
 
 p {
     font-size: 1em;
+    color: white;
+    margin: 0.5em 0em;
 }
 
 img {
@@ -56,6 +59,21 @@ img {
     z-index: $z-background;
     @if ($debugMode){
         display: none;
+    }
+}
+
+#clouds-container {
+    // use this later to spawn background clouds in poor weather
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+    //border: 1px solid yellow;
+    z-index: $z-background;
+    @if ($debugMode){
+        //display: none;
     }
 }
 
@@ -93,15 +111,18 @@ img {
     align-items: center;
     transition: opacity 1s;
     img {
-        display: flex;
-        flex: 1;
-        position: relative;
-        margin: 0 auto;
+        //display: flex;
+        //flex: 1;
+        //position: relative;
+        //margin: 0 auto;
+        width: 640px;
+        height: 360px;
+        //width: 20px;
         @media (max-width: 640px) {
             // apparently doesnt work in IE though, and some phones
-            object-fit: cover;
-            width: 100%;
-            height: 360px;
+            //object-fit: cover;
+            //width: 100%;
+            //height: 360px;
         }
     }
     #loading-text{
@@ -128,18 +149,26 @@ img {
 }
 
 #wrapper {
-    position: absolute;
-    margin: 0px;
-    padding: 0px;
+    //position: relative;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    //flex: 1;
+    flex-basis: 0;
+    //margin: 0px;
+    //padding: 0px;
     width: 100%;
+    min-height: 100%;
+    //height: 90vh;
+    //margin-bottom: 100px;
+    //padding-bottom: 300px;
+    background: rgba(255,0,0,0.5);
+    border: 1px solid pink;
 }
 
 /* now start the HUD grid */
-.weather-container {
+.todays-weather-container {
     //position: relative;
-    @if ($debugMode){
-        border: 2px solid lime;
-    }
     display: grid;
     grid-template-columns: 150px 180px;
     grid-template-rows: 200px 0px 80px;
@@ -147,6 +176,7 @@ img {
     @media (max-width: 640px) {
         grid-template-columns: 150px;
         grid-template-rows: 200px 0px 150px;
+        //@include zoom(0.75);
     }
     text-align: center;
     margin: 0 auto;
@@ -158,10 +188,14 @@ img {
     }
     margin-top: -1000px;
     transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
+    @if ($debugMode){
+        border: 2px solid lime;
+        margin-top: 0px;
+    }
 }
 
 .mainBounceDown {
-    margin-top: -50px;
+    //margin-top: -50px; // TEMP
     transition-delay: 0.5s;
     &:hover{
         @include zoom(1.2);
@@ -170,6 +204,7 @@ img {
 }
 
 .calendar-grid-container {
+    flex: 1;
     @include zoom(1.2);
     position: relative;
     display: grid;
@@ -207,6 +242,8 @@ img {
         @include zoom(1);
     }
     @media (max-width: 640px) {
+        justify-content: center;
+        //@include zoom(0.75);
     }
 }
 #header-flexbox.bounceIn{
@@ -254,9 +291,13 @@ img {
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */
     justify-content: center;
+    //@media (max-width: 640px) {
+    //    grid-template-rows: repeat(auto-fill, 150px)
+    //}
 }
 
 .weekday {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 200px;
@@ -296,4 +337,25 @@ img {
         @include zoom(1.1);
         transition: all 0.1s;
     }
+}
+
+#footer {
+    padding-bottom: 0px;
+    margin-top: 50px;
+    position: fixed;
+    //position: absolute;
+    bottom: 0;
+    //height: 70px; // hacky... :(
+    height: 10vh;
+    height: auto fit;
+    display: grid;
+    align-content: top;
+    //grid-template-rows: 20px 20px;
+    //grid-template-rows: 1fr 1fr;
+    //justify-content: center;
+
+    text-align: center;
+    width: 100%;
+    //background: black;
+    background: rgba(0,0,0,0.5);
 }

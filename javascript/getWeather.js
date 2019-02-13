@@ -80,7 +80,7 @@ function sendRequest(url){
 			weatherImageIndex = weather.conditionInt;
 			setWeatherTest(weather);
 
-			const weatherContainer = document.querySelector('.weather-container');
+			const weatherContainer = document.querySelector('.todays-weather-container');
 			updateMaxMin(Math.round(weather.minTemp),Math.round(weather.maxTemp),weatherContainer)
 		}
 	};
