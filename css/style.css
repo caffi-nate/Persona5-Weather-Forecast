@@ -17,8 +17,8 @@
   color: white;
   -ms-grid-columns: 0px 60px 0px 60px 72px 100px;
   grid-template-columns: 0px 60px 0px 60px 72px 100px;
-  -ms-grid-rows: 0px 0px 108px 50px 0px;
-  grid-template-rows: 0px 0px 108px 50px 0px;
+  -ms-grid-rows: 0px 0px 108px 40px;
+  grid-template-rows: 0px 0px 108px 40px;
   margin: 0;
   grid-gap: 0px;
 }
@@ -34,6 +34,7 @@
   -ms-transform: rotate(-20deg);
   transform: rotate(-20deg);
   margin-top: 30px;
+  position: relative;
   z-index: 10;
   -ms-grid-column: 2;
   grid-column: 2;
@@ -52,6 +53,7 @@
   -ms-transform: rotate(-20deg);
   transform: rotate(-20deg);
   margin-top: 30px;
+  position: relative;
   z-index: 100;
   -ms-grid-column: 2;
   grid-column: 2;
@@ -70,6 +72,7 @@
   -ms-transform: rotate(-20deg);
   transform: rotate(-20deg);
   margin-top: 30px;
+  position: relative;
   z-index: 1000;
   -ms-grid-column: 2;
   grid-column: 2;
@@ -84,6 +87,7 @@
   height: 150px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 1000;
   -ms-grid-column: 4;
   grid-column: 4;
@@ -102,6 +106,7 @@
   height: 150px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 100;
   -ms-grid-column: 4;
   grid-column: 4;
@@ -120,6 +125,7 @@
   height: 150px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 10;
   -ms-grid-column: 4;
   grid-column: 4;
@@ -138,6 +144,7 @@
   height: 150px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 1000;
   -ms-grid-column: 5;
   grid-column: 5;
@@ -156,6 +163,7 @@
   height: 150px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 100;
   -ms-grid-column: 5;
   grid-column: 5;
@@ -174,6 +182,7 @@
   height: 150px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 10;
   -ms-grid-column: 5;
   grid-column: 5;
@@ -192,6 +201,7 @@
   height: 74px;
   padding: 0px;
   margin: 0px;
+  position: relative;
   z-index: 1000;
   -ms-grid-column: 4;
   grid-column: 4;
@@ -221,6 +231,7 @@
   background: url(../images/weather_spritesheet4.png);
   width: 75px;
   height: 72px;
+  position: relative;
   z-index: 1000;
   -ms-grid-column: 6;
   grid-column: 6;
@@ -242,11 +253,11 @@
   grid-template-columns: repeat(2, 10px 14px 18px 20px);
   -ms-grid-rows: 12px 100px;
   grid-template-rows: 12px 100px;
-  margin-top: -12px;
   margin-left: 40px;
   -webkit-transform: rotate(-15deg);
   -ms-transform: rotate(-15deg);
   transform: rotate(-15deg);
+  position: relative;
   z-index: -1000;
 }
 
@@ -770,7 +781,6 @@ img {
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;
-  z-index: 1000;
 }
 
 .calendar-grid-container {
@@ -872,7 +882,6 @@ img {
 .bounceDown:hover {
   zoom: 1.1;
   -moz-transform: scale(1.1);
-  z-index: 1000;
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;

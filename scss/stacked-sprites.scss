@@ -6,7 +6,7 @@
     }
     color: white;
     grid-template-columns: 0px 60px 0px 60px 72px 100px;
-    grid-template-rows: 0px 0px 108px 50px 0px;
+    grid-template-rows: 0px 0px 108px 40px;
     margin: 0;
     grid-gap: 0px;
 }
@@ -15,15 +15,18 @@
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
     @include date-month-position;
-    z-index: $z-base;
+    position: relative;
+    z-index: 10;//$z-base;
     grid-column: 2;
     grid-row: 3;
+    //margin-top: 100px;
 }
 
 .month-mid {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
     @include date-month-position;
+    position: relative;
     z-index: $z-mid;
     grid-column: 2;
     grid-row: 2;
@@ -33,6 +36,7 @@
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
     @include date-month-position;
+    position: relative;
     z-index: $z-top;
     grid-column: 2;
     grid-row: 1;
@@ -41,6 +45,7 @@
 .date-tens-top {
     background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
+    position: relative;
     z-index: $z-top;
     grid-column: 4;
     grid-row: 1;
@@ -50,6 +55,7 @@
 .date-tens-mid {
     background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
+    position: relative;
     z-index: $z-mid;
     grid-column: 4;
     grid-row: 2;
@@ -59,6 +65,7 @@
 .date-tens-base {
     background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
+    position: relative;
     z-index: $z-base;
     grid-column: 4;
     grid-row: 3;
@@ -68,6 +75,7 @@
 .date-ones-top {
     background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
+    position: relative;
     z-index: $z-top;
     grid-column: 5;
     grid-row: 1;
@@ -77,6 +85,7 @@
 .date-ones-mid {
     background: url(../images/numbers_spritesheet_3.png);
     @include sprite_position(100,150);
+    position: relative;
     z-index: $z-mid;
     grid-column: 5;
     grid-row: 2;
@@ -86,6 +95,7 @@
 .date-ones-base {
   background: url(../images/numbers_spritesheet_3.png);
   @include sprite_position(100,150);
+  position: relative;
   z-index: $z-base;
   grid-column: 5;
   grid-row: 3;
@@ -95,6 +105,7 @@
 .weekday-sprite {
   background: url(../images/weekday_sprites.png);
   @include sprite_position(191,74);
+  position: relative;
   z-index: $z-top;
   grid-column: 4;
   grid-row: 4;
@@ -117,6 +128,7 @@
     background: url(../images/weather_spritesheet4.png);
     width: 75px;
     height: 72px;
+    position: relative;
     z-index: 1000;
     grid-column: 6;
     grid-row: 2;
@@ -134,9 +146,10 @@
     display: grid;
     grid-template-columns: repeat(2, 10px 14px 18px 20px);
     grid-template-rows: 12px 100px;
-    margin-top: -12px;
+    //margin-top: -12px;
     margin-left: 40px;
     transform: rotate(-15deg);
+    position: relative;
     z-index: $z-background;
     p {
         color: white;

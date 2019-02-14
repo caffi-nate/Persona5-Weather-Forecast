@@ -202,7 +202,7 @@ img {
     &:hover{
         @include zoom(calc(1.2 * var(--zoomVar)));
         transition: all 0.1s;
-        z-index: $z-top; // bring to front
+        //z-index: $z-top; // bring to front TEMP removal
     }
 }
 
@@ -219,7 +219,8 @@ img {
     }
     // the 0px is where the kanji symbol used to be, removed to alleviate clutter
     grid-template-columns: 0px 0px 60px 62px 70px;
-    grid-template-rows: 0px 0px 108px 0px;
+    //grid-template-rows: 0px 0px 108px 0px;
+    grid-template-rows: 0px 0px 108px 0px; // date date day maxmin
     justify-content: center;
     grid-gap: 0px;
     margin: 20px 0px 100px 0px;
@@ -283,7 +284,7 @@ img {
     }
     &:hover{
         @include zoom(1.1);
-        z-index: $z-top; // bring to front
+        //z-index: $z-top; // bring to front // TEMP removal
         transition: all 0.1s;
     }
 }
