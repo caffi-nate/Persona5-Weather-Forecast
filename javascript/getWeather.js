@@ -26,8 +26,7 @@ var getCoordinates = function() {
 function updateByGeo(lat, lon){
 	updateLoadingText("Getting weather by location...");
   	let url = "";
-  	if (forecast) url += "https://api.openweathermap.org/data/2.5/forecast?";
-  	else url += "https://api.openweathermap.org/data/2.5/weather?";
+	url += "https://api.openweathermap.org/data/2.5/forecast?";
   	url += "lat=" + lat + "&lon="+ lon + "&APPID=" + APPID;
   	sendRequest(url);
 }
@@ -43,7 +42,7 @@ function sendRequest(url){
 			let j = 0;
 			// up to 8 readings per day for 5 days.
 			// there may exist a sixth day on the end of the list.
-			// we'll just use the first 5 to avoid bad max-min data
+			// we'll just use the first 5 to avoid bad max-min data (though we may still get that for the current day)
 			for (i = 0; i < data.list.length; i++){
 				var dateTime = new Date(data.list[i].dt*1000); // unix time
 				const dt = dateTime.getDate();
@@ -55,7 +54,6 @@ function sendRequest(url){
 
 				console.log(wthr.minTemp);
 				wthr.maxTemp = kelvinToCelcius(data.list[i].main.temp_max);
-				//console.log("Icon " + data.list[i].weather[0].icon);
 				wthr.conditionInt = convertIcon(data.list[i].weather[0].icon);
 
 				if (dates.has(dt)){ // if the date already exists in our set, compare values

@@ -506,6 +506,7 @@ h1, h2, h3 {
   color: white;
   font-family: "earwig-factory", "P5hatty", sans-serif;
   font-size: 3em;
+  line-height: 0.8;
 }
 
 h4, h5, h6 {
@@ -516,6 +517,7 @@ p {
   font-size: 1em;
   color: white;
   margin: 0.5em 0em;
+  line-height: 1;
 }
 
 img {
@@ -713,9 +715,15 @@ img {
   flex-direction: column;
   -ms-flex-preferred-size: 0;
   flex-basis: 0;
-  margin-bottom: 70px;
+  margin: 0;
   width: 100%;
   min-height: 100%;
+}
+
+@media (max-width: 860px) {
+  #wrapper {
+    margin-bottom: 70px;
+  }
 }
 
 /* now start the HUD grid */
@@ -793,11 +801,17 @@ img {
   width: 100%;
   margin: 0 auto;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   /* repeat 4 columns per row */
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+@media (max-width: 860px) {
+  #weekday-container {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
 }
 
 .weekday {
@@ -820,7 +834,7 @@ img {
   margin-top: 0px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 860px) {
   .bounceDown:nth-child(1) {
     margin-top: -80px;
     zoom: 0.8;
@@ -878,8 +892,8 @@ img {
   display: grid;
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
-  -ms-grid-rows: 0px 80px 50px;
-  grid-template-rows: 0px 80px 50px;
+  -ms-grid-rows: 0px auto 50px;
+  grid-template-rows: 0px auto 50px;
   max-width: 600px;
   margin: 20px 20px;
   padding: 10px;
@@ -890,11 +904,12 @@ img {
   margin: -5px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 560px) {
   #header-flexbox {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    text-align: center;
   }
 }
 
@@ -907,9 +922,17 @@ img {
   -ms-grid-row: 1;
   grid-row: 1;
   background: url(../images/time-town-background.png);
+  background-repeat: no-repeat;
   width: 427px;
   height: 161px;
   margin-top: 12px;
+}
+
+@media (max-width: 480px) {
+  #header-background {
+    zoom: 0.9;
+    -moz-transform: scale(0.9);
+  }
 }
 
 #city {

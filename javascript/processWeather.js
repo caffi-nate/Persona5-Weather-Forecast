@@ -43,39 +43,26 @@ function weatherConditionString(conditionInt, maxTemp){
 	}
 	return weatherString;
 }
-
-
 /* debug functions */
-
 function setWeatherTest(weather){
 	const city = document.getElementById("city");
 	const temp = document.getElementById("temp");
-	//const condition = document.getElementById("weather-description");
 	const todaysWeatherSprite = document.querySelector('.current-weather-sprite');
 	const containerWeatherSprite = document.querySelector('.weather-sprite');
 
-	city.innerHTML = weather.city; // bugged right now... maybe don't use geolocation? or maybe it's good enough...
-	//temp.innerHTML = weather.temp;
-	//condition.innerHTML = weatherConditionString(weather.conditionInt,weather.temp);
+	city.innerHTML = weather.city;
 	weatherLoaded = true;
 	// call update weather first so that there isn't any last minute funny business
-
-
     setCurrentTempSprites(weather.temp);
-
 	getWeeklyForecastSprites();
-
 	updateWeatherSprite(todaysWeatherSprite,weatherImageIndex);
-	//updateWeatherSprite(containerWeatherSprite,weatherImageIndex);
 
 	onLoadComplete();
 }
 
 function getWeeklyForecastSprites(){
 	let gridWeatherItems = document.querySelectorAll('.weekday');
-	//console.log(gridWeatherItems);
 
-	//gridWeatherItems.forEach(gridWeatherItem =>{
 	for (i = 0; i < gridWeatherItems.length; i++){
 		let gridWeatherItem = gridWeatherItems[i];
         const day = weatherDays[i+1];
@@ -90,15 +77,9 @@ function getWeeklyForecastSprites(){
         const minTemp = day.minTemp;
         const maxTemp = day.maxTemp;
 
-        //const maxMinTemp = gridWeatherItem.querySelector('.max-min-temp p');
-
-        //maxMinTemp.innerHTML = `${minTemp}` + "\u00B0" +`- ${maxTemp}`  + "\u00B0";
-
 		updateWeatherSprite(weatherSprite,day.conditionInt);
 		updateWeekdaySprite((day.weekday + 6) % 7,weekdaySprite);
 
         updateMaxMin(Math.round(minTemp), Math.round(maxTemp), gridWeatherItem);
-
-
 	};
 }

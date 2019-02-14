@@ -1,6 +1,5 @@
 // replace this depending on your personal API key from openweathermap.org
 const APPID = "32aa9a705e117c99f3cd712e3a521b18";
-const forecast = true; // set to false for single day weather, true for 5 day forecast
 let weatherSpriteIndex = 0;
 let weatherImageIndex = 0; // temp: which icon
 let weatherLoaded = false;

@@ -7,12 +7,11 @@
     font-family: "P5hatty", sans-serif;
     text-shadow: 0.1rem 0.2rem #000;
 
-
+    // control element size on smaller devices
     --zoomVar: 1;
     @media (max-width: 480px) {
         --zoomVar: 0.7;
     }
-
 }
 
 html {
@@ -36,6 +35,7 @@ h1,h2,h3 {
     color: white;
     font-family: "earwig-factory", "P5hatty", sans-serif;
     font-size: 3em;
+    line-height: 0.8;
 }
 
 h4, h5, h6 {
@@ -46,6 +46,7 @@ p {
     font-size: 1em;
     color: white;
     margin: 0.5em 0em;
+    line-height: 1;
 }
 
 img {
@@ -77,9 +78,9 @@ img {
     max-width: 100%;
     margin: 0px;
     padding: 0px;
-    //border: 1px solid yellow;
     z-index: $z-background;
     @if ($debugMode){
+        border: 1px solid yellow;
         //display: none;
     }
 }
@@ -156,20 +157,16 @@ img {
 }
 
 #wrapper {
-    //position: relative;
     display: flex;
     flex-direction: column;
-    //flex: 1;
     flex-basis: 0;
-    margin-bottom: 70px; // size of our footer
-    //padding: 0px;
+    margin: 0;
+    @media (max-width: 860px) {
+        // add for footer only if collapsing calendar for mobile
+        margin-bottom: 70px;
+    }
     width: 100%;
     min-height: 100%;
-    //height: 90vh;
-    //margin-bottom: 100px;
-    //padding-bottom: 300px;
-    //background: rgba(255,0,0,0.5);
-    //border: 1px solid pink;
 }
 
 /* now start the HUD grid */
@@ -181,7 +178,6 @@ img {
     @media (max-width: 640px) {
         grid-template-columns: 150px;
         grid-template-rows: 200px 0px 150px;
-        //@include zoom(0.75);
     }
     text-align: center;
     margin: 0 auto;
@@ -217,6 +213,9 @@ img {
     display: grid;
     @if ($debugMode){
         border: 2px solid red;
+        > * {
+            border: 2px solid yellow;
+        }
     }
     // the 0px is where the kanji symbol used to be, removed to alleviate clutter
     grid-template-columns: 0px 0px 60px 62px 70px;
@@ -224,10 +223,7 @@ img {
     justify-content: center;
     grid-gap: 0px;
     margin: 20px 0px 100px 0px;
-    > * {
-        // debug: show element positions
-    	//border: 2px solid yellow;
-    }
+
 }
 
 #weekday-container {
@@ -240,12 +236,13 @@ img {
         border: 2px solid yellow;
     }
     grid-gap: 20px;
-    //grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */ //TEMP OFF
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); /* repeat 4 columns per row */ //TEMP OFF
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */ //TEMP OFF
+
+    // make sure we don't end up with rows of 3/1
+    @media (max-width: 860px) {
+        grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    }
     justify-content: center;
-    //@media (max-width: 640px) {
-    //    grid-template-rows: repeat(auto-fill, 150px)
-    //}
 }
 
 .weekday {
@@ -262,8 +259,7 @@ img {
 
 .bounceDown{
     margin-top: 0px;
-    @media (min-width: 800px) {
-        // todo: write a loop for transition delay somehow (js?)
+    @media (min-width: 860px) { // was 800
         &:nth-child(1){
             margin-top: -80px;
             @include zoom(0.8);
@@ -300,7 +296,7 @@ img {
     @include zoom($headerInitialZoom);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 0px 80px 50px;
+    grid-template-rows: 0px auto 50px; // background image, place name, time
     max-width: 600px;
     margin: 20px 20px;
     padding: 10px;
@@ -309,12 +305,11 @@ img {
     }
     margin-bottom: 20px;
     @if ($debugMode){
-        //@include zoom(calc(1 * --zoomVar));
         @include zoom(calc(1 * var(--zoomVar)));
     }
-    @media (max-width: 640px) {
+    @media (max-width: 560px) {
         justify-content: center;
-        //@include zoom(0.75);
+        text-align: center;
     }
 }
 #header-flexbox.bounceIn{
@@ -323,7 +318,11 @@ img {
 #header-background {
     grid-row: 1;
     background: url(../images/time-town-background.png);
+    background-repeat: no-repeat;
     width: 427px;
+    @media (max-width: 480px) {
+        @include zoom(0.9);
+    }
     height: 161px;
     margin-top: 12px;
 }
@@ -354,19 +353,12 @@ img {
     padding-bottom: 0px;
     margin-top: 50px;
     position: fixed;
-    //position: absolute;
     bottom: 0;
-    //height: 70px; // hacky... :(
     height: 10vh;
     height: auto fit;
     display: grid;
     align-content: top;
-    //grid-template-rows: 20px 20px;
-    //grid-template-rows: 1fr 1fr;
-    //justify-content: center;
-
     text-align: center;
     width: 100%;
     background: black;
-    //background: rgba(0,0,0,0.5);
 }

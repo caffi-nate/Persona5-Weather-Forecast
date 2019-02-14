@@ -130,15 +130,10 @@
 .max-min-temp{
     justify-content: center;
     margin: 0;
-    //background: blue;
-    //margin: 0 auto;
     color: white;
     display: grid;
-    //grid-template-columns: 14px 14px 12px 8px 30px 14px 14px 12px 8px 30px;
     grid-template-columns: repeat(2, 10px 14px 18px 20px);
     grid-template-rows: 12px 100px;
-    //height: 500px;
-    //width: 150px;
     margin-top: -12px;
     margin-left: 40px;
     transform: rotate(-15deg);
@@ -146,7 +141,6 @@
     p {
         color: white;
     }
-    //background: blue;
 }
 .max-min-background{
     background: url(../images/max-min-bg.png);
@@ -216,7 +210,6 @@
         margin-top: -24px;
         margin-left: 0px;
     }
-    //grid-template-columns: repeat(6,100px);
 }
 
 #current-temp-background {

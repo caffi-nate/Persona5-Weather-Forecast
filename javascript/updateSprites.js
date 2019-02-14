@@ -48,13 +48,9 @@ function updateDateDisplay(date){
 }
 
 function updateWeekdaySprite(currentDay,weekdaySprite){
-	//const weekdaySprite = document.querySelector('.weekday-sprite');
 	// get dimensions directly from css incase I update the spritesheet later
-
-    //todo: needs extra layers later
 	const spriteWidth = parseInt((getComputedStyle(weekdaySprite).width).replace(/px/,""));
 	const spriteHeight = parseInt((getComputedStyle(weekdaySprite).height).replace(/px/,""));
-
 	const xPos = (currentDay % 3) * - spriteWidth;
 	const yPos = Math.floor(currentDay / 3) * -spriteHeight;
 	const positionString = `${xPos}px ${yPos}px`;
@@ -69,7 +65,6 @@ function updateMaxMin(minTemp,maxTemp,obj){
     const minSign = obj.querySelector('.min-temp-sign');
     const minTens = obj.querySelector('.min-temp-tens');
     const minOnes = obj.querySelector('.min-temp-ones');
-
     const wth = 32;
 
     // remove negative sign if necessary
@@ -87,14 +82,10 @@ function setCurrentTempSprites(temp){
     const tempTens = document.querySelector('#current-temp-tens');
     const tempOnes = document.querySelector('#current-temp-ones');
     const tempTenths = document.querySelector('#current-temp-tenths');
-
     const wth = 72;
+	const remainder = Math.floor(10 * (temp - Math.floor(temp)));
 
     tempTens.style.backgroundPosition = `${Math.floor(Math.abs(temp)/10) * -wth}px 0px`;
     tempOnes.style.backgroundPosition = `${Math.floor(Math.abs(temp)%10) * -wth}px 0px`;
-
-    const remainder = Math.floor(10 * (temp - Math.floor(temp)));
-
-    //console.log(remainder);
     tempTenths.style.backgroundPosition = `${(remainder * -wth)}px 0px`;
 }
