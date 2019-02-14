@@ -1,5 +1,5 @@
 // debug
-$debugMode: true;
+$debugMode: false;
 $loadingScreen: 1;
 @if ($debugMode) {
     $loadingScreen: 0;
@@ -7,6 +7,7 @@ $loadingScreen: 1;
 $headerInitialZoom: 0;
 
 // z indexes, subject to change
+$z-footer: 10000;
 $z-top: 1000;
 $z-mid: 100;
 $z-base: 10;

@@ -6,6 +6,13 @@
 :root {
     font-family: "P5hatty", sans-serif;
     text-shadow: 0.1rem 0.2rem #000;
+
+
+    --zoomVar: 1;
+    @media (max-width: 480px) {
+        --zoomVar: 0.7;
+    }
+
 }
 
 html {
@@ -150,25 +157,23 @@ img {
 
 #wrapper {
     //position: relative;
-    position: fixed;
     display: flex;
     flex-direction: column;
     //flex: 1;
     flex-basis: 0;
-    //margin: 0px;
+    margin-bottom: 70px; // size of our footer
     //padding: 0px;
     width: 100%;
     min-height: 100%;
     //height: 90vh;
     //margin-bottom: 100px;
     //padding-bottom: 300px;
-    background: rgba(255,0,0,0.5);
-    border: 1px solid pink;
+    //background: rgba(255,0,0,0.5);
+    //border: 1px solid pink;
 }
 
 /* now start the HUD grid */
 .todays-weather-container {
-    //position: relative;
     display: grid;
     grid-template-columns: 150px 180px;
     grid-template-rows: 200px 0px 80px;
@@ -192,14 +197,16 @@ img {
         border: 2px solid lime;
         margin-top: 0px;
     }
+    @include zoom(calc(1 * var(--zoomVar)));
 }
 
 .mainBounceDown {
-    //margin-top: -50px; // TEMP
+    margin-top: -50px; // TEMP
     transition-delay: 0.5s;
     &:hover{
-        @include zoom(1.2);
+        @include zoom(calc(1.2 * var(--zoomVar)));
         transition: all 0.1s;
+        z-index: $z-top; // bring to front
     }
 }
 
@@ -219,77 +226,22 @@ img {
     margin: 20px 0px 100px 0px;
     > * {
         // debug: show element positions
-    	border: 2px solid yellow;
+    	//border: 2px solid yellow;
     }
-}
-
-#header-flexbox{
-    transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition-delay: 0.2s;
-    @include zoom($headerInitialZoom);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0px 80px 50px;
-    max-width: 600px;
-    margin: 20px 20px;
-    padding: 10px;
-    > * {
-        margin: -5px;
-    }
-    margin-bottom: 20px;
-    @if ($debugMode){
-        @include zoom(1);
-    }
-    @media (max-width: 640px) {
-        justify-content: center;
-        //@include zoom(0.75);
-    }
-}
-#header-flexbox.bounceIn{
-    @include zoom(1);
-}
-
-#header-background {
-    grid-row: 1;
-    background: url(../images/time-town-background.png);
-    width: 427px;
-    height: 161px;
-    margin-top: 12px;
-}
-
-#city {
-    @if ($debugMode){
-        border: 1px solid cyan;
-    }
-    color: white;
-    font-family: "earwig-factory", sans-serif;
-    text-transform: lowercase;
-    font-size: 5rem;
-    text-shadow: 0.1rem 0.5rem #000;
-    transform: rotate(-8deg);
-    z-index: 100;
-}
-
-#clock {
-    @if ($debugMode){
-        border: 1px solid orange;
-    }
-    margin-left: 50px;
-    transform: rotate(-8deg);
-    z-index: 100;
 }
 
 #weekday-container {
     position: relative;
     display: grid;
     max-width: 1000px;
+    width: 100%;
     margin: 0 auto;
     @if ($debugMode){
         border: 2px solid yellow;
     }
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */
+    //grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); /* repeat 4 columns per row */ //TEMP OFF
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); /* repeat 4 columns per row */ //TEMP OFF
     justify-content: center;
     //@media (max-width: 640px) {
     //    grid-template-rows: repeat(auto-fill, 150px)
@@ -335,11 +287,70 @@ img {
     }
     &:hover{
         @include zoom(1.1);
+        z-index: $z-top; // bring to front
         transition: all 0.1s;
     }
 }
 
+// header stuff
+#header-flexbox{
+    transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-delay: 0.2s;
+    @include zoom($headerInitialZoom);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0px 80px 50px;
+    max-width: 600px;
+    margin: 20px 20px;
+    padding: 10px;
+    > * {
+        margin: -5px;
+    }
+    margin-bottom: 20px;
+    @if ($debugMode){
+        //@include zoom(calc(1 * --zoomVar));
+        @include zoom(calc(1 * var(--zoomVar)));
+    }
+    @media (max-width: 640px) {
+        justify-content: center;
+        //@include zoom(0.75);
+    }
+}
+#header-flexbox.bounceIn{
+    @include zoom(calc(1 * var(--zoomVar)));
+}
+#header-background {
+    grid-row: 1;
+    background: url(../images/time-town-background.png);
+    width: 427px;
+    height: 161px;
+    margin-top: 12px;
+}
+#city {
+    @if ($debugMode){
+        border: 1px solid cyan;
+    }
+    color: white;
+    font-family: "earwig-factory", sans-serif;
+    text-transform: lowercase;
+    font-size: 5rem;
+    text-shadow: 0.1rem 0.5rem #000;
+    transform: rotate(-8deg);
+    z-index: 100;
+}
+#clock {
+    @if ($debugMode){
+        border: 1px solid orange;
+    }
+    margin-left: 50px;
+    transform: rotate(-8deg);
+    z-index: 100;
+}
+
+// footer stuff
 #footer {
+    z-index: $z-footer;
     padding-bottom: 0px;
     margin-top: 50px;
     position: fixed;
@@ -356,6 +367,6 @@ img {
 
     text-align: center;
     width: 100%;
-    //background: black;
-    background: rgba(0,0,0,0.5);
+    background: black;
+    //background: rgba(0,0,0,0.5);
 }

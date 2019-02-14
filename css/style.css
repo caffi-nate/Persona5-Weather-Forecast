@@ -14,7 +14,6 @@
   justify-content: center;
   display: -ms-grid;
   display: grid;
-  border: 1px solid cyan;
   color: white;
   -ms-grid-columns: 0px 60px 0px 60px 72px 100px;
   grid-template-columns: 0px 60px 0px 60px 72px 100px;
@@ -480,11 +479,17 @@
 :root {
   font-family: "P5hatty", sans-serif;
   text-shadow: 0.1rem 0.2rem #000;
+  --zoomVar: 1;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --zoomVar: 0.7;
+  }
 }
 
 html {
   background: black;
-  background: #4f4559;
   font-size: 16px;
   height: 100%;
 }
@@ -530,7 +535,6 @@ img {
   margin: 0px;
   padding: 0px;
   z-index: -1000;
-  display: none;
 }
 
 #clouds-container {
@@ -645,7 +649,7 @@ img {
 }
 
 .loading-overlay {
-  opacity: 0;
+  opacity: 1;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -700,7 +704,6 @@ img {
 }
 
 #wrapper {
-  position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -710,10 +713,9 @@ img {
   flex-direction: column;
   -ms-flex-preferred-size: 0;
   flex-basis: 0;
+  margin-bottom: 70px;
   width: 100%;
   min-height: 100%;
-  background: rgba(255, 0, 0, 0.5);
-  border: 1px solid pink;
 }
 
 /* now start the HUD grid */
@@ -734,8 +736,8 @@ img {
   -webkit-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   -o-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
-  border: 2px solid lime;
-  margin-top: 0px;
+  zoom: calc(1 * var(--zoomVar));
+  -moz-transform: scale(calc(1 * var(--zoomVar)));
 }
 
 @media (max-width: 640px) {
@@ -747,22 +749,20 @@ img {
   }
 }
 
-.todays-weather-container > * {
-  border: 1px solid yellow;
-}
-
 .mainBounceDown {
+  margin-top: -50px;
   -webkit-transition-delay: 0.5s;
   -o-transition-delay: 0.5s;
   transition-delay: 0.5s;
 }
 
 .mainBounceDown:hover {
-  zoom: 1.2;
-  -moz-transform: scale(1.2);
+  zoom: calc(1.2 * var(--zoomVar));
+  -moz-transform: scale(calc(1.2 * var(--zoomVar)));
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;
+  z-index: 1000;
 }
 
 .calendar-grid-container {
@@ -774,7 +774,6 @@ img {
   position: relative;
   display: -ms-grid;
   display: grid;
-  border: 2px solid red;
   -ms-grid-columns: 0px 0px 60px 62px 70px;
   grid-template-columns: 0px 0px 60px 62px 70px;
   -ms-grid-rows: 0px 0px 108px 0px;
@@ -786,91 +785,15 @@ img {
   margin: 20px 0px 100px 0px;
 }
 
-.calendar-grid-container > * {
-  border: 2px solid yellow;
-}
-
-#header-flexbox {
-  -webkit-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -o-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -webkit-transition-delay: 0.2s;
-  -o-transition-delay: 0.2s;
-  transition-delay: 0.2s;
-  zoom: 0;
-  -moz-transform: scale(0);
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr;
-  grid-template-columns: 1fr;
-  -ms-grid-rows: 0px 80px 50px;
-  grid-template-rows: 0px 80px 50px;
-  max-width: 600px;
-  margin: 20px 20px;
-  padding: 10px;
-  margin-bottom: 20px;
-  zoom: 1;
-  -moz-transform: scale(1);
-}
-
-#header-flexbox > * {
-  margin: -5px;
-}
-
-@media (max-width: 640px) {
-  #header-flexbox {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-}
-
-#header-flexbox.bounceIn {
-  zoom: 1;
-  -moz-transform: scale(1);
-}
-
-#header-background {
-  -ms-grid-row: 1;
-  grid-row: 1;
-  background: url(../images/time-town-background.png);
-  width: 427px;
-  height: 161px;
-  margin-top: 12px;
-}
-
-#city {
-  border: 1px solid cyan;
-  color: white;
-  font-family: "earwig-factory", sans-serif;
-  text-transform: lowercase;
-  font-size: 5rem;
-  text-shadow: 0.1rem 0.5rem #000;
-  -webkit-transform: rotate(-8deg);
-  -ms-transform: rotate(-8deg);
-  transform: rotate(-8deg);
-  z-index: 100;
-}
-
-#clock {
-  border: 1px solid orange;
-  margin-left: 50px;
-  -webkit-transform: rotate(-8deg);
-  -ms-transform: rotate(-8deg);
-  transform: rotate(-8deg);
-  z-index: 100;
-}
-
 #weekday-container {
   position: relative;
   display: -ms-grid;
   display: grid;
   max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
-  border: 2px solid yellow;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   /* repeat 4 columns per row */
   -webkit-box-pack: center;
   -ms-flex-pack: center;
@@ -888,7 +811,6 @@ img {
   flex-direction: column;
   height: 200px;
   margin-top: -1200px;
-  margin-top: 0px;
   -webkit-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   -o-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
@@ -936,12 +858,82 @@ img {
 .bounceDown:hover {
   zoom: 1.1;
   -moz-transform: scale(1.1);
+  z-index: 1000;
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;
 }
 
+#header-flexbox {
+  -webkit-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: zoom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: -moz-transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-delay: 0.2s;
+  -o-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  zoom: 0;
+  -moz-transform: scale(0);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: 0px 80px 50px;
+  grid-template-rows: 0px 80px 50px;
+  max-width: 600px;
+  margin: 20px 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#header-flexbox > * {
+  margin: -5px;
+}
+
+@media (max-width: 640px) {
+  #header-flexbox {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+#header-flexbox.bounceIn {
+  zoom: calc(1 * var(--zoomVar));
+  -moz-transform: scale(calc(1 * var(--zoomVar)));
+}
+
+#header-background {
+  -ms-grid-row: 1;
+  grid-row: 1;
+  background: url(../images/time-town-background.png);
+  width: 427px;
+  height: 161px;
+  margin-top: 12px;
+}
+
+#city {
+  color: white;
+  font-family: "earwig-factory", sans-serif;
+  text-transform: lowercase;
+  font-size: 5rem;
+  text-shadow: 0.1rem 0.5rem #000;
+  -webkit-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+  z-index: 100;
+}
+
+#clock {
+  margin-left: 50px;
+  -webkit-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+  z-index: 100;
+}
+
 #footer {
+  z-index: 10000;
   padding-bottom: 0px;
   margin-top: 50px;
   position: fixed;
@@ -954,5 +946,5 @@ img {
   align-content: top;
   text-align: center;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: black;
 }
