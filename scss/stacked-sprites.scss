@@ -1,3 +1,5 @@
+/*
+// deprecated: shifted into generalised datebox class
 .date-box{
     justify-content: center;
     display: grid;
@@ -10,6 +12,7 @@
     margin: 0;
     grid-gap: 0px;
 }
+*/
 
 .month-base {
     background: url(../images/month-number-sprites.png);
@@ -136,10 +139,8 @@
     margin-top: -2px;
 }
 
-
 // max min //
-// container:
-.max-min-temp{
+.maxmin-temp-container{
     justify-content: center;
     margin: 0;
     color: white;
@@ -155,6 +156,7 @@
         color: white;
     }
 }
+
 .max-min-background{
     background: url(../images/max-min-bg.png);
     display: grid;

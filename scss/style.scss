@@ -196,18 +196,29 @@ img {
     @include zoom(calc(1 * var(--zoomVar)));
 }
 
+.weekday {
+    position: relative;
+    display: grid;
+    grid-template-rows: 190px 0px;
+    margin-top: -1200px; // start way off screen else sometimes some dates get caught
+    @if ($debugMode){
+        margin-top: 0px;
+    }
+    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
+}
+
 .mainBounceDown {
     margin-top: -50px; // TEMP
     transition-delay: 0.5s;
     &:hover{
         @include zoom(calc(1.2 * var(--zoomVar)));
         transition: all 0.1s;
-        //z-index: $z-top; // bring to front TEMP removal
+        z-index: $z-top; // bring to front
     }
 }
 
-.calendar-grid-container {
-    flex: 1;
+.datebox {
+    //flex: 1;
     @include zoom(1.2);
     position: relative;
     display: grid;
@@ -221,13 +232,14 @@ img {
     grid-template-columns: 0px 0px 60px 62px 70px;
     //grid-template-rows: 0px 0px 108px 0px;
     grid-template-rows: 0px 0px 108px 0px; // date date day maxmin
+    grid-template-rows: 0px 0px 108px 0px; // date date day maxmin
     justify-content: center;
     grid-gap: 0px;
     margin: 20px 0px 100px 0px;
 
 }
 
-#weekday-container {
+#week-container {
     position: relative;
     display: grid;
     max-width: 1000px;
@@ -246,17 +258,7 @@ img {
     justify-content: center;
 }
 
-.weekday {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 200px;
-    margin-top: -1200px; // start way off screen else sometimes some dates get caught
-    @if ($debugMode){
-        margin-top: 0px;
-    }
-    transition: margin 0.3s cubic-bezier(.47,1.64,.41,.8);
-}
+
 
 .bounceDown{
     margin-top: 0px;
@@ -284,7 +286,7 @@ img {
     }
     &:hover{
         @include zoom(1.1);
-        //z-index: $z-top; // bring to front // TEMP removal
+        z-index: $z-top; // bring to front // TEMP removal
         transition: all 0.1s;
     }
 }
