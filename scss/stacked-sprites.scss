@@ -1,28 +1,11 @@
-/*
-// deprecated: shifted into generalised datebox class
-.date-box{
-    justify-content: center;
-    display: grid;
-    @if ($debugMode) {
-           border: 1px solid cyan;
-    }
-    color: white;
-    grid-template-columns: 0px 60px 0px 60px 72px 100px;
-    grid-template-rows: 0px 0px 108px 40px;
-    margin: 0;
-    grid-gap: 0px;
-}
-*/
-
 .month-base {
     background: url(../images/month-number-sprites.png);
     @include sprite_position(120,120);
     @include date-month-position;
     position: relative;
-    z-index: 10;//$z-base;
+    z-index: 10;
     grid-column: 2;
     grid-row: 3;
-    //margin-top: 100px;
 }
 
 .month-mid {
@@ -139,7 +122,6 @@
     margin-top: -2px;
 }
 
-// max min //
 .maxmin-temp-container{
     justify-content: center;
     margin: 0;
@@ -147,7 +129,6 @@
     display: grid;
     grid-template-columns: repeat(2, 10px 14px 18px 20px);
     grid-template-rows: 12px 100px;
-    //margin-top: -12px;
     margin-left: 40px;
     transform: rotate(-15deg);
     position: relative;
@@ -212,7 +193,6 @@
     background-position: -320px 0px;
 }
 
-// current temperature
 #current-temp-container {
     display: grid;
     grid-template-rows: 60px 60px;

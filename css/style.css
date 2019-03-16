@@ -8,21 +8,6 @@
   src: url(../fonts/earwig-factory.ttf);
 }
 
-/*
-// deprecated: shifted into generalised datebox class
-.date-box{
-    justify-content: center;
-    display: grid;
-    @if ($debugMode) {
-           border: 1px solid cyan;
-    }
-    color: white;
-    grid-template-columns: 0px 60px 0px 60px 72px 100px;
-    grid-template-rows: 0px 0px 108px 40px;
-    margin: 0;
-    grid-gap: 0px;
-}
-*/
 .month-base {
   background: url(../images/month-number-sprites.png);
   background-position: 0px 0px;
@@ -755,7 +740,9 @@ img {
   -webkit-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   -o-transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
   transition: margin 0.3s cubic-bezier(0.47, 1.64, 0.41, 0.8);
-  zoom: calc(1 * var(--zoomVar));
+  -webkit-transform: scale(calc(1 * var(--zoomVar)));
+  -ms-transform: scale(calc(1 * var(--zoomVar)));
+  transform: scale(calc(1 * var(--zoomVar)));
   -moz-transform: scale(calc(1 * var(--zoomVar)));
 }
 
@@ -788,7 +775,9 @@ img {
 }
 
 .mainBounceDown:hover {
-  zoom: calc(1.2 * var(--zoomVar));
+  -webkit-transform: scale(calc(1.2 * var(--zoomVar)));
+  -ms-transform: scale(calc(1.2 * var(--zoomVar)));
+  transform: scale(calc(1.2 * var(--zoomVar)));
   -moz-transform: scale(calc(1.2 * var(--zoomVar)));
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
@@ -797,7 +786,9 @@ img {
 }
 
 .datebox {
-  zoom: 1.2;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
   -moz-transform: scale(1.2);
   position: relative;
   display: -ms-grid;
@@ -843,7 +834,9 @@ img {
 @media (min-width: 860px) {
   .bounceDown:nth-child(1) {
     margin-top: -80px;
-    zoom: 0.8;
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
     -moz-transform: scale(0.8);
     -webkit-transition-delay: 0.2s;
     -o-transition-delay: 0.2s;
@@ -851,7 +844,9 @@ img {
   }
   .bounceDown:nth-child(2) {
     margin-top: -30px;
-    zoom: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
     -moz-transform: scale(1);
     -webkit-transition-delay: 0.25s;
     -o-transition-delay: 0.25s;
@@ -859,7 +854,9 @@ img {
   }
   .bounceDown:nth-child(3) {
     margin-top: -50px;
-    zoom: 0.8;
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
     -moz-transform: scale(0.8);
     -webkit-transition-delay: 0.3s;
     -o-transition-delay: 0.3s;
@@ -867,7 +864,9 @@ img {
   }
   .bounceDown:nth-child(4) {
     margin-top: -100px;
-    zoom: 0.6;
+    -webkit-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6);
     -moz-transform: scale(0.6);
     -webkit-transition-delay: 0.35s;
     -o-transition-delay: 0.35s;
@@ -876,12 +875,11 @@ img {
 }
 
 .bounceDown:hover {
-  zoom: 1.1;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
   -moz-transform: scale(1.1);
   z-index: 10001;
-  -webkit-transition: all 0.1s;
-  -o-transition: all 0.1s;
-  transition: all 0.1s;
 }
 
 #header-flexbox {
@@ -892,7 +890,9 @@ img {
   -webkit-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   transition-delay: 0.2s;
-  zoom: 0;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
   -moz-transform: scale(0);
   display: -ms-grid;
   display: grid;
@@ -920,7 +920,9 @@ img {
 }
 
 #header-flexbox.bounceIn {
-  zoom: calc(1 * var(--zoomVar));
+  -webkit-transform: scale(calc(1 * var(--zoomVar)));
+  -ms-transform: scale(calc(1 * var(--zoomVar)));
+  transform: scale(calc(1 * var(--zoomVar)));
   -moz-transform: scale(calc(1 * var(--zoomVar)));
 }
 
@@ -936,7 +938,9 @@ img {
 
 @media (max-width: 480px) {
   #header-background {
-    zoom: 0.9;
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
     -moz-transform: scale(0.9);
   }
 }

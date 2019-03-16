@@ -22,7 +22,8 @@
 }
 
 @mixin zoom($amount){
-    zoom: (#{$amount});
+    //zoom: (#{$amount});
+    transform:scale(#{$amount});
     -moz-transform: scale((#{$amount}));
 }
 
