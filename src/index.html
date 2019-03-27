@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<title>Persona 5 Weather App</title>
+		<meta name="viewport" content="width=device-width" initiali-scale="1.0"/>
+		<meta name="description" content="Weather App and Calendar based off the Persona 5 UI">
+		<!-- <link rel = "stylesheet" href = "css/style.css"> -->
+
+		<!-- favicon stuff -->
+		<!-- <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"> -->
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<!-- <link rel="manifest" href="images//site.webmanifest">
+		<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5"> -->
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+	</head>
+	<body>
+		<img class = "background-image" src = "images/city_background_day.png" alt = "city background day">
+		<img class = "background-image timeOfDay" src = "images/city_background_night.png" alt = "city background night">
+		<div id = "clouds-container"></div>
+		<div id = "wrapper">
+			<div id = "header-flexbox">
+				<div id = "header-background"></div>
+				<h1 id = "city">Loading Test City...</h1>
+				<div id = "clock">
+					<h2 id = "time">00.00:00AM</h2>
+				</div>
+			</div>
+
+			<div class = "todays-weather-container">
+				<div class = "datebox">
+					<div class = "month-top"></div>
+					<div class = "month-mid"></div>
+					<div class = "month-base"></div>
+					<div class = "date-tens-top"></div>
+					<div class = "date-ones-top"></div>
+					<div class = "date-tens-mid"></div>
+					<div class = "date-ones-mid"></div>
+					<div class = "date-tens-base"></div>
+					<div class = "date-ones-base"></div>
+					<div class = "weekday-sprite"></div>
+					<div class = "weather-card"></div>
+					<div class = "current-weather-sprite"></div>
+				</div>
+				<div id = "current-temp-container">
+					<div id = "current-temp-background"></div>
+					<div id = "current-temp-sign"></div>
+					<div id = "current-temp-tens"></div>
+					<div id = "current-temp-ones"></div>
+					<div id = "current-temp-decimal"></div>
+					<div id = "current-temp-tenths"></div>
+					<div id = "current-temp-degrees"></div>
+				</div>
+				<div class = "maxmin-temp-container">
+					<div class = "max-min-background"></div>
+					<div class = "max-temp-sign"></div>
+					<div class = "max-temp-tens"></div>
+					<div class = "max-temp-ones"></div>
+					<div class = "max-temp-degrees"></div>
+					<div class = "min-temp-sign"></div>
+					<div class = "min-temp-tens"></div>
+					<div class = "min-temp-ones"></div>
+					<div class = "min-temp-degrees"></div>
+				</div>
+			</div>
+
+
+			<div id = "week-container">
+				<div class = "weekday">
+					<div class = "datebox">
+						<div class = "date-tens-top"></div>
+						<div class = "date-ones-top"></div>
+						<div class = "date-tens-mid"></div>
+						<div class = "date-ones-mid"></div>
+						<div class = "date-tens-base"></div>
+						<div class = "date-ones-base"></div>
+						<div class = "weekday-sprite"></div>
+						<div class = "weather-card"></div>
+						<div class = "current-weather-sprite"></div>
+					</div>
+					<div class = "maxmin-temp-container">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
+				</div>
+				<div class = "weekday">
+					<div class = "datebox">
+						<div class = "date-tens-top"></div>
+						<div class = "date-ones-top"></div>
+						<div class = "date-tens-mid"></div>
+						<div class = "date-ones-mid"></div>
+						<div class = "date-tens-base"></div>
+						<div class = "date-ones-base"></div>
+						<div class = "weekday-sprite"></div>
+						<div class = "weather-card"></div>
+						<div class = "current-weather-sprite"></div>
+					</div>
+					<div class = "maxmin-temp-container">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
+				</div>
+				<div class = "weekday">
+					<div class = "datebox">
+						<div class = "date-tens-top"></div>
+						<div class = "date-ones-top"></div>
+						<div class = "date-tens-mid"></div>
+						<div class = "date-ones-mid"></div>
+						<div class = "date-tens-base"></div>
+						<div class = "date-ones-base"></div>
+						<div class = "weekday-sprite"></div>
+						<div class = "weather-card"></div>
+						<div class = "current-weather-sprite"></div>
+					</div>
+					<div class = "maxmin-temp-container">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
+				</div>
+				<div class = "weekday">
+					<div class = "datebox">
+						<div class = "date-tens-top"></div>
+						<div class = "date-ones-top"></div>
+						<div class = "date-tens-mid"></div>
+						<div class = "date-ones-mid"></div>
+						<div class = "date-tens-base"></div>
+						<div class = "date-ones-base"></div>
+						<div class = "weekday-sprite"></div>
+						<div class = "weather-card"></div>
+						<div class = "current-weather-sprite"></div>
+					</div>
+					<div class = "maxmin-temp-container">
+						<div class = "max-min-background"></div>
+						<div class = "max-temp-sign"></div>
+						<div class = "max-temp-tens"></div>
+						<div class = "max-temp-ones"></div>
+						<div class = "max-temp-degrees"></div>
+						<div class = "min-temp-sign"></div>
+						<div class = "min-temp-tens"></div>
+						<div class = "min-temp-ones"></div>
+						<div class = "min-temp-degrees"></div>
+					</div>
+				</div>
+			</div>
+
+		</div> <!-- end page wrapper -->
+
+		<div id = "footer">
+			<p>Website by Nathan Scott 2019</p>
+			<p>Persona 5 and all associated graphics are trademarks of ATLUS.</p>
+		</div>
+
+
+		<div class = "loading-overlay">
+			<h6 id = "loading-text">Loading Page...</h6>
+			<img class = "loading-graphic" src = "images/loading.gif" alt = "Loading Image Overlay">
+		</div>
+		<!--Cleanup with webpack later -->
+		<!-- <script type = "text/javascript" src = "javascript/initialise.js"></script>
+		<script type = "text/javascript" src = "javascript/updateSprites.js"></script>
+		<script type="text/javascript" src="javascript/timedFunctions.js"></script>
+		<script type = "text/javascript" src = "javascript/getWeather.js"></script>
+		<script type="text/javascript" src="javascript/processWeather.js"></script> -->
+	</body>
+</html>

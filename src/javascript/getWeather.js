@@ -3,6 +3,8 @@
 	https://medium.com/@drewclementsdesign/building-a-weather-app-with-vanilla-javascript-920889a78ca2
 */
 
+console.log("getWeather.js");
+
 var getCoordinates = function() {
 	updateLoadingText("Getting geolocation...");
     if(navigator.geolocation){

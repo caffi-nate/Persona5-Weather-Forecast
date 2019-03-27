@@ -5,17 +5,17 @@
 		<title>Persona 5 Weather App</title>
 		<meta name="viewport" content="width=device-width" initiali-scale="1.0"/>
 		<meta name="description" content="Weather App and Calendar based off the Persona 5 UI">
-		<link rel = "stylesheet" href = "css/style.css">
+		<!-- <link rel = "stylesheet" href = "css/style.css"> -->
 
 		<!-- favicon stuff -->
-		<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-		<link rel="manifest" href="images/favicon//site.webmanifest">
-		<link rel="mask-icon" href="images/favicon//safari-pinned-tab.svg" color="#5bbad5">
+		<!-- <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"> -->
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<!-- <link rel="manifest" href="images//site.webmanifest">
+		<link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#5bbad5"> -->
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
-	</head>
+	<link href="main.css" rel="stylesheet"></head>
 	<body>
 		<img class = "background-image" src = "images/city_background_day.png" alt = "city background day">
 		<img class = "background-image timeOfDay" src = "images/city_background_night.png" alt = "city background night">
@@ -176,13 +176,13 @@
 
 		<div class = "loading-overlay">
 			<h6 id = "loading-text">Loading Page...</h6>
-			<img class = "loading-graphic" src = "images/loading.gif">
+			<img class = "loading-graphic" src = "images/loading.gif" alt = "Loading Image Overlay">
 		</div>
 		<!--Cleanup with webpack later -->
-		<script type = "text/javascript" src = "javascript/initialise.js"></script>
+		<!-- <script type = "text/javascript" src = "javascript/initialise.js"></script>
 		<script type = "text/javascript" src = "javascript/updateSprites.js"></script>
 		<script type="text/javascript" src="javascript/timedFunctions.js"></script>
 		<script type = "text/javascript" src = "javascript/getWeather.js"></script>
-		<script type="text/javascript" src="javascript/processWeather.js"></script>
-	</body>
+		<script type="text/javascript" src="javascript/processWeather.js"></script> -->
+	<script type="text/javascript" src="main.js"></script></body>
 </html>

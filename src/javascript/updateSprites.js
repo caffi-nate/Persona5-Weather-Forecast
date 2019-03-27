@@ -1,3 +1,5 @@
+console.log("updateSprites.js");
+
 window.setInterval(function animateWeatherSprite(){
 	const todaysWeatherSprite = document.querySelector('.current-weather-sprite');
 

@@ -1,3 +1,5 @@
+console.log("timedFunctions.js");
+
 function setDateTime(){
 	const currentTime = new Date();
 	const day = (currentTime.getDay() + 6) % 7;

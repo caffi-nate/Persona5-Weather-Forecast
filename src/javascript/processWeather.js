@@ -1,4 +1,6 @@
 /* Data Conversion Helper Functions */
+
+console.log("processWeather.js");
 function convertIcon(iconID){
 	// in Persona 5 there are only 4 conditions: Sun, Clouds, Rain, and Snow
 	let weatherCondition = "";
