@@ -1,7 +1,7 @@
 # Persona5_Calendar
 Simple Clock/Weather App based off the [Persona 5 Interface](/projectImages/ingame_02.gif)
 
-[-Github Live Page Link-](https://caffi-nate.github.io/Persona5_Calendar/)
+[-Github Live Page Link-](https://caffi-nate.github.io/Persona5-Weather-Forecast/dist/)
 
 ![alt text](/projectImages/final_1201.gif)
 
